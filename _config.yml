@@ -1,3 +1,13 @@
-title: SoftCrawl
-description: FYP documentation
+title: Soft Crawl
+description: A soft pneumatic climbing robot for aircraft fuel tank inspection — ASI-404, NUS.
 theme: minima
+
+# Pages shown in the top menu, in this order
+header_pages:
+  - about.md
+  - report/index.md
+  - contact.md
+
+# Optional: shown in the footer
+# email: your-team-email@example.com
+# github_username: softcrawl
