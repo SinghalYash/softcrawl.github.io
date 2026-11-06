@@ -1,0 +1,43 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Secrets & local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs & temp
+*.log
+tmp/
+*.tmp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+dist/
+
+# C/C++ / CMake / ROS
+build/
+install/
+log/
+devel/
+*.o
+*.so
+CMakeCache.txt
+CMakeFiles/
