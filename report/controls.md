@@ -4,7 +4,7 @@ title: Context
 group: Interim
 code: SEC-01
 nav_order: 1
-permalink: /report/controls/
+permalink: /report/context/
 ---
 
 This section sets out the aircraft fuel-tank environment, why current inspection is difficult, who SoftCrawl is for, and the requirements that drive the Robot Body and Robot Legs subsystems.

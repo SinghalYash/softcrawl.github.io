@@ -4,7 +4,7 @@ title: Robot Legs
 group: Interim
 code: SEC-03
 nav_order: 3
-permalink: /report/perception/
+permalink: /report/legs/
 ---
 
 The Robot Legs provide SoftCrawl's grip. They anchor the robot to oily aluminium surfaces so the Kresling body can push it forward, up walls and around 90 degree corners.
