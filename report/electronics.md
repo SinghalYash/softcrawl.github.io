@@ -2,8 +2,8 @@
 layout: report
 title: Electronic Hardware
 group: Interim
-code: SYS-02
-nav_order: 2
+code: SEC-04
+nav_order: 4
 permalink: /report/electronics/
 ---
 
