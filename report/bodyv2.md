@@ -14,6 +14,8 @@ permalink: /report/structure/
 
 The Robot Body is the soft actuated spine of SoftCrawl. It contracts and bends so that the legs can step, climb vertical walls and turn 90 degree corners inside the wing tank.
 
+<div class="stat-row"> <div class="stat"><span class="value">43.2%</span><span class="label">Contraction</span></div> <div class="stat"><span class="value">&gt;3.3 kg</span><span class="label">Load held</span></div> <div class="stat"><span class="value">72.7°</span><span class="label">Best bend</span></div> <div class="stat"><span class="value">506 g</span><span class="label">Body mass</span></div> </div>
+
 ### 2.1 Subsystem Requirements
 
 The objective is a soft, spark-free body that fits through standard access panels and can contract and bend to move the robot. The scope covers the actuated spine, its end plates, and the leg mounts. To ensure fuel tank safety, the body contains zero internal electronics and is powered via external pneumatic lines and a vacuum pump.
