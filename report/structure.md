@@ -4,7 +4,7 @@ title: Robot Body
 group: Interim
 code: SEC-02
 nav_order: 2
-permalink: /report/structure/
+permalink: /report/old_structure/
 ---
 
 The Robot Body is the soft actuated spine of SoftCrawl. It contracts and bends so that the legs can step, climb vertical walls and turn 90 degree corners inside the wing tank.
@@ -16,13 +16,22 @@ The objective is a soft, spark-free body that fits through standard access panel
 
 To translate these operational goals into actionable engineering constraints, the overall mission requirements were flowed down into four core mechanical specifications, detailed in Table 1.
 
-Rank	Constraint	Specification
-1	Geometry	Fit within the 30 cm × 20 cm access panel; the actuator never expands beyond the body envelope, avoiding snags on ribs
-2	Load	Actuate with a 0.75 kg robot mass with a safety factor of 2 on a vertical surface
-3	Locomotion	Climb 90 degree corners
-4	Material	No damage to tank internal surfaces; no swelling or damage from prolonged oil exposure
+| Category | Requirement |
+|---|---|
+| **Geometry** | Fit within a 300 × 200 mm access opening |
+| | Actuator never expands beyond the body, avoiding snags |
+| **Electronics** | No electronics in the tank except camera and light |
+| **Adhesion** | Actuate with a 0.75 kg robot mass with safety factor 2 on oily vertical surfaces |
+| | Adhesion on thin oil film over aluminium sheet |
+| **Locomotion** | Control each leg individually |
+| | Climb 90 degree corners |
+| | Pass through 30 cm × 30 cm access hole to next fuel tank chamber |
+| **Material compatibility** | No damage to fuel tank internal surfaces |
+| | No swelling/damage due to prolonged oil exposure |
 
-Table 1. Robot Body requirements. {: .caption}
+*Table 1. Robot body requirements*
+{: style="text-align: center;"}
+
 
 2.2 Concept Generation
 2.2.1 Morphological Matrix
@@ -49,7 +58,14 @@ Origami actuator (c)	Low pressure, zero radial ballooning and low material use	S
 
 Table 3. Pneumatic actuation mechanisms considered. {: .caption}
 
-<figure> <div class="figure-row"> <div class="img-placeholder">(a) Pneumatic artificial muscle</div> <div class="img-placeholder">(b) Bellows actuator</div> <div class="img-placeholder">(c) Origami actuator</div> </div> <figcaption>Figure 1. Pneumatic actuation options considered for the Robot Body: (a) artificial muscle, (b) bellows, (c) origami.</figcaption> </figure>
+<figure>
+  <div class="figure-row">
+    <img src="{{ '/images/body/image1.png' | relative_url }}">
+    <img src="{{ '/images/body/image2.png' | relative_url }}">
+    <img src="{{ '/images/body/image3.png' | relative_url }}">
+  </div>
+  <figcaption>Figure 1. Pneumatic actuation options considered for the Robot Body: (a) artificial muscle, (b) bellows, (c) origami</figcaption>
+</figure>
 
 Origami actuators were selected. The first requirement is that the actuator never expands beyond the body, which rules out artificial muscles and bellows because both balloon. An origami actuator also works at low pressure, which suits long air lines from outside the tank, and uses little material.
 
