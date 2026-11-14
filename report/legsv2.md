@@ -64,7 +64,7 @@ Based on the overall system requirements for our robot, we have highlighted the 
 
 A morphological matrix was developed to compare solution principles for the ranked Robot Legs functions. Two concepts—passive and active suction—were selected for parallel development.
 
-| Rank | Function | Solution Principles |
+| Rank | Function | Solution 1 | Solution 2 | Solution 3 |
 |---|---|---|---|---|
 | 1 | Maintain surface adhesion | Passive suction cups | Active suction cups | Mechanically actuated suction cups |
 | 2 | Seal on oily surface | Bellows suction cups | Deep concave suction cup | Flat suction cup |
@@ -337,28 +337,6 @@ Future testing will evaluate integrated locomotion with the Kresling body, focus
 
 ---
 
-## References
-
-- AMES Direct. (2025, July 15). *Polyurethane or rubber? What top manufacturing plants choose*. <https://amesdirect.com.au/2025/07/15/polyurethane-or-rubber-what-top-manufacturing-plants-choose/>
-- de Wolff, T. (2017). *The design and fabrication of a biomimetic lifting aid* [Master's thesis, University of Twente]. University of Twente Student Theses. <https://essay.utwente.nl/fileshare/file/71802/Wolff%2C%20de_MA_Engineering%20Technology.pdf>
-- Festo. (n.d.). *Basic principles of vacuum technology: Brief overview*. <https://media.festo.com/media/114150_documentation.pdf>
-- Festo AG & Co. KG. (2020). *Suction cup VAS-40-1/4-PUR-B (Part No. 1396092)* [Technical data sheet]. <https://docs.rs-online.com/aeed/A700000006937653.pdf>
-- He, Y., Pfeifer, P. L., Feng, R., & Li, S. (2026). Controllable passive suction cups with mechanical programmability for soft robotics. *Advanced Functional Materials, 36*(56), Article e75782. <https://doi.org/10.1002/adfm.75782>
-- J. Schmalz GmbH. (2016). *Vacuum training-set manual: World of vacuum technology*. <https://pimmedia.schmalz.com/MAM_Library/Dokumente/Bedienungsanleitung/30/3030/303001/30300100961/8171d43fa32f_BAL_30.30.01.00961_en-EN.pdf>
-- J. Schmalz GmbH. (n.d.). *Suction cup shapes*. <https://www.schmalz.com/en-us/support/know-how/vacuum-knowledge/the-vacuum-system-and-its-components/vacuum-suction-cups/suction-cup-shapes>
-- Kawasaki, S., & Kikuchi, K. (2014). Development of a small legged wall climbing robot with passive suction cups. In *Proceedings of the 3rd International Conference on Design Engineering and Science (ICDES 2014)* (pp. 112–116).
-- Mantriota, G., & Messina, A. (2011). Theoretical and experimental study of the performance of flat suction cups in the presence of tangential loads. *Mechanism and Machine Theory, 46*(5), 607–617. <https://doi.org/10.1016/j.mechmachtheory.2011.01.003>
-- Raschig GmbH. (2018). *Mass transfer products* (Product Bulletin 101). <https://www.christianberner.fi/globalassets/leverantorer/raschig/dokument/raschig-mass-transfer-products-101.pdf>
-- Rutkowski, M. M., Smolinski, P. J., & Miller, M. C. (2009). The geometry of vacuum assisted interface adhesion: Resistance to axial moment. *Vacuum, 83*(5), 869–872. <https://doi.org/10.1016/j.vacuum.2008.09.004>
-- SMC Corporation. (n.d.-a). *AMJ: Drain separator for vacuum* [Product specifications]. <https://www.smcusa.com/products/amj-drain-separator-for-vacuum~177107>
-- SMC Corporation. (n.d.-b). *AM series: Mist separator* [Product specifications]. <https://www.smcworld.com/products/solutions/en-sg/filter/filter_am.html>
-- SMC Corporation. (n.d.-c). *ZFC: In-line air filter with one-touch fitting* [Product specifications]. <https://www.smcusa.com/products/zfc-in-line-air-filter-with-one-touch-fitting~161860>
-- Wang, D., Liu, H., Li, Y., Lan, T., Shao, Y., Wei, R., Fu, S., Yi, R., Ren, Y., Ye, S., Zheng, Z., Wang, X., Hu, H., Tian, H., & Shao, J. (2026). Bioinspired dry adhesives: From challenging surface adhesion to controllable release. *Advanced Bionics, 2*(2), 195–217. <https://doi.org/10.1016/j.abs.2026.08.001>
-- Wang, L., Ha, K.-H., Rodin, G. J., Liechti, K. M., & Lu, N. (2020). Mechanics of crater-enabled soft dry adhesives: A review. *Frontiers in Mechanical Engineering, 6*, Article 601510. <https://doi.org/10.3389/fmech.2020.601510>
-- Yuan, Z., Ji, H., Huang, K., Chen, F., & Gu, G. (2026). Multimodal locomotion of soft robots. *Advanced Intelligent Systems, 8*(2), Article e202500782. <https://doi.org/10.1002/aisy.202500782>
-- Zhu, J., Zhu, Y., & Zhang, P. (2024). Review of advancements in wall climbing robot techniques. *Franklin Open, 8*, Article 100148. <https://doi.org/10.1016/j.fraope.2024.100148>
----
-
 ## Appendix
 
 ### Appendix A: Passive Suction-Cup Design Principles
@@ -604,6 +582,30 @@ Oil contamination was grouped into three illustrative categories (Raschig GmbH, 
 | Inline vacuum filter | Compact and straightforward to integrate | Filtration capability depends on media and contamination type |
 
 *Table J2. Comparison of vacuum-line protection options (SMC Corporation, n.d.-a, n.d.-b, n.d.-c).*
+
+---
+
+## References
+
+- AMES Direct. (2025, July 15). *Polyurethane or rubber? What top manufacturing plants choose*. <https://amesdirect.com.au/2025/07/15/polyurethane-or-rubber-what-top-manufacturing-plants-choose/>
+- de Wolff, T. (2017). *The design and fabrication of a biomimetic lifting aid* [Master's thesis, University of Twente]. University of Twente Student Theses. <https://essay.utwente.nl/fileshare/file/71802/Wolff%2C%20de_MA_Engineering%20Technology.pdf>
+- Festo. (n.d.). *Basic principles of vacuum technology: Brief overview*. <https://media.festo.com/media/114150_documentation.pdf>
+- Festo AG & Co. KG. (2020). *Suction cup VAS-40-1/4-PUR-B (Part No. 1396092)* [Technical data sheet]. <https://docs.rs-online.com/aeed/A700000006937653.pdf>
+- He, Y., Pfeifer, P. L., Feng, R., & Li, S. (2026). Controllable passive suction cups with mechanical programmability for soft robotics. *Advanced Functional Materials, 36*(56), Article e75782. <https://doi.org/10.1002/adfm.75782>
+- J. Schmalz GmbH. (2016). *Vacuum training-set manual: World of vacuum technology*. <https://pimmedia.schmalz.com/MAM_Library/Dokumente/Bedienungsanleitung/30/3030/303001/30300100961/8171d43fa32f_BAL_30.30.01.00961_en-EN.pdf>
+- J. Schmalz GmbH. (n.d.). *Suction cup shapes*. <https://www.schmalz.com/en-us/support/know-how/vacuum-knowledge/the-vacuum-system-and-its-components/vacuum-suction-cups/suction-cup-shapes>
+- Kawasaki, S., & Kikuchi, K. (2014). Development of a small legged wall climbing robot with passive suction cups. In *Proceedings of the 3rd International Conference on Design Engineering and Science (ICDES 2014)* (pp. 112–116).
+- Mantriota, G., & Messina, A. (2011). Theoretical and experimental study of the performance of flat suction cups in the presence of tangential loads. *Mechanism and Machine Theory, 46*(5), 607–617. <https://doi.org/10.1016/j.mechmachtheory.2011.01.003>
+- Raschig GmbH. (2018). *Mass transfer products* (Product Bulletin 101). <https://www.christianberner.fi/globalassets/leverantorer/raschig/dokument/raschig-mass-transfer-products-101.pdf>
+- Rutkowski, M. M., Smolinski, P. J., & Miller, M. C. (2009). The geometry of vacuum assisted interface adhesion: Resistance to axial moment. *Vacuum, 83*(5), 869–872. <https://doi.org/10.1016/j.vacuum.2008.09.004>
+- SMC Corporation. (n.d.-a). *AMJ: Drain separator for vacuum* [Product specifications]. <https://www.smcusa.com/products/amj-drain-separator-for-vacuum~177107>
+- SMC Corporation. (n.d.-b). *AM series: Mist separator* [Product specifications]. <https://www.smcworld.com/products/solutions/en-sg/filter/filter_am.html>
+- SMC Corporation. (n.d.-c). *ZFC: In-line air filter with one-touch fitting* [Product specifications]. <https://www.smcusa.com/products/zfc-in-line-air-filter-with-one-touch-fitting~161860>
+- Wang, D., Liu, H., Li, Y., Lan, T., Shao, Y., Wei, R., Fu, S., Yi, R., Ren, Y., Ye, S., Zheng, Z., Wang, X., Hu, H., Tian, H., & Shao, J. (2026). Bioinspired dry adhesives: From challenging surface adhesion to controllable release. *Advanced Bionics, 2*(2), 195–217. <https://doi.org/10.1016/j.abs.2026.08.001>
+- Wang, L., Ha, K.-H., Rodin, G. J., Liechti, K. M., & Lu, N. (2020). Mechanics of crater-enabled soft dry adhesives: A review. *Frontiers in Mechanical Engineering, 6*, Article 601510. <https://doi.org/10.3389/fmech.2020.601510>
+- Yuan, Z., Ji, H., Huang, K., Chen, F., & Gu, G. (2026). Multimodal locomotion of soft robots. *Advanced Intelligent Systems, 8*(2), Article e202500782. <https://doi.org/10.1002/aisy.202500782>
+- Zhu, J., Zhu, Y., & Zhang, P. (2024). Review of advancements in wall climbing robot techniques. *Franklin Open, 8*, Article 100148. <https://doi.org/10.1016/j.fraope.2024.100148>
+
 <!-- Page-local MathJax setup: required when the report layout does not load a math renderer. -->
 <script>
 window.MathJax = window.MathJax || {
@@ -615,4 +617,6 @@ window.MathJax = window.MathJax || {
 <style>
 .legs-equation {text-align:center; overflow-x:auto; margin:1.15rem 0; padding:.35rem 0;}
 .legs-equation mjx-container[display="true"] {margin:.3em 0 !important;}
+a[href^="http"] {overflow-wrap:anywhere; word-break:break-word;}
+table {display:block; max-width:100%; overflow-x:auto;}
 </style>
