@@ -142,7 +142,7 @@ Ten measurements across 0 to -80 kPa were compared against a reference pressure 
 
 <div class="legs-equation">\[ P_{\mathrm{cal}}=1.00298P_{\mathrm{raw}}-2.671 \]</div>
 
-The calibration achieved an <span markdown="0">\(R^2\)</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
+The calibration achieved an <span markdown="0">\$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
 
 <figure>
 <img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 10 Pressure Calibration Curve">
