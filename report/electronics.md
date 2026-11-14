@@ -148,7 +148,7 @@ The suction-cup pairs use separate binary valve control to establish or release 
 <figcaption>Fig. 6 Electrical and Pneumatic schematic</figcaption>
 </figure>
 
-A detailed schematic is attached in [Appendix B]((#appendix-b-detailed-schematic)).
+A detailed schematic is attached in [Appendix B](#appendix-b-detailed-schematic).
 
 
 
@@ -419,6 +419,7 @@ The following summarises the engineering considerations behind the assigned scor
 | Cost | Low-cost and readily implementable components | Higher cost, approximately US$500 per channel in the original assessment | Moderate component cost, but requires supporting compressed-air infrastructure |
 | Hardware requirements | Requires solenoid valves, drivers and pressure feedback | Requires electronic regulators and associated control interfaces | Requires compressed-air supply and additional pressure-regulation hardware |
 | Scalability | Modular arrangement of independently controlled valve channels | Modular regulator-based arrangement | Expansion requires additional pneumatic infrastructure |
+
 ### Appendix B: Detailed schematic
 <figure>
 <img src="{{ '/images/electronics/figure-07.png' | relative_url }}" alt="Fig.7 Detailed Electronic diagram">
