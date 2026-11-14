@@ -96,7 +96,7 @@ Passive suction has an established track record in small climbing robots. Kawasa
 
 <figure>
 <img src="{{ '/images/legs/image2.png' | relative_url }}">
-<figcaption>Development of passive suction-cup climbing robots: Kawasaki and Kikuchi (2014), Wang et al. (2020) and He et al. (2026).</figcaption>
+<figcaption>Figure 2. Development of passive suction-cup climbing robots: Kawasaki and Kikuchi (2014), Wang et al. (2020) and He et al. (2026).</figcaption>
 </figure>
 
 Compared with active vacuum, a passive cup:
@@ -114,7 +114,7 @@ On a vertical wall, the foot must satisfy two conditions. **Slip** is resisted b
 
 <figure>
 <img src="{{ '/images/legs/image3.png' | relative_url }}" alt="Forces on a suction foot">
-<figcaption>Forces on a suction foot on a vertical wall, showing the peel and slip conditions.</figcaption>
+<figcaption>Figure 3. Forces on a suction foot on a vertical wall, showing the peel and slip conditions.</figcaption>
 </figure>
 
 #### 3.3.3 Geometric and Material Design
@@ -134,28 +134,28 @@ Prototypes were cast in a 1:1 blend of Ecoflex 00-30 and Dragon Skin 10, poured 
 
 <figure>
 <img src="{{ '/images/legs/image4.png' | relative_url }}" alt="V3 bellows cup geometry">
-<figcaption>V3 bellows cup geometry: seal bore, lip, folds and hinges.</figcaption>
+<figcaption>Figure 4. V3 bellows cup geometry: seal bore, lip, folds and hinges.</figcaption>
 </figure>
 
 Each cup was cast in a two-part 3D-printed mould, with an inner core forming the bellows cavity.
 
 <figure>
 <img src="{{ '/images/legs/image5.png' | relative_url }}" alt="Two-part mould">
-<figcaption>Two-part 3D-printed mould used to cast the passive cups.</figcaption>
+<figcaption>Figure 5. Two-part 3D-printed mould used to cast the passive cups.</figcaption>
 </figure>
 
 To resist shear on a vertical wall and provide pre-load for attach and release, the cup is mounted in a four-part skeleton plunger comprising a collar, frame, plunger and handle. Pushing the plunger seals the cup, and pulling it lifts the centre to break the seal.
 
 <figure>
 <img src="{{ '/images/legs/image6.png' | relative_url }}" alt="Skeleton plunger assembly">
-<figcaption>Skeleton plunger assembly: collar, frame, plunger and handle.</figcaption>
+<figcaption>Figure 6. Skeleton plunger assembly: collar, frame, plunger and handle.</figcaption>
 </figure>
 
 #### 3.3.4 Prototype Development (V1–V3)
 
 <figure>
 <img src="{{ '/images/legs/image7.png' | relative_url }}" alt="Passive cup prototypes V1 to V3">
-<figcaption>Passive suction-cup prototypes V1–V3.</figcaption>
+<figcaption>Figure 7. Passive suction-cup prototypes V1–V3.</figcaption>
 </figure>
 
 | Version | Design | Outcome |
@@ -197,7 +197,7 @@ Active vacuum suction was investigated in parallel with passive suction developm
 
 *Table 6. Active suction concept (Idea 2) selected from the morphological matrix.*
 
-Commercial suction cups were adapted for robotic locomotion, allowing early evaluation of load capacity, mechanical integration, oil contamination and failure mechanisms.
+Commercial suction cups were adapted for robotic locomotion, allowing early evaluation of load capacity, mechanical integration, oil contamination and failure mechanisms. The selected solution principles and their justifications are summarised in [Appendix D](#appendix-d-suction-cup-geometry-comparison).
 
 #### 3.4.1 Suction-Cup Geometry Selection
 
@@ -238,8 +238,8 @@ A 3D-printed mounting interface was developed to integrate the suction cups with
 A configurable testing jig was used to measure failure loads at approximately −80 kPa under horizontal and vertical loading, with all four cups active, the front two active and the rear two active.
 
 <figure>
-<img src="{{ '/images/legs/image12.png' | relative_url }}" alt="Suction cup mounting interface">
-<!-- <figcaption>Figure 8. CAD model of the suction-cup-to-body mounting interface.</figcaption> -->
+<img src="{{ '/images/legs/image12.png' | relative_url }}" alt="Payload testing jig CAD">
+<figcaption>Figure 9. CAD model of the configurable payload testing jig.</figcaption>
 </figure>
 
 
@@ -249,6 +249,11 @@ A configurable testing jig was used to measure failure loads at approximately �
 <img src="{{ '/images/legs/image14.png' | relative_url }}" alt="Vertical loading test">
 </div>
 <figcaption>Figure 10. Experimental setup for suction-cup payload testing under horizontal and vertical loading.</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/images/legs/image15.png' | relative_url }}" alt="Free-body diagram of the payload test">
+<figcaption>Figure 11. Free-body diagram of the robot on a vertical surface, showing weight resisted by suction-cup friction.</figcaption>
 </figure>
 
 The rear-two-foot configuration was the limiting case, failing at only 10 N vertically. This demonstrates that attachment geometry and load distribution significantly influence capacity beyond theoretical suction force (see [Appendix F](#appendix-f-suction-cup-payload-testing)).
@@ -299,11 +304,11 @@ For a robot mass of 750 g and a target safety factor of 2:
 F_{required} = 2 \times 0.75 \times 9.81 = 14.72\ \text{N}
 \]</div>
 
-Since 17.2 N > 14.72 N, the estimated two-cup shear capacity exceeds the preliminary sliding requirement.
+Although the estimated two-cup shear capacity exceeds the preliminary sliding requirement, the measured 10 N failure load under eccentric vertical loading corresponds to an actual safety factor of only 1.36, below the target of 2. This highlights the need to improve peeling resistance and load distribution in subsequent design iterations.
 
 ### 3.11 Oil Ingestion into the Vacuum System
 
-Oil entered the vacuum tubing during contaminated-surface testing, risking damage to the solenoid valves and pump. Three forms of oil ingress and their protection strategies were evaluated (see [Appendix J](#appendix-j-oil-ingestion)), and a compact inline vacuum filter was selected.
+Oil entered the vacuum tubing during contaminated-surface testing, posing a risk to the solenoid valves and pump. Three forms of oil ingress and their protection strategies were evaluated (see [Appendix J](#appendix-j-oil-ingestion)). A compact inline vacuum filter was selected for preliminary testing based on ease of integration, rather than proven superiority over alternative solutions.
 
 <figure>
 <img src="{{ '/images/legs/image18.png' | relative_url }}" alt="Inline vacuum filter">
@@ -334,6 +339,20 @@ To mitigate peeling, a rigid or semi-rigid support skeleton is proposed to restr
 #### 3.12.2 Integrated Adhesion Validation
 
 Future testing will evaluate integrated locomotion with the Kresling body, focusing on the critical rear-two-cup configuration, repeated attachment cycles, uneven load sharing and sealing on oil-contaminated vertical surfaces.
+
+#### 3.12.3 Custom Suction-Cup Geometry and Variable Stiffness
+
+An alternative approach is to redesign the suction cup itself to improve resistance to detachment. Hernandez et al. (2024) demonstrated that elliptical and teardrop-shaped suction cups can outperform circular designs under certain shear-loading conditions. Additionally, Goshtasbi and Sadeghi (2023) developed a suction cup incorporating granular jamming, allowing the structure to remain compliant during attachment before stiffening under vacuum. Combining these principles, SoftCrawl could explore a custom active suction cup with optimised geometry and variable stiffness to reduce deformation and improve resistance to moment-induced peeling while retaining a compliant sealing edge.
+
+<figure>
+<img src="{{ '/images/legs/jamming-sucker.jpg' | relative_url }}" alt="Bio-inspired suction cup with granular jamming">
+<figcaption>Figure 17. Bio-inspired suction cup with a granular-jamming mechanism for variable stiffness during attachment (Goshtasbi &amp; Sadeghi, 2023).</figcaption>
+</figure>
+
+<figure>
+<img src="{{ '/images/legs/cup-geometries.jpg' | relative_url }}" alt="Suction-cup geometries with varying stiffness">
+<figcaption>Figure 18. Comparison of bio-inspired suction-cup geometries with varying shapes and stiffness distributions (Hernandez et al., 2024).</figcaption>
+</figure>
 
 ---
 
@@ -404,6 +423,20 @@ Each cup was loaded and timed until the seal failed. Hold time is used as a prox
 Flat, bellows and deep-concave geometries were compared using manufacturer guidance (Festo, n.d.; J. Schmalz GmbH, n.d.). Bellows cups provide height compensation, while deep-concave cups suit curved workpieces. A flat cup with a compliant sealing edge was selected for its compact profile and suitability for relatively smooth aluminium and acrylic surfaces.
 
 *Table D1. Comparison of suction-cup geometries for SoftCrawl.*
+
+The selected solution principles from the morphological matrix (Section 3.2) were evaluated against SoftCrawl's requirements for controllable adhesion, compactness, oil compatibility and ease of integration. The rationale for each selection is summarised below.
+
+| Selected solution | Selection rationale |
+|---|---|
+| Active suction cups | Externally supplied vacuum enables controllable adhesion and compensates for minor leakage, unlike passive suction cups. |
+| Flat suction cup | Compact geometry and stable positioning on relatively smooth aluminium and acrylic surfaces, minimising the robot's footprint. |
+| Polyurethane (PU) | Selected for its reported resistance to petroleum-based oils and suitability for the commercially available Festo suction cup. |
+| Solenoid valve | Enables electrically controlled vacuum switching for individual suction-cup attachment and release. |
+| Inline vacuum filter | Compact and straightforward to integrate; selected for preliminary oil-ingress testing rather than proven superiority over alternative separators. |
+
+*Table D2. Selection rationale for the active suction concept (Idea 2).*
+
+These selections formed the initial active suction subsystem, allowing early experimental validation while passive suction development continued in parallel. Subsequent testing identified limitations associated with eccentric loading, oil-induced shear reduction and vacuum-line contamination, informing future design refinements.
 
 ### Appendix E: Suction-Cup Sizing Calculations
 
@@ -589,11 +622,13 @@ Oil contamination was grouped into three illustrative categories (Raschig GmbH, 
 
 - AMES Direct. (2025, July 15). *Polyurethane or rubber? What top manufacturing plants choose*. <https://amesdirect.com.au/2025/07/15/polyurethane-or-rubber-what-top-manufacturing-plants-choose/>
 - de Wolff, T. (2017). *The design and fabrication of a biomimetic lifting aid* [Master's thesis, University of Twente]. University of Twente Student Theses. <https://essay.utwente.nl/fileshare/file/71802/Wolff%2C%20de_MA_Engineering%20Technology.pdf>
-- Festo. (n.d.). *Basic principles of vacuum technology: Brief overview*. <https://media.festo.com/media/114150_documentation.pdf>
 - Festo AG & Co. KG. (2020). *Suction cup VAS-40-1/4-PUR-B (Part No. 1396092)* [Technical data sheet]. <https://docs.rs-online.com/aeed/A700000006937653.pdf>
+- Festo. (n.d.). *Basic principles of vacuum technology: Brief overview*. <https://media.festo.com/media/114150_documentation.pdf>
+- Goshtasbi, A., & Sadeghi, A. (2023). A bioinspired stiffness tunable sucker for passive adaptation and firm attachment to angular substrates. *Frontiers in Robotics and AI, 10*, Article 1080015. <https://doi.org/10.3389/frobt.2023.1080015>
+- Hernandez, A. M., Sandoval, J. A., Yuen, M. C., & Wood, R. J. (2024). Stickiness in shear: Stiffness, shape, and sealing in bioinspired suction cups affect shear performance on diverse surfaces. *Bioinspiration & Biomimetics, 19*(3). <https://doi.org/10.1088/1748-3190/ad2c21>
 - He, Y., Pfeifer, P. L., Feng, R., & Li, S. (2026). Controllable passive suction cups with mechanical programmability for soft robotics. *Advanced Functional Materials, 36*(56), Article e75782. <https://doi.org/10.1002/adfm.75782>
-- J. Schmalz GmbH. (2016). *Vacuum training-set manual: World of vacuum technology*. <https://pimmedia.schmalz.com/MAM_Library/Dokumente/Bedienungsanleitung/30/3030/303001/30300100961/8171d43fa32f_BAL_30.30.01.00961_en-EN.pdf>
 - J. Schmalz GmbH. (n.d.). *Suction cup shapes*. <https://www.schmalz.com/en-us/support/know-how/vacuum-knowledge/the-vacuum-system-and-its-components/vacuum-suction-cups/suction-cup-shapes>
+- J. Schmalz GmbH. (2016). *Vacuum training-set manual: World of vacuum technology*. <https://pimmedia.schmalz.com/MAM_Library/Dokumente/Bedienungsanleitung/30/3030/303001/30300100961/8171d43fa32f_BAL_30.30.01.00961_en-EN.pdf>
 - Kawasaki, S., & Kikuchi, K. (2014). Development of a small legged wall climbing robot with passive suction cups. In *Proceedings of the 3rd International Conference on Design Engineering and Science (ICDES 2014)* (pp. 112–116).
 - Mantriota, G., & Messina, A. (2011). Theoretical and experimental study of the performance of flat suction cups in the presence of tangential loads. *Mechanism and Machine Theory, 46*(5), 607–617. <https://doi.org/10.1016/j.mechmachtheory.2011.01.003>
 - Raschig GmbH. (2018). *Mass transfer products* (Product Bulletin 101). <https://www.christianberner.fi/globalassets/leverantorer/raschig/dokument/raschig-mass-transfer-products-101.pdf>
@@ -618,5 +653,5 @@ window.MathJax = window.MathJax || {
 .legs-equation {text-align:center; overflow-x:auto; margin:1.15rem 0; padding:.35rem 0;}
 .legs-equation mjx-container[display="true"] {margin:.3em 0 !important;}
 a[href^="http"] {overflow-wrap:anywhere; word-break:break-word;}
-table {display:block; max-width:100%; overflow-x:auto;}
+table {width:100%;}
 </style>
