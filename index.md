@@ -27,7 +27,7 @@ title: Home
 | Report section | What you will find there |
 |----------------|--------------------------|
 | [Context]({{ '/report/context/' | relative_url }}) | The fuel-tank environment, current inspection, stakeholders, existing technologies and system requirements |
-| [Robot Body]({{ '/report/structure/' | relative_url }}) | The Kresling origami actuator: concept selection, bending model, prototypes V1–V3 and tests |
+| [Robot Body]({{ '/report/body/' | relative_url }}) | The Kresling origami actuator: concept selection, bending model, prototypes V1–V3 and tests |
 | [Robot Legs]({{ '/report/legs/' | relative_url }}) | Suction adhesion: passive and active cups, payload and peeling tests, oil contamination |
 | [Electronic hardware]({{ '/report/electronics/' | relative_url }}) | Valves, pumps, microcontroller and power |
 | [Next Steps]({{ '/report/next-steps/' | relative_url }}) | What are some of our current ideas to tackle future problems |
