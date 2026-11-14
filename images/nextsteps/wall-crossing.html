@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kresling climber – crossing the wall opening</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1b2129;--muted:#5d6773;--line:rgba(27,33,41,.12);--glass:rgba(250,251,252,.88);--blue:#1f6fff;--amber:#f0952f;--front:#e4572e;--rear:#6c4cf0}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#e4e7eb;color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif}
+  #stage{position:fixed;inset:0}
+  #stage canvas{display:block;width:100%;height:100%;touch-action:none}
+  .glass{background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:12px;box-shadow:0 6px 24px rgba(20,30,45,.08)}
+  #panel{position:fixed;top:16px;left:16px;width:318px;max-height:calc(100% - 110px);overflow:auto;padding:16px 16px 14px}
+  .eyebrow{font:500 11px/1.2 "IBM Plex Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:18px;line-height:1.25;margin:6px 0 12px;font-weight:600}
+  ol{list-style:none;margin:0;padding:0}
+  ol li{position:relative;padding:7px 8px 7px 34px;border-radius:8px;cursor:pointer;font-size:13.5px;line-height:1.3;color:var(--muted);transition:background .2s,color .2s}
+  ol li::before{content:attr(data-n);position:absolute;left:8px;top:6px;width:18px;height:18px;border-radius:50%;border:1px solid #b8c0ca;font:500 11px/17px "IBM Plex Mono",monospace;text-align:center;color:#8a94a0;background:#fff}
+  ol li:hover{background:rgba(31,111,255,.05)}
+  ol li.done{color:#3b4450}
+  ol li.done::before{background:#dfe6f2;border-color:#dfe6f2;color:#4b5a70}
+  ol li.on{background:rgba(31,111,255,.08);color:var(--ink);font-weight:500}
+  ol li.on::before{background:var(--blue);border-color:var(--blue);color:#fff}
+  ol li p{display:none;margin:5px 0 2px;font-weight:400;font-size:12.5px;line-height:1.45;color:#3d4652}
+  ol li.on p{display:block}
+  .sec{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+  .lbl{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .cups{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px 10px;align-items:center;font-size:12.5px}
+  .cups .h{font:500 10.5px "IBM Plex Mono",monospace;color:var(--muted)}
+  .chip{display:flex;align-items:center;gap:6px;font:500 11.5px "IBM Plex Mono",monospace;color:#7b8590}
+  .dot{--a:0;width:12px;height:12px;border-radius:50%;border:1.5px solid #9fb0c6;background:rgba(31,111,255,var(--a));box-shadow:0 0 0 calc(var(--a)*4px) rgba(31,111,255,calc(var(--a)*.18))}
+  .chip.on{color:var(--blue)}
+  .meter{height:8px;border-radius:5px;background:#e3e7ec;overflow:hidden;position:relative}
+  .meter i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,#8ea4c2,#cdd6e2);border-radius:5px}
+  .meterlbl{display:flex;justify-content:space-between;font:400 10.5px "IBM Plex Mono",monospace;color:var(--muted);margin-top:5px}
+  .legend{display:grid;gap:6px;font-size:12px;color:#3d4652}
+  .legend span{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:8px;vertical-align:middle}
+  #views{position:fixed;top:16px;right:16px;display:flex;flex-direction:column;gap:8px;padding:10px;width:178px}
+  #views .row{display:flex;flex-wrap:wrap;gap:6px}
+  button{font:500 12.5px "IBM Plex Sans",sans-serif;color:var(--ink);background:#fff;border:1px solid #cdd3da;border-radius:8px;padding:6px 10px;cursor:pointer}
+  button:hover{border-color:#9aa6b4}
+  button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  #views button{flex:1 1 auto}
+  #bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);width:min(760px,calc(100% - 32px));display:flex;align-items:center;gap:10px;padding:10px 12px}
+  #play{width:40px;height:34px;padding:0;display:grid;place-items:center;background:var(--ink);border-color:var(--ink)}
+  #play svg{fill:#fff}
+  #scrub{flex:1;accent-color:var(--blue)}
+  #time{font:500 12px "IBM Plex Mono",monospace;color:var(--muted);min-width:82px;text-align:right}
+  .spd{display:flex;gap:4px}
+  .spd button{padding:5px 7px;font-size:11.5px}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+  @media (max-width:980px){
+    .eyebrow,h1{display:none}
+    .sec{margin-top:8px;padding-top:8px}
+    .sec .lbl,.cups .h,.cups .h0,.meter,.meterlbl{display:none}
+    .sec:has(.meter){display:none}
+    .cups{grid-template-columns:auto auto auto auto auto auto;gap:4px 10px;font-size:12px}
+    .chip b{display:none}
+    .chip::after{content:attr(data-l)}
+    #panel{top:10px;left:10px;right:10px;width:auto;max-height:42%;padding:12px}
+    h1{font-size:16px;margin-bottom:8px}
+    ol li:not(.on){display:none}
+    .sec.legendsec{display:none}
+    #views{top:auto;bottom:70px;right:10px;width:auto;flex-direction:row;padding:6px}
+    #views .lbl,#views .hint{display:none}
+    #views .row{flex-wrap:nowrap}
+    #views button{padding:5px 8px;font-size:11.5px}
+    #bar{bottom:10px;width:calc(100% - 20px);gap:8px}
+    .spd{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+
+<aside id="panel" class="glass">
+  <div class="eyebrow">Kresling climber · concept motion</div>
+  <h1>Crossing through the wall opening</h1>
+  <ol id="stages"></ol>
+  <div class="sec">
+    <div class="lbl">Suction cups</div>
+    <div class="cups">
+      <div class="h0"></div><div class="h">LOWER</div><div class="h">UPPER</div>
+      <div>Rear plate</div><div class="chip" id="c-RL" data-l="lower"><i class="dot"></i><b>off</b></div><div class="chip" id="c-RU" data-l="upper"><i class="dot"></i><b>off</b></div>
+      <div>Front plate</div><div class="chip" id="c-FL" data-l="lower"><i class="dot"></i><b>off</b></div><div class="chip" id="c-FU" data-l="upper"><i class="dot"></i><b>off</b></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="lbl">Kresling stack length</div>
+    <div class="meter"><i id="meter"></i></div>
+    <div class="meterlbl"><span>contracted (vacuum)</span><span>extended</span></div>
+  </div>
+  <div class="sec legendsec">
+    <div class="legend">
+      <div><span style="background:var(--front)"></span>Front plate path</div>
+      <div><span style="background:var(--rear)"></span>Rear plate path</div>
+      <div><span style="background:var(--amber)"></span>Wall opening edge</div>
+      <div><span style="background:var(--blue)"></span>Cup under vacuum</div>
+    </div>
+  </div>
+</aside>
+
+<div id="views" class="glass">
+  <div class="lbl">View</div>
+  <div class="row">
+    <button data-view="front" class="on">Front ¾</button>
+    <button data-view="section">Top section</button>
+    <button data-view="behind">Behind</button>
+  </div>
+  <div class="row">
+    <button id="ghost" class="on">See-through wall</button>
+    <button id="paths" class="on">Paths</button>
+  </div>
+  <div class="hint">Drag to orbit · scroll to zoom · space to play/pause</div>
+</div>
+
+<div id="bar" class="glass">
+  <button id="play" aria-label="Play/pause"><svg width="14" height="14" viewBox="0 0 14 14" id="playIcon"></svg></button>
+  <button id="restart" aria-label="Restart">↺</button>
+  <input type="range" id="scrub" min="0" max="1000" value="0">
+  <div class="spd"><button data-s="0.5">0.5×</button><button data-s="1" class="on">1×</button><button data-s="2">2×</button></div>
+  <div id="time">0.0 / 0.0 s</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script>
+// ---- Kinematic script for the wall-crossing sequence (top-down x–z plane) ----
+const KIN = (() => {
+  const Z0 = 0.39;                         // plate-centre offset from wall mid-plane
+  const HOLE = { x0: 0.7, x1: 1.7, y0: 1.5, y1: 3.3 };
+  const L_MIN = 0.8, L_MAX = 2.55;
+  const STAGES = [
+    { t: "Inchworm along the front face", d: "Lower cups grip the front face. Front cups release → stack extends → front grips. Rear releases → vacuum contracts the Kresling stack and drags the rear forward." },
+    { t: "Anchor at the hole edge", d: "Rear lower cups hold the robot at the edge of the opening. Front lower cups vent and let go." },
+    { t: "Bend through the hole", d: "Differential actuation bends the body. The front plate lifts, dives through the opening and swings around behind the wall." },
+    { t: "Grip the far face with the upper cups", d: "No flip needed: the front plate's outward-facing (upper) cups now face the back of the wall, so they take the vacuum." },
+    { t: "Release rear, contract, pull through", d: "Rear cups release. The stack contracts and pulls the rear plate along the body, through the opening." },
+    { t: "Place the rear on the far face", d: "The rear swings in behind the wall and grips with its upper cups. The robot now bridges the hole on the far side." },
+    { t: "Step clear of the hole", d: "Normal inchworm gait resumes on the back face, now running on the upper cups." },
+  ];
+
+  const phases = [];
+  let pose = { rear: [-2.7, Z0, 0], front: [-1.9, Z0, 0] };
+  let cups = { RL: 1, RU: 0, FL: 1, FU: 0 };
+  let stage = 0;
+  const clone = (o) => JSON.parse(JSON.stringify(o));
+  function add(dur, which, keys, cupTo) {
+    const ph = { stage, dur, startPose: clone(pose), startCups: clone(cups), which: which || null, keys: null, cupTo: cupTo || null };
+    if (which) { ph.keys = [pose[which].slice(), ...keys]; pose[which] = keys[keys.length - 1].slice(); }
+    if (cupTo) Object.assign(cups, cupTo);
+    phases.push(ph);
+  }
+  const hold = (d) => add(d);
+  const setCups = (d, c) => add(d, null, null, c);
+  const move = (d, w, keys) => add(d, w, keys);
+
+  // 0 — inchworm (two steps)
+  stage = 0;
+  hold(1.0);
+  setCups(0.5, { FL: 0 }); move(1.3, "front", [[-1.2, Z0 + 0.1, 0], [-0.5, Z0, 0]]); setCups(0.4, { FL: 1 });
+  setCups(0.4, { RL: 0 }); move(1.3, "rear", [[-2.0, Z0 + 0.1, 0], [-1.3, Z0, 0]]); setCups(0.4, { RL: 1 });
+  setCups(0.4, { FL: 0 }); move(1.1, "front", [[0.0, Z0 + 0.1, 0], [0.5, Z0, 0]]); setCups(0.4, { FL: 1 });
+  setCups(0.4, { RL: 0 }); move(1.1, "rear", [[-0.8, Z0 + 0.1, 0], [-0.3, Z0, 0]]); setCups(0.4, { RL: 1 });
+  // 1 — anchor
+  stage = 1; hold(0.4); setCups(0.6, { FL: 0 }); hold(0.3);
+  // 2 — bend through
+  stage = 2;
+  move(3.4, "front", [[0.8, Z0 + 0.45, -0.25], [1.15, 0.55, 0.9], [1.2, 0.0, 1.5], [1.55, -0.62, 0.9], [2.0, -Z0 - 0.14, 0.08], [2.0, -Z0, 0]]);
+  // 3 — grip far face with upper cups
+  stage = 3; setCups(0.7, { FU: 1 }); hold(0.4);
+  // 4 — release rear, contract, pull through
+  stage = 4; setCups(0.6, { RL: 0 });
+  move(2.6, "rear", [[0.1, Z0 + 0.3, 0.3], [0.85, 0.5, 1.2], [1.2, 0.0, 1.45]]);
+  // 5 — place rear on far face
+  stage = 5;
+  move(2.2, "rear", [[1.0, -0.6, 0.8], [0.6, -Z0 - 0.15, 0.1], [0.45, -Z0, 0]]);
+  setCups(0.6, { RU: 1 }); hold(0.4);
+  // 6 — step clear
+  stage = 6;
+  setCups(0.4, { FU: 0 }); move(1.3, "front", [[2.4, -Z0 - 0.1, 0], [2.85, -Z0, 0]]); setCups(0.4, { FU: 1 });
+  setCups(0.4, { RU: 0 }); move(1.4, "rear", [[1.2, -Z0 - 0.12, 0], [2.05, -Z0, 0]]); setCups(0.4, { RU: 1 });
+  hold(1.4);
+
+  let T = 0;
+  phases.forEach((p) => { p.t0 = T; T += p.dur; });
+  const stageStart = STAGES.map((_, i) => phases.find((p) => p.stage === i).t0);
+
+  const ease = (s) => 0.5 - 0.5 * Math.cos(Math.PI * s);
+  const smooth = (s) => s * s * (3 - 2 * s);
+  function catmull(pts, s) {
+    const n = pts.length - 1;
+    const seg = Math.min(Math.floor(s * n), n - 1), u = s * n - seg;
+    const p0 = pts[Math.max(seg - 1, 0)], p1 = pts[seg], p2 = pts[seg + 1], p3 = pts[Math.min(seg + 2, n)];
+    return p1.map((_, i) => 0.5 * ((2 * p1[i]) + (-p0[i] + p2[i]) * u + (2 * p0[i] - 5 * p1[i] + 4 * p2[i] - p3[i]) * u * u + (-p0[i] + 3 * p1[i] - 3 * p2[i] + p3[i]) * u * u * u));
+  }
+
+  function evalAt(t) {
+    t = Math.max(0, Math.min(T - 1e-6, t));
+    let ph = phases[0];
+    for (const p of phases) { if (t >= p.t0) ph = p; else break; }
+    const s = (t - ph.t0) / ph.dur;
+    const pose = clone(ph.startPose);
+    if (ph.which) pose[ph.which] = catmull(ph.keys, ease(s));
+    const c = clone(ph.startCups);
+    if (ph.cupTo) for (const k in ph.cupTo) c[k] = ph.startCups[k] + (ph.cupTo[k] - ph.startCups[k]) * smooth(s);
+    return { rear: pose.rear, front: pose.front, cups: c, stage: ph.stage, moving: ph.which };
+  }
+
+  const dir = (yaw) => [Math.cos(yaw), -Math.sin(yaw)]; // axis direction in (x,z); matches three.js rotation.y
+  function body(rear, front) {
+    const d0 = dir(rear[2]), d1 = dir(front[2]);
+    const P0 = [rear[0] + d0[0] * 0.03, rear[1] + d0[1] * 0.03];
+    const P3 = [front[0] - d1[0] * 0.03, front[1] - d1[1] * 0.03];
+    const chord = Math.hypot(P3[0] - P0[0], P3[1] - P0[1]);
+    const sep = Math.max(0, Math.min(1, (rear[1] - front[1]) / (2 * Z0))); // 1 when rear in front, front behind
+    const a = (0.4 + 0.2 * sep) * chord, b = (0.4 - 0.18 * sep) * chord;
+    const P1 = [P0[0] + d0[0] * a, P0[1] + d0[1] * a];
+    const P2 = [P3[0] - d1[0] * b, P3[1] - d1[1] * b];
+    const pt = (u) => { const v = 1 - u; return [0, 1].map((i) => v * v * v * P0[i] + 3 * v * v * u * P1[i] + 3 * v * u * u * P2[i] + u * u * u * P3[i]); };
+    const tan = (u) => { const v = 1 - u; const r = [0, 1].map((i) => 3 * v * v * (P1[i] - P0[i]) + 6 * v * u * (P2[i] - P1[i]) + 3 * u * u * (P3[i] - P2[i])); const l = Math.hypot(r[0], r[1]) || 1; return [r[0] / l, r[1] / l]; };
+    let len = 0, prev = pt(0);
+    for (let i = 1; i <= 40; i++) { const q = pt(i / 40); len += Math.hypot(q[0] - prev[0], q[1] - prev[1]); prev = q; }
+    return { pt, tan, len };
+  }
+
+  return { Z0, HOLE, L_MIN, L_MAX, STAGES, phases, T, stageStart, evalAt, body, dir };
+})();
+
+
+</script>
+<script>
+(() => {
+const { Z0, HOLE, L_MIN, L_MAX, STAGES, T, stageStart, evalAt, body } = KIN;
+const PY = 2.4;           // robot centre height
+const TUBE_DY = 0.25;     // tube offset from centre (up/down)
+
+// ---------- renderer / scene ----------
+const host = document.getElementById('stage');
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.outputEncoding = THREE.sRGBEncoding;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+host.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xe4e7eb);
+scene.fog = new THREE.Fog(0xe4e7eb, 20, 42);
+
+const camera = new THREE.PerspectiveCamera(36, 1, 0.05, 120);
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+controls.maxPolarAngle = Math.PI * 0.499;
+controls.minDistance = 2; controls.maxDistance = 22;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0xb4bbc4, 0.8));
+const sun = new THREE.DirectionalLight(0xffffff, 0.95);
+sun.position.set(-4, 9, 6.5);
+sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048);
+Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 1, far: 30 });
+sun.shadow.bias = -0.0004;
+scene.add(sun);
+const fill = new THREE.DirectionalLight(0xdfe8ff, 0.4);
+fill.position.set(4, 5, -7);
+scene.add(fill);
+
+// ---------- environment ----------
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(60, 60), new THREE.MeshStandardMaterial({ color: 0xd2d6db, roughness: 0.95 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+const grid = new THREE.GridHelper(24, 48, 0xbcc3cb, 0xc8cdd3); grid.position.y = 0.002; scene.add(grid);
+
+const alu = new THREE.MeshStandardMaterial({ color: 0xc4cad1, metalness: 0.6, roughness: 0.33 });
+function box(w, h, d, mat, x, y, z, shadow = true) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+  m.position.set(x, y, z); m.castShadow = shadow; m.receiveShadow = true; scene.add(m); return m;
+}
+// aluminium extrusion frame
+const E = 0.12, FX = 3.8, FZ = 0.95, FT = 4.45;
+for (const x of [-FX, FX]) for (const z of [-FZ, FZ]) box(E, FT, E, alu, x, FT / 2, z);
+for (const y of [0.5, FT]) {
+  for (const z of [-FZ, FZ]) box(2 * FX + E, E, E, alu, 0, y, z);
+  for (const x of [-FX, FX]) box(E, E, 2 * FZ, alu, x, y, 0);
+}
+for (const x of [-3.68, 3.68]) box(0.08, FT - 0.5, 0.1, alu, x, 0.5 + (FT - 0.5) / 2, 0);
+// slotted top plate
+const slotTex = (() => {
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 256;
+  const g = c.getContext('2d'); g.fillStyle = '#c9ced5'; g.fillRect(0, 0, 1024, 256);
+  g.fillStyle = '#5b636d';
+  for (let i = 0; i < 9; i++) { const y = 28 + i * 25; g.fillRect(60 + (i % 2) * 30, y, 860, 6); }
+  const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding; t.anisotropy = 4; return t;
+})();
+box(2 * FX + E, 0.05, 2 * FZ + E, new THREE.MeshStandardMaterial({ map: slotTex, metalness: 0.5, roughness: 0.4 }), 0, FT + 0.085, 0);
+box(2 * FX + E, 0.04, 2 * FZ + E, new THREE.MeshStandardMaterial({ color: 0xaeb5bd, metalness: 0.4, roughness: 0.5 }), 0, 0.58, 0);
+
+// ---------- wall with opening ----------
+const WT = 0.04, WY0 = 0.6, WY1 = 4.3, WX0 = -3.62, WX1 = 3.62;
+const wallMat = new THREE.MeshStandardMaterial({ color: 0x8b939c, metalness: 0.45, roughness: 0.5, transparent: true, opacity: 0.42, depthWrite: false, side: THREE.DoubleSide });
+const wallParts = [
+  [WX0, HOLE.x0, WY0, WY1], [HOLE.x1, WX1, WY0, WY1],
+  [HOLE.x0, HOLE.x1, WY0, HOLE.y0], [HOLE.x0, HOLE.x1, HOLE.y1, WY1],
+].map(([x0, x1, y0, y1]) => box(x1 - x0, y1 - y0, WT, wallMat, (x0 + x1) / 2, (y0 + y1) / 2, 0));
+// decorative slots like the real panels
+const slotMat = new THREE.MeshStandardMaterial({ color: 0x4d555f, metalness: 0.3, roughness: 0.7 });
+[[-3.2, 1.6, 0.05, 0.55], [-3.2, 3.3, 0.05, 0.55], [-1.6, 0.85, 0.6, 0.05], [-0.4, 0.85, 0.6, 0.05], [2.4, 1.0, 0.6, 0.05], [3.2, 2.4, 0.05, 0.55], [-1.0, 4.05, 0.6, 0.05]]
+  .forEach(([x, y, w, h]) => box(w, h, WT + 0.004, slotMat, x, y, 0, false));
+// opening edge highlight
+const amber = new THREE.MeshStandardMaterial({ color: 0xf0952f, emissive: 0x7a3c00, emissiveIntensity: 0.35, roughness: 0.5 });
+const ew = 0.03, hw = HOLE.x1 - HOLE.x0, hh = HOLE.y1 - HOLE.y0, hcx = (HOLE.x0 + HOLE.x1) / 2, hcy = (HOLE.y0 + HOLE.y1) / 2;
+box(ew, hh + ew, WT + 0.012, amber, HOLE.x0, hcy, 0, false);
+box(ew, hh + ew, WT + 0.012, amber, HOLE.x1, hcy, 0, false);
+box(hw + ew, ew, WT + 0.012, amber, hcx, HOLE.y0, 0, false);
+box(hw + ew, ew, WT + 0.012, amber, hcx, HOLE.y1, 0, false);
+
+// labels
+function label(text, color, x, y, z, s = 1) {
+  const c = document.createElement('canvas'); c.width = 512; c.height = 96;
+  const g = c.getContext('2d');
+  g.font = '600 40px "IBM Plex Mono", monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillStyle = 'rgba(255,255,255,.85)';
+  const w = g.measureText(text).width + 44; g.beginPath(); g.roundRect ? g.roundRect(256 - w / 2, 12, w, 72, 14) : g.rect(256 - w / 2, 12, w, 72); g.fill();
+  g.fillStyle = color; g.fillText(text, 256, 50);
+  const t = new THREE.CanvasTexture(c); t.encoding = THREE.sRGBEncoding;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false, transparent: true, sizeAttenuation: false }));
+  sp.scale.set(0.2 * s, 0.0375 * s, 1); sp.position.set(x, y, z); sp.renderOrder = 10; scene.add(sp); return sp;
+}
+const labels = [
+  label('FRONT FACE · start', '#1b2129', -0.9, 1.05, 1.3, 0.9),
+  label('BACK FACE · goal', '#1b2129', 2.6, 1.05, -1.3, 0.9),
+];
+
+// ---------- robot ----------
+const plateMat = new THREE.MeshStandardMaterial({ color: 0x8f99a5, metalness: 0.7, roughness: 0.32 });
+const darkMat = new THREE.MeshStandardMaterial({ color: 0x3b434d, metalness: 0.4, roughness: 0.5 });
+const C_OFF = new THREE.Color(0x56677d), C_ON = new THREE.Color(0x1f6fff);
+
+function makePlate(isRear) {
+  const g = new THREE.Group();
+  const add = (geo, mat, x, y, z) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; g.add(m); return m; };
+  add(new THREE.BoxGeometry(0.05, 1.0, 0.5), plateMat, 0, 0, 0);
+  const capGeo = new THREE.CylinderGeometry(0.17, 0.17, 0.045, 6);
+  for (const ty of [TUBE_DY, -TUBE_DY]) { const c = add(capGeo, plateMat, isRear ? 0.045 : -0.045, ty, 0); c.rotation.z = Math.PI / 2; }
+  const mats = { lower: new THREE.MeshStandardMaterial({ color: C_OFF.clone(), roughness: 0.45, metalness: 0.05 }),
+                 upper: new THREE.MeshStandardMaterial({ color: C_OFF.clone(), roughness: 0.45, metalness: 0.05 }) };
+  const bells = { lower: [], upper: [] };
+  const stemGeo = new THREE.CylinderGeometry(0.025, 0.025, 0.07, 10);
+  const bellGeo = new THREE.CylinderGeometry(0.1, 0.035, 0.05, 24);
+  for (const sy of [0.42, -0.42]) for (const side of [-1, 1]) {
+    add(new THREE.BoxGeometry(0.08, 0.1, 0.07), plateMat, 0, sy, side * 0.215);
+    const cg = new THREE.Group(); cg.position.set(0, sy, side * 0.25); cg.rotation.x = side > 0 ? Math.PI / 2 : -Math.PI / 2;
+    const st = new THREE.Mesh(stemGeo, darkMat); st.position.y = 0.035; cg.add(st);
+    const key = side > 0 ? 'upper' : 'lower';
+    const b = new THREE.Mesh(bellGeo, mats[key]); b.position.y = 0.095; b.castShadow = true; cg.add(b);
+    bells[key].push(b); g.add(cg);
+  }
+  scene.add(g);
+  return { g, mats, bells };
+}
+const rear = makePlate(true), front = makePlate(false);
+
+class Kresling {
+  constructor(yOff) {
+    this.n = 6; this.cells = 8; this.r = 0.15; this.y = PY + yOff;
+    this.pos = new Float32Array(this.cells * this.n * 2 * 9);
+    this.geo = new THREE.BufferGeometry();
+    this.geo.setAttribute('position', new THREE.BufferAttribute(this.pos, 3));
+    this.mat = new THREE.MeshStandardMaterial({ color: 0xe2e5e9, flatShading: true, side: THREE.DoubleSide, roughness: 0.6, metalness: 0.05 });
+    this.mesh = new THREE.Mesh(this.geo, this.mat); this.mesh.castShadow = true; this.mesh.frustumCulled = false; scene.add(this.mesh);
+    const segs = (this.cells + 1) * this.n + 2 * this.cells * this.n;
+    this.lpos = new Float32Array(segs * 6);
+    this.lgeo = new THREE.BufferGeometry(); this.lgeo.setAttribute('position', new THREE.BufferAttribute(this.lpos, 3));
+    this.lines = new THREE.LineSegments(this.lgeo, new THREE.LineBasicMaterial({ color: 0x29313b, transparent: true, opacity: 0.6 }));
+    this.lines.frustumCulled = false; scene.add(this.lines);
+    this.rings = Array.from({ length: this.cells + 1 }, () => Array.from({ length: this.n }, () => new THREE.Vector3()));
+  }
+  update(b, contraction) {
+    const { n, cells, r, y } = this;
+    const alpha = 0.22 + 0.6 * contraction;   // Kresling coupling: more twist when compressed
+    let phi = 0;
+    for (let i = 0; i <= cells; i++) {
+      const u = i / cells, p = b.pt(u), t = b.tan(u);
+      const Nx = t[1], Nz = -t[0];
+      for (let k = 0; k < n; k++) {
+        const a = phi + k * 2 * Math.PI / n, c = Math.cos(a), s = Math.sin(a);
+        this.rings[i][k].set(p[0] + r * c * Nx, y + r * s, p[1] + r * c * Nz);
+      }
+      phi += (i % 2 === 0 ? alpha : -alpha);
+    }
+    let o = 0, l = 0;
+    const P = this.pos, L = this.lpos;
+    const tri = (A, B, C) => { P[o++] = A.x; P[o++] = A.y; P[o++] = A.z; P[o++] = B.x; P[o++] = B.y; P[o++] = B.z; P[o++] = C.x; P[o++] = C.y; P[o++] = C.z; };
+    const seg = (A, B) => { L[l++] = A.x; L[l++] = A.y; L[l++] = A.z; L[l++] = B.x; L[l++] = B.y; L[l++] = B.z; };
+    for (let i = 0; i < cells; i++) for (let k = 0; k < n; k++) {
+      const a = this.rings[i][k], a1 = this.rings[i][(k + 1) % n], bb = this.rings[i + 1][k], b1 = this.rings[i + 1][(k + 1) % n];
+      if (i % 2 === 0) { tri(a, a1, b1); tri(a, b1, bb); seg(a, b1); } else { tri(a, a1, bb); tri(a1, b1, bb); seg(a1, bb); }
+      seg(a, bb);
+    }
+    for (let i = 0; i <= cells; i++) for (let k = 0; k < n; k++) seg(this.rings[i][k], this.rings[i][(k + 1) % n]);
+    this.geo.attributes.position.needsUpdate = true; this.geo.computeVertexNormals();
+    this.lgeo.attributes.position.needsUpdate = true;
+    this.mat.color.setRGB(0.89 - 0.22 * contraction, 0.9 - 0.16 * contraction, 0.92 - 0.08 * contraction);
+  }
+}
+const tubes = [new Kresling(TUBE_DY), new Kresling(-TUBE_DY)];
+
+// ---------- trajectory traces ----------
+function trace(which, color) {
+  const pts = [];
+  for (let t = 0; t <= T; t += 0.04) { const s = evalAt(t)[which]; pts.push(new THREE.Vector3(s[0], PY, s[1])); }
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const line = new THREE.Line(geo, new THREE.LineDashedMaterial({ color, dashSize: 0.08, gapSize: 0.05, depthTest: false, transparent: true, opacity: 0.9 }));
+  line.computeLineDistances(); line.renderOrder = 5; scene.add(line); return line;
+}
+const traces = [trace('front', 0xe4572e), trace('rear', 0x6c4cf0)];
+
+// ---------- section clipping ----------
+const clip = new THREE.Plane(new THREE.Vector3(0, -1, 0), 2.95);
+
+// ---------- UI ----------
+const $ = (id) => document.getElementById(id);
+const list = $('stages');
+STAGES.forEach((s, i) => {
+  const li = document.createElement('li'); li.dataset.n = i + 1; li.innerHTML = `${s.t}<p>${s.d}</p>`;
+  li.onclick = () => { time = stageStart[i] + 0.001; };
+  list.appendChild(li);
+});
+const lis = [...list.children];
+const chips = ['RL', 'RU', 'FL', 'FU'].map((k) => ({ k, el: $('c-' + k), dot: $('c-' + k).querySelector('.dot'), txt: $('c-' + k).querySelector('b') }));
+const scrub = $('scrub'), timeEl = $('time'), meter = $('meter'), playIcon = $('playIcon');
+let time = 0, playing = true, speed = 1, scrubbing = false;
+const setIcon = () => { playIcon.innerHTML = playing ? '<rect x="2" y="1" width="3.5" height="12" rx="1"/><rect x="8.5" y="1" width="3.5" height="12" rx="1"/>' : '<path d="M3 1.2v11.6c0 .5.6.8 1 .5l8.6-5.8c.4-.3.4-.8 0-1.1L4 .7c-.4-.3-1 0-1 .5z"/>'; };
+setIcon();
+$('play').onclick = () => { playing = !playing; if (playing && time >= T - 0.01) time = 0; setIcon(); };
+$('restart').onclick = () => { time = 0; playing = true; setIcon(); };
+window.addEventListener('keydown', (e) => { if (e.code === 'Space') { e.preventDefault(); $('play').click(); } });
+scrub.addEventListener('input', () => { time = scrub.value / 1000 * T; });
+scrub.addEventListener('pointerdown', () => scrubbing = true);
+window.addEventListener('pointerup', () => scrubbing = false);
+document.querySelectorAll('.spd button').forEach((b) => b.onclick = () => {
+  speed = +b.dataset.s; document.querySelectorAll('.spd button').forEach((x) => x.classList.toggle('on', x === b));
+});
+$('ghost').onclick = (e) => {
+  const on = e.currentTarget.classList.toggle('on');
+  wallMat.opacity = on ? 0.42 : 1; wallMat.transparent = on; wallMat.depthWrite = !on; wallMat.needsUpdate = true;
+};
+$('paths').onclick = (e) => { const on = e.currentTarget.classList.toggle('on'); traces.forEach((t) => t.visible = on); };
+
+// camera views
+const VIEWS = {
+  front:   { pos: [-3.6, 4.9, 9.2], tgt: [-0.1, 2.2, 0], clip: false },
+  section: { pos: [0.55, 10.5, 0.02], tgt: [0.55, 2.4, 0], clip: true },
+  behind:  { pos: [4.6, 4.2, -6.2], tgt: [1.0, 2.25, 0], clip: false },
+};
+let tween = null;
+function goView(name) {
+  const v = VIEWS[name];
+  tween = { t: 0, p0: camera.position.clone(), t0: controls.target.clone(), p1: new THREE.Vector3(...v.pos), t1: new THREE.Vector3(...v.tgt) };
+  renderer.clippingPlanes = v.clip ? [clip] : [];
+  document.querySelectorAll('[data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === name));
+}
+document.querySelectorAll('[data-view]').forEach((b) => b.onclick = () => goView(b.dataset.view));
+camera.position.set(...VIEWS.front.pos); controls.target.set(...VIEWS.front.tgt);
+
+function resize() {
+  const w = host.clientWidth, h = host.clientHeight;
+  renderer.setSize(w, h, false); camera.aspect = w / h;
+  camera.fov = w < 700 ? 50 : 36;
+  if (w > 980) camera.setViewOffset(w + 340, h, 0, 0, w, h); else camera.clearViewOffset();
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize); resize();
+
+// ---------- frame update ----------
+function applyPlate(P, pose, lower, upper) {
+  P.g.position.set(pose[0], PY, pose[1]); P.g.rotation.y = pose[2];
+  for (const [key, a] of [['lower', lower], ['upper', upper]]) {
+    P.mats[key].color.copy(C_OFF).lerp(C_ON, a);
+    P.mats[key].emissive.setRGB(0.02 * a, 0.12 * a, 0.45 * a);
+    P.bells[key].forEach((b) => b.scale.set(1 + 0.08 * a, 1 - 0.3 * a, 1 + 0.08 * a));
+  }
+}
+let last = performance.now(), loopHold = 0;
+function frame(now) {
+  const realDt = (now - last) / 1000, dt = Math.min(0.05, realDt); last = now;
+  if (playing && !scrubbing) {
+    if (time >= T - 0.001) { loopHold += dt; if (loopHold > 1.2) { time = 0; loopHold = 0; } }
+    else time = Math.min(T - 0.001, time + dt * speed);
+  }
+  const s = evalAt(time);
+  applyPlate(rear, s.rear, s.cups.RL, s.cups.RU);
+  applyPlate(front, s.front, s.cups.FL, s.cups.FU);
+  const b = body(s.rear, s.front);
+  const contraction = Math.max(0, Math.min(1, (L_MAX - b.len) / (L_MAX - L_MIN)));
+  tubes.forEach((t) => t.update(b, contraction));
+
+  lis.forEach((li, i) => { li.classList.toggle('on', i === s.stage); li.classList.toggle('done', i < s.stage); });
+  chips.forEach((c) => { const a = s.cups[c.k]; c.dot.style.setProperty('--a', a.toFixed(2)); c.el.classList.toggle('on', a > 0.5); c.txt.textContent = a > 0.5 ? 'vacuum' : 'off'; });
+  meter.style.width = ((1 - contraction) * 100).toFixed(1) + '%';
+  if (!scrubbing) scrub.value = Math.round(time / T * 1000);
+  timeEl.textContent = `${time.toFixed(1)} / ${T.toFixed(1)} s`;
+
+  if (tween) {
+    tween.t = Math.min(1, tween.t + Math.min(realDt, 0.3) / 0.9);
+    const e = 0.5 - 0.5 * Math.cos(Math.PI * tween.t);
+    camera.position.lerpVectors(tween.p0, tween.p1, e); controls.target.lerpVectors(tween.t0, tween.t1, e);
+    if (tween.t >= 1) tween = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
