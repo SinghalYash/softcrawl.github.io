@@ -407,10 +407,9 @@ Pressure-control capability received the highest weighting because independently
 
 The weighted score was calculated using:
 
-<div class="legs-equation">\[ \mathrm{Total\ Score}=\sum(\mathrm{Score}\times\mathrm{Weight}) \]</div>
+<div class="legs-equation" markdown="0">\[ \mathrm{Total\ Score}=\sum(\mathrm{Score}\times\mathrm{Weight}) \]</div>
 
 The following summarises the engineering considerations behind the assigned scores.
-
 
 | Criterion | Bang-bang solenoid valves | E/P regulator | Vacuum generator |
 | --- | --- | --- | --- |
