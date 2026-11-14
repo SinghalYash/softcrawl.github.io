@@ -75,7 +75,40 @@ The proposed value of SoftCrawl is evaluated across three dimensions: safety, ti
 <div class="card-grid"> <div class="value-card"> <h3>Safety</h3> <p>Conventional fuel-tank maintenance may require multiple personnel for inspection, equipment operation and safety monitoring. For example, published maintenance accounts (Aviation Pros, 2012) describe leak-testing procedures involving a technician inside the tank, an external equipment operator and a safety attendant. A remotely operated inspection robot could potentially reduce the need for personnel to enter the tank for selected inspection tasks.</p> </div> <div class="value-card time"> <h3>Time</h3> <p>Fuel-tank inspection involves preparation, access, inspection and restoration activities. SoftCrawl aims to improve accessibility by allowing a robot to navigate towards inspection locations while being controlled externally. This could reduce selected inspection-related activities, although actual time savings must be established through future operational studies.</p> </div> <div class="value-card money"> <h3>Cost</h3> <p>Reducing inspection-related aircraft downtime could provide financial benefits to airlines and MRO providers. However, potential savings depend on the aircraft type, maintenance procedure, labour requirements and actual reduction in downtime. Accordingly, the financial value of SoftCrawl is currently a projected benefit rather than a demonstrated outcome.</p> </div> </div>
 
 <figure>
-<img src="{{ '/images/context/image4.png' | relative_url }}" alt="Proposed value of SoftCrawl across safety, time and cost">
+<svg class="value-figure" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Value proposition: safety, time and money" style="width:100%;height:auto;max-width:900px;display:block;margin:0 auto;font-family:inherit">
+  <defs>
+    <marker id="vp-arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+  </defs>
+  <g>
+    <rect x="15" y="10" width="270" height="280" rx="8" fill="#fff" stroke="#d9d4cc" stroke-width="1.5"/>
+    <path d="M23 10 h254 a8 8 0 0 1 8 8 v34 h-270 v-34 a8 8 0 0 1 8 -8 z" fill="#B3693A"/>
+    <text x="150" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">Safety</text>
+    <text x="150" y="98" text-anchor="middle" font-size="15" fill="#333">3 specialists per</text>
+    <text x="150" y="118" text-anchor="middle" font-size="15" fill="#333">inspection</text>
+    <line x1="150" y1="140" x2="150" y2="192" stroke="#444" stroke-width="2" marker-end="url(#vp-arrow)"/>
+    <text x="150" y="228" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">Reduced number of</text>
+    <text x="150" y="249" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">operators</text>
+  </g>
+  <g>
+    <rect x="315" y="10" width="270" height="280" rx="8" fill="#fff" stroke="#d9d4cc" stroke-width="1.5"/>
+    <path d="M323 10 h254 a8 8 0 0 1 8 8 v34 h-270 v-34 a8 8 0 0 1 8 -8 z" fill="#C98E44"/>
+    <text x="450" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">Time</text>
+    <text x="450" y="108" text-anchor="middle" font-size="15" fill="#333">High downtime</text>
+    <line x1="450" y1="140" x2="450" y2="192" stroke="#444" stroke-width="2" marker-end="url(#vp-arrow)"/>
+    <text x="450" y="238" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">Low downtime</text>
+  </g>
+  <g>
+    <rect x="615" y="10" width="270" height="280" rx="8" fill="#fff" stroke="#d9d4cc" stroke-width="1.5"/>
+    <path d="M623 10 h254 a8 8 0 0 1 8 8 v34 h-270 v-34 a8 8 0 0 1 8 -8 z" fill="#B5604B"/>
+    <text x="750" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">Money</text>
+    <text x="750" y="98" text-anchor="middle" font-size="15" fill="#333">A grounded A350-900:</text>
+    <text x="750" y="118" text-anchor="middle" font-size="15" fill="#333">$37.5k/day in lease alone</text>
+    <line x1="750" y1="140" x2="750" y2="192" stroke="#444" stroke-width="2" marker-end="url(#vp-arrow)"/>
+    <text x="750" y="220" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">4–5 days avoided:</text>
+    <text x="750" y="241" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">$150k–$750k saved</text>
+    <text x="750" y="262" text-anchor="middle" font-size="16" font-weight="700" fill="#1f2a44">per event</text>
+  </g>
+</svg>
 <figcaption>Figure 4. Proposed value of SoftCrawl across safety, time and cost (Aviation Pros, 2012; FL Technics, 2026; Heilemann et al., 2021, pp. 5, 23; IBA, 2024; Sargent et al., 2026).</figcaption>
 </figure>
 
