@@ -12,55 +12,48 @@ title: Home
   <p class="hero-meta">ASI-404 · Aakash, Akash, Avaneesh, Mohit, Yash</p>
 </section>
 
-<h2 class="section-title">What value can we add</h2>
-<p class="section-lead">Replace with your one-line pitch.</p>
+<h2 class="section-title">How to use this website</h2>
+<p class="section-lead">This site holds SoftCrawl's interim report, split into short pages. Pick where you want to go.</p>
 
 <div class="card-grid">
-  <div class="value-card">
-    <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span>
-    <h3>Safety</h3>
-    <p class="before">3 specialists per inspection</p>
-    <p class="arrow">↓</p>
-    <p class="after">Reduced number of operators</p>
-  </div>
-  <div class="value-card time">
-    <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-    <h3>Time</h3>
-    <p class="before">High downtime</p>
-    <p class="arrow">↓</p>
-    <p class="after">Low downtime</p>
-  </div>
-  <div class="value-card money">
-    <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l-1.5 4h-3z"/><path d="M10.5 7C6 9 4 13 4 16a5 5 0 0 0 5 5h6a5 5 0 0 0 5-5c0-3-2-7-6.5-9"/></svg></span>
-    <h3>Money</h3>
-    <p class="before">A grounded A350-900: $37.5k/day in lease alone</p>
-    <p class="arrow">↓</p>
-    <p class="after">4–5 days avoided, $150k–$750k saved per event</p>
-  </div>
+  <a class="subsystem-card orange" href="{{ '/about/' | relative_url }}"><span class="tag">ABOUT</span><h3>The project at a glance</h3><p>The problem, the value we add and the system in one page. Start here if you are new to SoftCrawl.</p></a>
+  <a class="subsystem-card orange time" href="{{ '/report/' | relative_url }}"><span class="tag">REPORT</span><h3>The interim report</h3><p>The full technical write-up, one page per section, with figures, tables and test results.</p></a>
+  <a class="subsystem-card orange money" href="{{ '/contact/' | relative_url }}"><span class="tag">CONTACT</span><h3>The team</h3><p>Who worked on what, and how to reach us.</p></a>
 </div>
 
-<h2 class="section-title">The system</h2>
-<p class="section-lead">Replace these with your real features.</p>
+<h2 class="section-title">Where to find what</h2>
+<p class="section-lead">Each report section has its own page. Click a name to jump straight there.</p>
+
+| Report section | What you will find there |
+|----------------|--------------------------|
+| [Context]({{ '/report/context/' | relative_url }}) | The fuel-tank environment, current inspection, stakeholders, existing technologies and system requirements |
+| [Robot Body]({{ '/report/structure/' | relative_url }}) | The Kresling origami actuator: concept selection, bending model, prototypes V1–V3 and tests |
+| [Robot Legs]({{ '/report/legs/' | relative_url }}) | Suction adhesion: passive and active cups, payload and peeling tests, oil contamination |
+| [Electronic hardware]({{ '/report/electronics/' | relative_url }}) | Valves, pumps, microcontroller and power |
+| [Controls]({{ '/report/controls/' | relative_url }}) | Gait sequencing and pressure control |
+| [Perception]({{ '/report/perception/' | relative_url }}) | Camera, localisation and defect detection |
+
+<h2 class="section-title">Getting around a report page</h2>
+<p class="section-lead">Every report page is laid out the same way.</p>
 
 <div class="card-grid">
-  <div class="feature-card"><span class="tag">SYS-01</span><h3>Soft pneumatic body</h3><p>Describe the actuators and how the robot moves.</p></div>
-  <div class="feature-card"><span class="tag">SYS-02</span><h3>Adhesion</h3><p>How it stays on vertical and curved tank walls.</p></div>
-  <div class="feature-card"><span class="tag">SYS-03</span><h3>Inspection payload</h3><p>Camera and sensors used to detect defects.</p></div>
+  <div class="feature-card"><span class="tag">SIDEBAR</span><h3>Flight plan</h3><p>The list on the left shows every section. A small plane marks the page you are on. On a phone it sits above the page.</p></div>
+  <div class="feature-card"><span class="tag">TOP</span><h3>Key numbers first</h3><p>Most pages open with a row of headline results, so you see the outcome before the detail.</p></div>
+  <div class="feature-card"><span class="tag">BOTTOM</span><h3>Summary and next page</h3><p>Each page ends with Interim Outcomes and references, then a link to the next section.</p></div>
 </div>
+
+<h2 class="section-title">What the coloured boxes mean</h2>
+<p class="section-lead">You will see these boxes throughout the report.</p>
+
+<div class="callout"><p>Background or a point worth keeping in mind, such as a design implication.</p></div>
+<div class="callout warning"><p>A limitation, assumption or caveat. Read these before relying on a number.</p></div>
+<div class="callout result"><p>A key finding or conclusion from testing.</p></div>
+
+<h2 class="section-title">Short on time?</h2>
+<p class="section-lead">Pick a reading path.</p>
 
 <div class="stat-row">
-  <div class="stat"><span class="value">0</span><span class="label">Humans in tank</span></div>
-  <div class="stat"><span class="value">XX cm/s</span><span class="label">Climb speed</span></div>
-  <div class="stat"><span class="value">XX g</span><span class="label">Robot mass</span></div>
-  <div class="stat"><span class="value">XX kPa</span><span class="label">Working pressure</span></div>
-</div>
-
-<h2 class="section-title">Subsystems</h2>
-<p class="section-lead">Explore each part of the interim report.</p>
-
-<div class="card-grid four">
-  <a class="subsystem-card" href="{{ '/report/structure/' | relative_url }}"><span class="tag">SYS-01</span><h3>Robot structure</h3><p>Body, actuators and materials.</p></a>
-  <a class="subsystem-card" href="{{ '/report/electronics/' | relative_url }}"><span class="tag">SYS-02</span><h3>Electronic hardware</h3><p>Valves, pumps, MCU and power.</p></a>
-  <a class="subsystem-card" href="{{ '/report/controls/' | relative_url }}"><span class="tag">SYS-03</span><h3>Controls</h3><p>Gait sequencing and pressure control.</p></a>
-  <a class="subsystem-card" href="{{ '/report/perception/' | relative_url }}"><span class="tag">SYS-04</span><h3>Perception</h3><p>Camera, localisation and defect detection.</p></a>
+  <div class="stat"><span class="value">5 min</span><span class="label">About page + Interim Outcomes</span></div>
+  <div class="stat"><span class="value">20 min</span><span class="label">Context, Body and Legs in full</span></div>
+  <div class="stat"><span class="value">Deep dive</span><span class="label">Design models and test data</span></div>
 </div>
