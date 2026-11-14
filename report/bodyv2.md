@@ -699,19 +699,19 @@ This has a practical consequence. The 90° wall transitions need an up/down (pit
 
 The layout was also checked in the team's SoftCrawl 3D simulator, which implements the Webster and Jones model. Its purpose was to see how leg spacing affects the bend angle before printing. It confirmed that a wider spacing gives a smaller bend for the same length difference.
 
-##### B.7.1 Tools
+#### B.7.1 Tools
 
 Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source MATLAB package by Sviridenko and Berinskii (2026), was explored. It simulates the dynamics of origami structures using a bar-and-hinge model and includes a Kresling example. At the body level, the team built the SoftCrawl 3D simulator. It models the 7-link actuators and the rigid shared plates, and it calculates bending with the piecewise-constant-curvature (PCC) model of Webster and Jones (2010).
 
 <figure>
 <div class="figure-row">
-<img src="{{ '/images/body/image34.png' | relative_url }}">
 <img src="{{ '/images/body/image35.png' | relative_url }}">
+<img src="{{ '/images/body/image36.png' | relative_url }}">
 </div>
 <figcaption>Figure B7. Simulation tools: (a) ORYGDYN bar-and-hinge origami package (Sviridenko and Berinskii, 2026) and (b) SoftCrawl 3D simulator.</figcaption>
 </figure>
 
-##### B.7.2 Simulator set-up
+#### B.7.2 Simulator set-up
 
 <div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
 <table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
@@ -759,7 +759,7 @@ Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source 
 </div>
 <p class="table-caption">Table B2. SoftCrawl 3D simulator settings</p>
 
-##### B.7.3 Bending model for three actuators
+#### B.7.3 Bending model for three actuators
 
 For three actuators of lengths *l*₁, *l*₂ and *l*₃ placed at 120° on a pitch circle of radius *d*, the PCC model gives the curvature *κ* and the bend angle *θ* as:
 
@@ -773,7 +773,7 @@ For three actuators of lengths *l*₁, *l*₂ and *l*₃ placed at 120° on a pi
 
 Here \\(\bar{l}\\) is the mean actuator length. For any given set of actuator lengths, the bend angle is therefore **inversely proportional to the spacing *d***. This is the three-actuator form of the two-actuator relation in B.1. With one actuator contracted by *S* and the other two relaxed, the square root reduces to *S*, giving *θ* = 2*S*/3*d* = *S*/1.5*d*. This is the same reach found in B.6.
 
-##### B.7.4 Result: bend angle against spacing
+#### B.7.4 Result: bend angle against spacing
 
 In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the other two were left relaxed. With *d* = 25.5 mm, the simulator reported a curvature of 11.91 m⁻¹ and a bend angle of **82.3°**. This agrees with the hand calculation from the equation above (83.9°). Keeping the same contraction and changing only *d* gives:
 
