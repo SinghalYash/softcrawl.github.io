@@ -765,3 +765,16 @@ figure {
   max-width: 100%;
 }
 }
+
+/* Orange version of the link cards: <a class="subsystem-card orange"> */
+a.subsystem-card.orange,
+a.subsystem-card.orange:visited {
+  background-color: $orange;
+  background-image: none;
+
+  &.time  { background-color: $amber; }
+  &.money { background-color: $coral; }
+
+  .tag { color: $cream; background: rgba(255,255,255,.15); border-color: rgba(246,238,220,.5); }
+  p    { color: $cream; }
+}
