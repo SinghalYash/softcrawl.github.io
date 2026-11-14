@@ -9,7 +9,7 @@ permalink: /report/
 Overview of the report. Pick a subsystem from the sidebar, or below.
 
 <div class="card-grid four">
-  <a class="subsystem-card" href="{{ '/report/context/' | relative_url }}"><span class="tag">SEC-01</span><h3>Context</h3><p>Body, actuators and materials.</p></a>
+  <a class="subsystem-card" href="{{ '/report/context/' | relative_url }}"><span class="tag">SEC-01</span><h3>Context</h3><p>Why does this matter</p></a>
   <a class="subsystem-card" href="{{ '/report/body/' | relative_url }}"><span class="tag">SEC-02</span><h3>Robot Body</h3><p>Body, actuators and materials.</p></a>
   <a class="subsystem-card" href="{{ '/report/legs/' | relative_url }}"><span class="tag">SEC-03</span><h3>Robot Legs</h3><p>Gripping mechanisms and materials.</p></a>
   <a class="subsystem-card" href="{{ '/report/electronics/' | relative_url }}"><span class="tag">SEC-04</span><h3>Electronic hardware</h3><p>Valves, pumps, MCU and power.</p></a>
