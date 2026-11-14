@@ -4,7 +4,7 @@ title: Robot Body
 group: Interim
 code: SEC-02
 nav_order: 2
-permalink: /report/structure/
+permalink: /report/body/
 ---
 
 
@@ -190,7 +190,14 @@ This was resolved at the assembly level by integrating:
 
 To complete the assembly, three identical actuators are mounted in a 120 degree equilateral triangle between rigid front and rear plates. This parallel arrangement constrains the remaining degrees of freedom, producing controllable 3D bending when the pressure in each Kresling actuator is controlled independently, and therefore linear crawling (see [Appendix B](#appendix-b-design-principles)).
 
-Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D simulator. The simulator showed that the bend angle is inversely proportional to the distance between the Kresling actuators: placing them closer together gives a larger bend for the same contraction, but lowers the bending stiffness. The simulation and the resulting spacing trade-off are described in [Appendix B.3](#b3-simulation).
+The layout was chosen deliberately rather than by default; each choice below is worked through in [Appendix B](#appendix-b-design-principles):
+
+- **Three legs, not four.** Bending stiffness is *K*<sub>bend</sub> = *k* Σ arm² ([B.2](#b2-bending-stiffness)), which gives 1.5 *k d*² for three legs and 2 *k d*² for four. The extra 33% was traded away because three legs are the minimum for 3D bending, need one fewer valve, and can be controlled independently. A fourth leg over-constrains the plate ([B.3](#b3-number-of-actuators)).
+- **Equilateral, not isosceles.** An equilateral triangle is equally stiff in every direction, and its load centre sits on the plate centre. An isosceles layout would be three times weaker side-to-side, and its load centre would sit 0.24*d* off centre, so the body would droop ([B.4](#b4-triangle-shape-equilateral-or-isosceles)).
+- **Orientation.** Apex up and apex down give the same reach and lifting moment. Apex up lifts with one valve, while apex down halves the stretch in each leg under a nose load ([B.5](#b5-orientation-apex-up-or-apex-down)).
+- **Reach depends on direction.** With contraction-only actuators, the maximum bend is 83.9° toward a leg but only 72.6° between legs. A leg is therefore placed on the vertical axis so that wall transitions use the stronger direction ([B.6](#b6-bending-reach-depends-on-direction)).
+
+Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D simulator. The simulator showed that the bend angle is inversely proportional to the distance between the Kresling actuators: placing them closer together gives a larger bend for the same contraction, but lowers the bending stiffness. The simulation and the resulting spacing trade-off are described in [Appendix B.7](#b7-simulation).
 
 <figure>
   <img src="{{ '/images/body/image30.png' | relative_url }}">
@@ -244,7 +251,7 @@ A load was attached to check actuator contraction while carrying weight. The wei
 
 The actuator was held in place with two G-clamps and an angle sheet was placed underneath it. A phone on a stand filmed each bend from a fixed position so that every trial used the same view, and a pressure regulator controlled the pressure. The best bend reached 72.7 degrees, with the actuator snapping during bending. Other measurements were 68.9 and 53.4 degrees. At about 55 kPa in each run, "snapping" occurred, when the Kresling actuator would bend completely on its fold line.
 
-For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spacing (see [Appendix B.3](#b3-simulation)). The measured 72.7° is about 10° lower. This is likely because the simulator ignores air leakage, friction in the end plates and the early snap at about 55 kPa.
+For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spacing (see [Appendix B.7](#b7-simulation)). The measured 72.7° is about 10° lower. This is likely because the simulator ignores air leakage, friction in the end plates and the early snap at about 55 kPa.
 
 <figure>
 <img src="{{ '/images/body/image22.png' | relative_url }}">
@@ -369,23 +376,78 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
 
 ### Appendix B: Design Principles
 
+This appendix explains how the three Kresling actuators turn contraction into bending, and why they are arranged as an equilateral triangle. Each choice in Section 2.6 is backed by a short calculation here.
+
 #### B.1 Bending model
 
 A single Kresling only contracts, so bending needs several actuators working together. The model follows the constant-curvature approach of Webster and Jones (2010), checked experimentally for multi-chamber soft arms by Santoso and Onal (2017). For two actuators offset by *d* from the centreline of length *L*, the two lengths and the plate angle *θ* are related by:
 
-$$
+<div class="body-equation">\[
 l_1 = L - d\theta, \qquad l_2 = L + d\theta, \qquad \theta = \frac{l_2 - l_1}{2d}
-$$
+\]</div>
 
-A wider spacing *d* therefore gives less bend for the same length difference. For *n* identical actuators of axial stiffness *k*, turning the front plate by *α* stretches or squashes each actuator by (arm × *α*), where arm is its distance to the neutral axis. Summing the moments is the same idea as the second moment of area in beam theory:
+<figure>
+<img src="{{ '/images/body/image34.png' | relative_url }}">
+<figcaption>Figure B1. Top view of the robot.</figcaption>
+</figure>
 
-$$
-K_{bend} = \frac{M}{\alpha} = k \sum \text{arm}^2 = \frac{n\,k\,d^2}{2}
-$$
+A wider spacing *d* therefore gives less bend for the same length difference. The model assumes identical actuators, small turns and axial loads only. The last assumption holds because the 1608 bearings (Section 2.6) stop the actuators from transmitting twist.
 
-The model assumes identical actuators, small turns and axial loads only.
+#### B.2 Bending stiffness
 
-#### B.2 Number and layout of actuators
+Bending stiffness sets how much the body droops under its own weight and how well it resists being pushed off line. It was derived in four steps, using Figure B2.
+
+<figure>
+<img src="{{ '/images/body/appB-heading-change.png' | relative_url }}" alt="Top view of the body turning by angle alpha">
+<figcaption>Figure B2. Top view of the body turning by an angle α. Legs on one side of the neutral axis stretch and legs on the other side squash, each by an amount proportional to its arm.</figcaption>
+</figure>
+
+1. **Stretch.** Turning the front plate by *α* stretches or squashes each leg *i* by an amount proportional to its distance from the neutral axis (its *arm*):
+
+<div class="body-equation">\[
+\Delta l_i = \mathrm{arm}_i \, \alpha
+\]</div>
+
+2. **Force.** Each leg, with axial stiffness *k*, pushes back with:
+
+<div class="body-equation">\[
+F_i = k\,\Delta l_i = k\,\mathrm{arm}_i\,\alpha
+\]</div>
+
+3. **Moment.** Each force acts at its arm, so the total restoring moment and the bending stiffness are:
+
+<div class="body-equation">\[
+M = \sum_i F_i\,\mathrm{arm}_i = k\,\alpha \sum_i \mathrm{arm}_i^2
+\qquad\Rightarrow\qquad
+K_{bend} = \frac{M}{\alpha} = k \sum_i \mathrm{arm}_i^2
+\]</div>
+
+4. **Add up the arms.** For *n* ≥ 3 legs spaced evenly on a circle of radius *d*, the sum of squared arms is the same about every axis through the centre:
+
+<div class="body-equation">\[
+\sum_i \mathrm{arm}_i^2 = \frac{n\,d^2}{2}
+\qquad\Rightarrow\qquad
+K_{bend} = \frac{n\,k\,d^2}{2}
+\]</div>
+
+This is the same idea as the second moment of area in beam theory (*I* = Σ *A y*²): each leg plays the role of an area element, and its arm plays the role of *y*.
+
+<figure>
+<img src="{{ '/images/body/appB-arms-3v4.png' | relative_url }}" alt="Arms of each leg for three and four leg layouts">
+<figcaption>Figure B3. Arm of each leg about the neutral axis for a left/right turn, for three and four legs.</figcaption>
+</figure>
+
+| Layout | Left/right turn: arms | Up/down turn: arms | Σ arm² (both directions) | *K*<sub>bend</sub> |
+|---|---|---|---|---|
+| 3 legs (equilateral) | 0, 0.87*d*, 0.87*d* | *d*, 0.5*d*, 0.5*d* | 1.5 *d*² | 1.5 *k d*² |
+| 4 legs (square) | 0.71*d* × 4 | 0.71*d* × 4 | 2 *d*² | 2 *k d*² |
+
+*Table B1. Sum of squared arms for three and four legs*
+{: style="text-align: center;"}
+
+Both layouts give the same stiffness for left/right and up/down turns. The four-leg layout is 33% stiffer.
+
+#### B.3 Number of actuators
 
 Two actuators give two degrees of freedom: one contraction and one bend in a single plane. Three actuators at 120 degrees bend in any direction. A fourth actuator was also considered.
 
@@ -398,18 +460,89 @@ Two actuators give two degrees of freedom: one contraction and one bend in a sin
 | Control | Independent | Coupled; over-constrained (*l*₁ + *l*₃ = *l*₂ + *l*₄) |
 | Redundancy | None | Yes |
 
-The triangle was selected because three actuators are the minimum for full 3D bending, it needs fewer valves and tubes, and it keeps control of each actuator independent. The rectangle is stiffer and has redundancy, but its control is coupled and over-constrained.
+*Table B2. Triangle and rectangle actuator layouts compared*
+{: style="text-align: center;"}
 
-An equilateral triangle was preferred over an isosceles one. It has the same bending stiffness (1.5 *k d*²) in every direction. An isosceles layout is stiff in one direction (2.3 *k d*²) but three times weaker in the other (0.5 *k d*²), and its load centre sits 0.24 *d* off the plate centre, so it droops under a nose load. Mounting the triangle apex up or apex down gives the same bending moment, so this is a packaging decision: apex up needs one valve to bend upward, while apex down shares a nose load between two actuators.
+The triangle was selected because three actuators are the minimum for full 3D bending, it needs fewer valves and tubes, and it keeps control of each actuator independent. With four legs, the front plate can only stay flat if *l*₁ + *l*₃ = *l*₂ + *l*₄. Any pressure error therefore makes the actuators fight each other rather than bend the body. The rectangle is stiffer and has redundancy, but this coupling makes it harder to control with leaky printed actuators (Section 2.8.1).
 
-<!-- TODO: End views of the two-actuator and three-actuator layouts showing l1, l2, d, θ and the 120 degree spacing, with the equilateral and isosceles comparison. Use slides 54, 55, 176 and 177. -->
+#### B.4 Triangle shape: equilateral or isosceles
 
-*Figure B1. Two-actuator and three-actuator layouts and their stiffness.*
+Once three legs were chosen, the shape of the triangle still had to be fixed. Figure B4 compares the options using *K*<sub>bend</sub> = *k* Σ arm² from B.2.
 
-#### B.3 Simulation
+<figure>
+<img src="{{ '/images/body/appB-triangle-layouts.png' | relative_url }}" alt="Equilateral, isosceles and rotated equilateral layouts">
+<figcaption>Figure B4. Equilateral, isosceles and rotated-equilateral leg layouts. The ring marks the load-sharing centre of the legs (their centroid).</figcaption>
+</figure>
+
+For the isosceles case, the legs sit at (0, *d*) and (±0.5*d*, −0.87*d*):
+
+- **Left/right stiffness:** Σ arm² = 0 + 0.25*d*² + 0.25*d*² = 0.5*d*², three times weaker than the equilateral layout.
+- **Load centre:** the centroid of the legs sits at *y* = (1 − 2 × 0.87)*d* / 3 ≈ −0.24*d*, below the plate centre.
+- **Up/down stiffness:** measured about that centroid, Σ arm² = (1.24*d*)² + 2(0.62*d*)² ≈ 2.3*d*².
+
+| Layout | Left/right | Up/down | Load centre |
+|---|---|---|---|
+| Equilateral | 1.5 *k d*² | 1.5 *k d*² | At plate centre |
+| Isosceles | 0.5 *k d*² | 2.3 *k d*² | 0.24*d* off centre |
+| Equilateral, rotated 60° | 1.5 *k d*² | 1.5 *k d*² | At plate centre |
+
+*Table B3. Stiffness and load centre of the candidate triangle shapes*
+{: style="text-align: center;"}
+
+The equilateral triangle was chosen because it is equally stiff in every direction and its load centre coincides with the plate centre. The isosceles layout is stiff in one direction but weak in the other. Its offset load centre also means that a load through the plate centre creates an extra moment, so the nose droops even with all legs at equal pressure.
+
+#### B.5 Orientation: apex up or apex down
+
+Rotating the equilateral triangle by 60° does not change its stiffness, but it does change which legs do the work. This matters for the two cases the body meets most often: actively lifting the front to climb, and passively holding the front against gravity.
+
+<figure>
+<img src="{{ '/images/body/appB-apex-up-down.png' | relative_url }}" alt="Apex up and apex down layouts during active bending and under a nose load">
+<figcaption>Figure B5. Apex up and apex down, for an active upward bend and for a passive nose load.</figcaption>
+</figure>
+
+| Case | Apex up | Apex down | Verdict |
+|---|---|---|---|
+| **Reach** (vertical spread of legs) | 1.5*d* | 1.5*d* | Same: *θ*<sub>max</sub> = *S* / 1.5*d* |
+| **Active bend up** | 1 leg pulls *F* at arm *d* → *M* = *F d*, 1 valve | 2 legs pull *F* at arm 0.5*d* → *M* = *F d*, 2 valves | Same moment; apex up is simpler to control |
+| **Holding a nose load** | Top leg alone takes the full stretch (*d α*); peak load in tension | Two top legs share it (0.5*d α* each); peak load moves to the bottom leg, in compression | Apex down is better |
+
+*Table B4. Apex up and apex down compared*
+{: style="text-align: center;"}
+
+Both orientations reach the same angle and produce the same lifting moment, so this is a packaging decision rather than a performance one. Apex down halves the stretch in each loaded leg under a nose load. That load is also carried in compression, where the Kresling folds naturally, rather than through the E-clip and shaft in tension (Section 2.6).
+
+<!-- TODO: state which orientation SoftCrawl uses, e.g. "SoftCrawl uses apex up/down because ..." -->
+
+#### B.6 Bending reach depends on direction
+
+With actuators that can only contract, the largest bend in any direction is limited by how far apart the legs are when measured along that direction. If *S* is the full stroke of one actuator and *spread* is the distance between the outermost legs along the bend direction:
+
+<div class="body-equation">\[
+\theta_{max} = \frac{S}{\text{spread}}
+\]</div>
+
+For an equilateral triangle, the spread is 1.5*d* when bending toward or away from a leg. It rises to √3*d* ≈ 1.73*d* when bending between two legs. With the simulator values (*S* = 140 × 0.4 = 56 mm, *d* = 25.5 mm):
+
+| Bend direction (apex up) | Spread | *θ*<sub>max</sub> |
+|---|---|---|
+| Up or down (toward or away from a leg) | 1.5*d* = 38.3 mm | 83.9° |
+| Left or right (between two legs) | 1.73*d* = 44.2 mm | 72.6° |
+
+*Table B5. Maximum bend angle against bend direction*
+{: style="text-align: center;"}
+
+<figure>
+<img src="{{ '/images/body/appB-reach-direction.png' | relative_url }}" alt="Polar plot of maximum bend angle against bend direction">
+<figcaption>Figure B6. Maximum bend angle against bend direction for the current geometry. The reach is largest toward each leg and smallest between legs.</figcaption>
+</figure>
+
+This has a practical consequence. The 90° wall transitions need an up/down (pitch) bend, so the triangle should be oriented with a leg on the vertical axis, as in both cases in B.5. Neither direction reaches 90° yet, which matches the shortfall measured in Section 2.7.3 and motivates the spacing study in B.7.
+
+#### B.7 Simulation
 
 The layout was also checked in the team's SoftCrawl 3D simulator, which implements the Webster and Jones model. Its purpose was to see how leg spacing affects the bend angle before printing. It confirmed that a wider spacing gives a smaller bend for the same length difference.
-##### B.3.1 Tools
+
+##### B.7.1 Tools
 
 Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source MATLAB package by Sviridenko and Berinskii (2026), was explored. It simulates the dynamics of origami structures using a bar-and-hinge model and includes a Kresling example. At the body level, the team built the SoftCrawl 3D simulator. It models the 7-link actuators and the rigid shared plates, and it calculates bending with the piecewise-constant-curvature (PCC) model of Webster and Jones (2010).
 
@@ -418,10 +551,10 @@ Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source 
 <img src="{{ '/images/body/image34.png' | relative_url }}">
 <img src="{{ '/images/body/image35.png' | relative_url }}">
 </div>
-<figcaption>Figure B2. Simulation tools: (a) ORYGDYN bar-and-hinge origami package (Sviridenko and Berinskii, 2026) and (b) SoftCrawl 3D simulator.</figcaption>
+<figcaption>Figure B7. Simulation tools: (a) ORYGDYN bar-and-hinge origami package (Sviridenko and Berinskii, 2026) and (b) SoftCrawl 3D simulator.</figcaption>
 </figure>
 
-##### B.3.2 Simulator set-up
+##### B.7.2 Simulator set-up
 
 | Parameter | Value |
 |---|---|
@@ -434,21 +567,24 @@ Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source 
 | 1608 bearing decoupling | On |
 | Suction standoff height | 16 mm |
 
-*Table B2. SoftCrawl 3D simulator settings*
+*Table B6. SoftCrawl 3D simulator settings*
 {: style="text-align: center;"}
 
-##### B.3.3 Bending model for three actuators
+##### B.7.3 Bending model for three actuators
 
 For three actuators of lengths *l*₁, *l*₂ and *l*₃ placed at 120° on a pitch circle of radius *d*, the PCC model gives the curvature *κ* and the bend angle *θ* as:
 
-$$
-\kappa = \frac{2\sqrt{l_1^2 + l_2^2 + l_3^2 - l_1 l_2 - l_2 l_3 - l_1 l_3}}{d\,(l_1 + l_2 + l_3)}, \qquad
+<div class="body-equation">\[
+\kappa = \frac{2\sqrt{l_1^2 + l_2^2 + l_3^2 - l_1 l_2 - l_2 l_3 - l_1 l_3}}{d\,(l_1 + l_2 + l_3)}
+\]</div>
+
+<div class="body-equation">\[
 \theta = \kappa\,\bar{l} = \frac{2\sqrt{l_1^2 + l_2^2 + l_3^2 - l_1 l_2 - l_2 l_3 - l_1 l_3}}{3d}
-$$
+\]</div>
 
-Here *l̄* is the mean actuator length. For any given set of actuator lengths, the bend angle is therefore **inversely proportional to the spacing *d***. This is the three-actuator form of the two-actuator relation in B.1.
+Here \\(\bar{l}\\) is the mean actuator length. For any given set of actuator lengths, the bend angle is therefore **inversely proportional to the spacing *d***. This is the three-actuator form of the two-actuator relation in B.1. With one actuator contracted by *S* and the other two relaxed, the square root reduces to *S*, giving *θ* = 2*S*/3*d* = *S*/1.5*d*. This is the same reach found in B.6.
 
-##### B.3.4 Result: bend angle against spacing
+##### B.7.4 Result: bend angle against spacing
 
 In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the other two were left relaxed. With *d* = 25.5 mm, the simulator reported a curvature of 11.91 m⁻¹ and a bend angle of **82.3°**. This agrees with the hand calculation from the equation above (83.9°). Keeping the same contraction and changing only *d* gives:
 
@@ -460,12 +596,25 @@ In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the ot
 | 35.0 | 61.1 |
 | 40.0 | 53.5 |
 
-*Table B3. Predicted bend angle against actuator spacing for one actuator fully contracted*
+*Table B7. Predicted bend angle against actuator spacing for one actuator fully contracted*
 {: style="text-align: center;"}
 
 <figure>
-<img src="{{ '/images/body/image36.png' | relative_url }}">
-<figcaption>Figure B3. Simulated bend angle against actuator spacing (SoftCrawl 3D simulator).</figcaption>
+<img src="{{ '/images/body/image37.png' | relative_url }}">
+<figcaption>Figure B8. Simulated bend angle against actuator spacing (SoftCrawl 3D simulator).</figcaption>
 </figure>
 
-When the spacing is doubled, the bend angle halves. The reason is that the same difference in length is spread over a longer lever arm, so the plate rotates less. This sets up a trade-off with B.1. Bending stiffness grows with *d*² (*K*_bend = 1.5 *k d*²), while the bend angle falls with 1/*d*. A smaller spacing gives the larger bends needed for 90° corners. A larger spacing gives a stiffer body that droops less under load. Under the simulator's assumptions, reaching 90° with the 40% contraction would need *d* ≤ 23.8 mm.
+When the spacing is doubled, the bend angle halves. The reason is that the same difference in length is spread over a longer lever arm, so the plate rotates less. This sets up a trade-off with B.2. Bending stiffness grows with *d*² (*K*<sub>bend</sub> = 1.5 *k d*²), while the bend angle falls with 1/*d*. A smaller spacing gives the larger bends needed for 90° corners. A larger spacing gives a stiffer body that droops less under load. Under the simulator's assumptions, reaching 90° with the 40% contraction would need *d* ≤ 23.8 mm.
+
+<!-- Page-local MathJax setup: required when the report layout does not load a math renderer. -->
+<script>
+window.MathJax = window.MathJax || {
+  tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]},
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+.body-equation {text-align:center; overflow-x:auto; margin:1.15rem 0; padding:.35rem 0;}
+.body-equation mjx-container[display="true"] {margin:.3em 0 !important;}
+</style>
