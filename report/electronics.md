@@ -16,7 +16,51 @@ permalink: /report/electronics/
 The electronics and pneumatic subsystem generates and distributes vacuum to the robot's Kresling actuators and suction cups. It performs two functions: independently regulating vacuum in the three Kresling actuators to achieve different bending configurations, and providing binary ON/OFF vacuum control for the four suction cups, arranged in two independently controlled pairs.
 
 #### 4.1.2 Design Requirements and constraints
-
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Category</th>
+      <th>Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Geometry</td>
+      <td>Fit within a 300 × 200 mm access opening</td>
+    </tr>
+    <tr>
+      <td>Actuator never expands beyond the body, avoiding snags</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;">Electronics</td>
+      <td class="highlight-green">No electronics in the tank except camera and light</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Adhesion</td>
+      <td>Support a provisional 0.75 kg robot mass with a target safety factor of 2 on vertical surfaces</td>
+    </tr>
+    <tr>
+      <td>Adhesion on thin oil film over aluminium sheet</td>
+    </tr>
+    <tr>
+      <td rowspan="3" style="vertical-align: middle;">Locomotion</td>
+      <td class="highlight-green">Control each leg individually</td>
+    </tr>
+    <tr>
+      <td>Climb 90 degree corners</td>
+    </tr>
+    <tr>
+      <td>Pass through 30 cm × 30 cm access hole to next fuel tank chamber</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Material compatibility</td>
+      <td>No damage to fuel tank internal surfaces</td>
+    </tr>
+    <tr>
+      <td>No swelling/damage due to prolonged oil exposure</td>
+    </tr>
+  </tbody>
+</table>
 The subsystem must satisfy the following system-level requirements:
 
 | Category | Relevant requirement |
