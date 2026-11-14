@@ -360,7 +360,7 @@ For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spa
   <tbody>
     <tr>
       <td><strong>Length, relaxed to contracted</strong></td>
-      <td>185 mm to 80 mm (56.8% shorter)</td>
+      <td>214 mm to 104 mm (51.4% shorter)</td>
       <td>Not specified</td>
     </tr>
     <tr>
@@ -618,10 +618,7 @@ Two actuators give two degrees of freedom: one contraction and one bend in a sin
   </tbody>
 </table>
 </div>
-<p class="table-caption">Table B1. Evaluation of actuator arrangement concepts</p>
-
-*Table B2. Triangle and rectangle actuator layouts compared*
-{: style="text-align: center;"}
+<p class="table-caption">Table B2. Evaluation of actuator arrangement concepts</p>
 
 The triangle was selected because three actuators are the minimum for full 3D bending, it needs fewer valves and tubes, and it keeps control of each actuator independent. With four legs, the front plate can only stay flat if *l*₁ + *l*₃ = *l*₂ + *l*₄. Any pressure error therefore makes the actuators fight each other rather than bend the body. The rectangle is stiffer and has redundancy, but this coupling makes it harder to control with leaky printed actuators (Section 2.8.1).
 

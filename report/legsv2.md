@@ -7,9 +7,9 @@ nav_order: 3
 permalink: /report/legs/
 ---
 
-<div class="stat-row"> <div class="stat"><span class="value">40 N</span><span class="label">Vertical hold, 4 cups</span></div> <div class="stat"><span class="value">17.2 N</span><span class="label">2-cup oily shear</span></div> <div class="stat"><span class="value">Ø40 mm</span><span class="label">Festo PU cup</span></div> </div>
-
 ## 3. Robot Legs: Locomotion and Adhesion Subsystem
+
+<div class="stat-row"> <div class="stat"><span class="value">40 N</span><span class="label">Vertical hold, 4 cups</span></div> <div class="stat"><span class="value">17.2 N</span><span class="label">2-cup oily shear</span></div> <div class="stat"><span class="value">Ø40 mm</span><span class="label">Festo PU cup</span></div> </div>
 
 ### 3.1 Locomotion Requirements and Concept Selection
 
