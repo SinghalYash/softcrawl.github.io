@@ -9,7 +9,7 @@ permalink: /report/electronics/
 
 ## 4. Electronic Hardware and Pneumatic Subsystem
 
-<div class="stat-row"> <div class="stat"><span class="value">0.81kPa</span><span class="label">Mean Absolute Tracking Error</span></div> <div class="stat"><span class="value">&gt;1.48kPa</span><span class="label">Maximum Steady state error</span></div> <div class="stat"><span class="value">3</span><span class="label">Independent vacuum channels</span></div></div>
+<div class="stat-row"> <div class="stat"><span class="value">0.81kPa</span><span class="label">Mean Absolute Tracking Error</span></div> <div class="stat"><span class="value">1.48kPa</span><span class="label">Maximum Steady state error</span></div> <div class="stat"><span class="value">3</span><span class="label">Independent vacuum channels</span></div></div>
 
 ### 4.1 Introduction and Design Requirements
 
