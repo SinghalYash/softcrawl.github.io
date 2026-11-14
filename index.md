@@ -21,7 +21,7 @@ title: Home
   <a class="subsystem-card orange money" href="{{ '/contact/' | relative_url }}"><span class="tag">CONTACT</span><h3>The team</h3><p>Who worked on what, and how to reach us.</p></a>
 </div>
 
-<h2 class="section-title">Where to find what</h2>
+<h2 class="section-title">Where are things</h2>
 <p class="section-lead">Each report section has its own page. Click a name to jump straight there.</p>
 
 | Report section | What you will find there |
@@ -30,8 +30,8 @@ title: Home
 | [Robot Body]({{ '/report/structure/' | relative_url }}) | The Kresling origami actuator: concept selection, bending model, prototypes V1–V3 and tests |
 | [Robot Legs]({{ '/report/legs/' | relative_url }}) | Suction adhesion: passive and active cups, payload and peeling tests, oil contamination |
 | [Electronic hardware]({{ '/report/electronics/' | relative_url }}) | Valves, pumps, microcontroller and power |
-| [Controls]({{ '/report/controls/' | relative_url }}) | Gait sequencing and pressure control |
-| [Perception]({{ '/report/perception/' | relative_url }}) | Camera, localisation and defect detection |
+| [Next Steps]({{ '/report/next-steps/' | relative_url }}) | What are some of our current ideas to tackle future problems |
+| [Project Status]({{ '/report/status/' | relative_url }}) | Where are we now |
 
 <h2 class="section-title">Getting around a report page</h2>
 <p class="section-lead">Every report page is laid out the same way.</p>
@@ -42,10 +42,10 @@ title: Home
   <div class="feature-card"><span class="tag">BOTTOM</span><h3>Summary and next page</h3><p>Each page ends with Interim Outcomes and references, then a link to the next section.</p></div>
 </div>
 
-<h2 class="section-title">What the coloured boxes mean</h2>
-<p class="section-lead">You will see these boxes throughout the report.</p>
+<!-- <h2 class="section-title">What the coloured boxes mean</h2>
+<p class="section-lead">You will see these boxes throughout the report.</p> -->
 
-<div class="callout"><p>Background or a point worth keeping in mind, such as a design implication.</p></div>
+<!-- <div class="callout"><p>Background or a point worth keeping in mind, such as a design implication.</p></div>
 <div class="callout warning"><p>A limitation, assumption or caveat. Read these before relying on a number.</p></div>
 <div class="callout result"><p>A key finding or conclusion from testing.</p></div>
 
@@ -56,4 +56,4 @@ title: Home
   <div class="stat"><span class="value">5 min</span><span class="label">About page + Interim Outcomes</span></div>
   <div class="stat"><span class="value">20 min</span><span class="label">Context, Body and Legs in full</span></div>
   <div class="stat"><span class="value">Deep dive</span><span class="label">Design models and test data</span></div>
-</div>
+</div> -->
