@@ -699,7 +699,21 @@ $$
 R = 287\ \mathrm{J\,kg^{-1}\,K^{-1}}
 $$
 
-And from \(\Delta P_{\min}=\frac{RT\dot{m}\Delta t_{\min}}{V}\), we can calculate \(\Delta V_{\mathrm{atm}}\approx 2.58\times A\;(\mathrm{m^3})\). Theoretically, for a 2mm diameter orifice (orifice is the set needle valve gap) and a 20ms pulse, for our current setup with an estimated volume of \(14.5\ \mathrm{mL}\;(14500\ \mathrm{mm^3})\), the theoretical max pressure change we can see is \(\Delta P=56.7\ \mathrm{kPa}\). However, if we increase the actuator volume to \(500\ \mathrm{mL}\;(500000\ \mathrm{mm^3})\), the theoretical max pressure change we can see is \(\Delta P=1.6\ \mathrm{kPa}\).
+From the relationship between pulse duration and pressure change:
+
+<div class="legs-equation">\[ \Delta P_{\min}=\frac{RT\dot{m}\Delta t_{\min}}{V} \]</div>
+
+we can calculate:
+
+<div class="legs-equation">\[ \Delta V_{\mathrm{atm}}\approx 2.58\times A\;(\mathrm{m^3}) \]</div>
+
+Theoretically, for a 2 mm diameter orifice (the set needle valve gap) and a 20 ms pulse, with our current setup's estimated volume of 14.5 mL (14,500 mm³), the theoretical maximum pressure change is:
+
+<div class="legs-equation">\[ \Delta P=56.7\ \mathrm{kPa} \]</div>
+
+However, if the actuator volume is increased to 500 mL (500,000 mm³), the theoretical maximum pressure change becomes:
+
+<div class="legs-equation">\[ \Delta P=1.6\ \mathrm{kPa} \]</div>
 
 The reservoir would provide a larger pre-evacuated volume, reducing the relative pressure disturbance caused by individual valve pulses. This could improve pressure stability and reduce the sensitivity of the system to discrete valve actuation. Its effectiveness must be experimentally evaluated, since reservoir size also affects evacuation time and overall system response.
 
