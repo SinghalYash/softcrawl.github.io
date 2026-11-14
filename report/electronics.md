@@ -111,14 +111,14 @@ A detailed schematic is attached below.
 
 | Component | Quantity | Function |
 | --- | --- | --- |
-| Arduino Mega | 1 | Main controller |
-| Pressure sensors | 3 | Monitor Kresling actuator pressure |
-| Vacuum solenoid valves | 3 | Supply vacuum to actuators |
-| Vent solenoid valves | 3 | Release actuator vacuum |
-| Suction-cup valves | 2 | Binary suction control |
-| MOSFET driver channels | 8 | Switch solenoid valves |
-| Vacuum pump | 1 | Generate vacuum |
-| Flyback diodes | 8 | Suppress inductive voltage transients |
+| [Arduino Mega](https://store.arduino.cc/products/arduino-mega-2560-rev3) | 1 | Main controller |
+| [Pressure sensors](https://www.endrich.com/Datenbl%C3%A4tter/Sensoren/XGZP6847D-Pressure-Sensor-V2.5.pdf) | 3 | Monitor Kresling actuator pressure |
+| [Vacuum solenoid valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 3 | Supply vacuum to actuators |
+| [Vent solenoid valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 3 | Release actuator vacuum |
+| [Suction-cup valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 2 | Binary suction control |
+| [MOSFET driver channels](https://www.aliexpress.com/item/1005012281261714.html?spm=a2g0o.productlist.main.1.7233285fAT92xG&algo_pvid=6803e47b-b9fb-431a-a1f3-2365ddffdc3e&pdp_ext_f=%7B%22order%22%3A%2252%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005012281261714%7C_p_origin_prod%3A) | 8 | Switch solenoid valves |
+| [Vacuum pump](https://www.aliexpress.com/item/1005008832087128.html?src=google&src=google&albch=shopping&acnt=615-992-9880&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oFgTQeV&albagn=888888&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005008832087128&ds_e_product_merchant_id=5853250165&ds_e_product_country=SG&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=23852500233&albag=&isSmbAutoCall=false&needSmbHouyi=false) | 1 | Generate vacuum |
+| [Flyback diodes](https://www.aliexpress.com/item/1005009115924719.html?spm=a2g0o.productlist.main.9.67b4c774DCiP9E&algo_pvid=b9e51a8c-a587-4d84-a2dc-8e386c59ae2d&pdp_ext_f=%7B%22order%22%3A%2227%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009115924719%7C_p_origin_prod%3A) | 8 | Suppress inductive voltage transients |
 
 MOSFET drivers switch the solenoid valves without drawing coil current directly from the microcontroller. Flyback diodes suppress voltage transients when the coils are de-energised.
 
