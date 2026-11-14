@@ -136,8 +136,11 @@ This concept remains to be developed and experimentally validated as part of nex
 </figure>
 
 <figure>
-<img src="{{ '/images/nextsteps/image2.png' | relative_url }}" alt="Configuration 2: Crossing the hole">
-<figcaption>Configuration 2 — Traversal through opening using double-sided suction adhesion.</figcaption>
+<iframe src="{{ '/images/nextsteps/wall-crossing.html' | relative_url }}"
+        title="Configuration 2: Animated traversal through the access opening"
+        loading="lazy" allowfullscreen
+        style="display:block; width:100%; height:640px; border:0; border-radius:12px;"></iframe>
+<figcaption>Configuration 2 — Traversal through opening using double-sided suction adhesion (interactive: drag to orbit, use "Top section" for a plan view). <a href="{{ '/images/nextsteps/wall-crossing.html' | relative_url }}" target="_blank" rel="noopener">Open full screen ↗</a></figcaption>
 </figure>
 
 <figure>
