@@ -7,7 +7,9 @@ nav_order: 5
 permalink: /report/next-steps/
 ---
 
-## Functional Requirements for Future Development
+## 5. Next Steps for SoftCrawl
+
+### 5.1 Functional Requirements for Future Development
 
 One of the key functional requirements that has not yet been addressed in the interim prototype stages is cross-chamber locomotion and environmental constraints:
 
@@ -120,7 +122,7 @@ One of the key functional requirements that has not yet been addressed in the in
   <p><strong>Identified Design Gap.</strong> While locomotion on open surfaces has been validated, traversing between adjacent fuel-tank chambers through 30 × 30 cm rib access openings remains an unaddressed limitation across all current subsystems. Enabling cross-chamber mobility is the primary objective for the next development phase.</p>
 </div>
 
-## Traversal Concept: Double-Sided Suction
+### 5.2 Traversal Concept: Double-Sided Suction
 
 To overcome this limitation, a potential solution involves incorporating suction cups on both sides of the robot body. 
 
@@ -128,7 +130,7 @@ During traversal, the robot bends through the opening, allowing the suction cups
 
 This concept remains to be developed and experimentally validated as part of next semester's work.
 
-### Traversal Sequence
+#### 5.2.1 Traversal Sequence
 
 <figure>
 <img src="{{ '/images/nextsteps/image1.png' | relative_url }}" alt="Configuration 1: Before crossing the hole">

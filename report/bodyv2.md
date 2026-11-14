@@ -109,7 +109,7 @@ A critical finding in Kresling mechanics is that structural stiffness decreases 
 
 A single Kresling cell provides insufficient stroke for effective crawling. To scale stroke into a functional pneumatic actuator, the following design modifications were implemented:
 
-#### 1. Series Stacking for Stroke Multiplication
+#### 2.4.1 Series Stacking for Stroke Multiplication
 
 To achieve the linear displacement required for locomotion, individual Kresling units are stacked in series along a continuous central axis. Stacking multiplies the net contraction displacement proportionally.
 
@@ -123,7 +123,7 @@ Through multiple prototyping iterations, the actuator evolved from an initial 5-
 <figcaption>Figure 5. Kresling actuator stacks: (a) 5-link (V2) and (b) 7-link (V3).</figcaption>
 </figure>
 
-#### 2. Embedded Rigid PLA Boundary Rings & Print-in-Place
+#### 2.4.2 Embedded Rigid PLA Boundary Rings & Print-in-Place
 
 Three complementary design decisions enabled a functional, sealed actuator:
 
@@ -136,7 +136,7 @@ Three complementary design decisions enabled a functional, sealed actuator:
   <!-- <figcaption>Figure 3. Tunable multistability of the Kresling pattern (Melancon et al., 2022).</figcaption> -->
   </figure>
 
-#### 3. Compliant Flexure Hinges via 0.4 mm Facet Offset
+#### 2.4.3 Compliant Flexure Hinges via 0.4 mm Facet Offset
 
 To resolve chaotic panel buckling observed in uniform-thickness prototypes, the triangular facet bodies were offset outward by 0.4 mm in CAD. This established a sharp thickness gradient: the thinned crease lines act as low-resistance flexure hinges, while the thicker facets stay rigid, forcing predictable folding along programmed crease lines without wrinkling.
 

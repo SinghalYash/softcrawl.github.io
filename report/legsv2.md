@@ -9,9 +9,11 @@ permalink: /report/legs/
 
 <div class="stat-row"> <div class="stat"><span class="value">40 N</span><span class="label">Vertical hold, 4 cups</span></div> <div class="stat"><span class="value">17.2 N</span><span class="label">2-cup oily shear</span></div> <div class="stat"><span class="value">Ø40 mm</span><span class="label">Festo PU cup</span></div> </div>
 
-## 2. Locomotion Requirements and Concept Selection
+## 3. Robot Legs: Locomotion and Adhesion Subsystem
 
-### 2.1 Required Locomotion Modes
+### 3.1 Locomotion Requirements and Concept Selection
+
+#### 3.1.1 Required Locomotion Modes
 
 Aircraft fuel-tank inspection requires the robot to navigate internal surfaces with varying orientations and structural obstacles.
 
@@ -27,7 +29,7 @@ Soft robots can move in many ways, but two locomotion modes are particularly rel
 
 The robot must also be able to navigate between the different chambers of the fuel tank by climbing up a 90 degree corner onto the walls and passing through the openings. These requirements create two coupled design challenges: generating controlled body movement and maintaining reliable surface attachment on oily surfaces throughout the locomotion sequence.
 
-### 2.2 Evaluation of Adhesion Mechanisms
+#### 3.1.2 Evaluation of Adhesion Mechanisms
 
 The compliant Kresling actuator produces body movement, while the Robot Legs subsystem provides surface adhesion. The attachment mechanism must support the robot and its payload, maintain grip on oil-contaminated surfaces and avoid damaging the contacted structures.
 
@@ -37,11 +39,7 @@ Vacuum suction was selected as the primary adhesion mechanism for SoftCrawl beca
 
 However, vacuum suction remains sensitive to leakage and eccentric loading, necessitating experimental investigation of sealing, shear resistance and peeling under representative operating conditions. This motivated parallel investigation of passive and active suction concepts.
 
----
-
-## 3. Robot Legs: Adhesion Subsystem
-
-### 3.1 Subsystem Requirements
+#### 3.1.3 Subsystem Requirements
 
 Based on the overall system requirements for our robot, we have highlighted the key functional specifications of the robot legs subsystem.
 

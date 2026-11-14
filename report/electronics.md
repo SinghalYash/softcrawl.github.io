@@ -7,13 +7,15 @@ nav_order: 4
 permalink: /report/electronics/
 ---
 
-## 1. Introduction and Design Requirements
+## 4. Electronic Hardware and Pneumatic Subsystem
 
-### 1.1 Role of the electronics and pneumatic subsystem
+### 4.1 Introduction and Design Requirements
+
+#### 4.1.1 Role of the electronics and pneumatic subsystem
 
 The electronics and pneumatic subsystem generates and distributes vacuum to the robot's Kresling actuators and suction cups. It performs two functions: independently regulating vacuum in the three Kresling actuators to achieve different bending configurations, and providing binary ON/OFF vacuum control for the four suction cups, arranged in two independently controlled pairs.
 
-### 1.2 Design Requirements and constraints
+#### 4.1.2 Design Requirements and constraints
 
 The subsystem must satisfy the following system-level requirements:
 
@@ -25,7 +27,7 @@ The subsystem must satisfy the following system-level requirements:
 
 These requirements necessitate an externally located control and vacuum-generation system, connected to the robot through pneumatic tubing.
 
-### 1.3 Design Objectives and Success Criteria
+#### 4.1.3 Design Objectives and Success Criteria
 
 The subsystem is evaluated against four objectives:
 
@@ -34,9 +36,9 @@ The subsystem is evaluated against four objectives:
 3. **Repeatability:** Achieve consistent pressure regulation across repeated trials.
 4. **Integration:** Independently regulate all three Kresling actuators while maintaining reliable binary operation of the suction cups.
 
-## 2. System Architecture and Concept selection
+### 4.2 System Architecture and Concept Selection
 
-### 2.1 Overall Pneumatic Architecture
+#### 4.2.1 Overall Pneumatic Architecture
 
 A central vacuum pump supplies the pneumatic components through independently controlled channels. Three pressure sensors monitor the Kresling actuator channels and provide feedback to the microcontroller. The four suction cups are controlled in two pairs using separate binary ON/OFF valves, without individual pressure feedback (Fig. 1).
 
@@ -47,7 +49,7 @@ The architecture therefore supports closed-loop vacuum regulation for the Kresli
 <figcaption>Fig. 1 Overall Pneumatic Architecture</figcaption>
 </figure>
 
-### 2.2 Evaluation of Control Architectures
+#### 4.2.2 Evaluation of Control Architectures
 
 Three approaches were considered:
 
@@ -84,7 +86,7 @@ A weighted decision matrix was used to compare the concepts.
 
 The bang-bang architecture achieved the highest weighted score due to its lower cost, modularity and compatibility with the available hardware. Although electropneumatic regulators offer superior inherent pressure-control capability, their higher cost made them less suitable for the initial implementation. Vacuum generators were less favourable due to their dependence on an external compressed-air supply and additional infrastructure. Detailed scoring justifications are provided in [Appendix A](#appendix-a-evaluation-criteria-and-weighted-decision-matrix).
 
-### 2.3 Selected Architecture
+#### 4.2.3 Selected Architecture
 
 Each Kresling actuator uses two solenoid valves: a vacuum valve connecting it to the vacuum supply and a vent valve connecting it to atmospheric pressure. The microcontroller compares measured pressure against the target and actuates the appropriate valve. Both valves close when the target is reached (Lake et al., 2017).
 
@@ -107,18 +109,18 @@ A detailed schematic is attached below.
 <figcaption>Fig.7 Detailed Electronic diagram</figcaption>
 </figure>
 
-### 2.4 Key components
+#### 4.2.4 Key Components
 
 | Component | Quantity | Function |
 | --- | --- | --- |
-| Arduino Mega | 1 | Main controller |
-| Pressure sensors | 3 | Monitor Kresling actuator pressure |
-| Vacuum solenoid valves | 3 | Supply vacuum to actuators |
-| Vent solenoid valves | 3 | Release actuator vacuum |
-| Suction-cup valves | 2 | Binary suction control |
-| MOSFET driver channels | 8 | Switch solenoid valves |
-| Vacuum pump | 1 | Generate vacuum |
-| Flyback diodes | 8 | Suppress inductive voltage transients |
+| [Arduino Mega](https://store.arduino.cc/products/arduino-mega-2560-rev3) | 1 | Main controller |
+| [Pressure sensors](https://www.endrich.com/Datenbl%C3%A4tter/Sensoren/XGZP6847D-Pressure-Sensor-V2.5.pdf) | 3 | Monitor Kresling actuator pressure |
+| [Vacuum solenoid valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 3 | Supply vacuum to actuators |
+| [Vent solenoid valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 3 | Release actuator vacuum |
+| [Suction-cup valves](https://shopee.sg/DC-12V-24V-110V-220V-Solenoid-Valve-1-4-1-8-2-Way-Normally-Closed-Direct-Acting-Pneumatic-Valves-For-Water-Air-Gas-Hot-i.1051193737.14898171322?xptdk=8db49fae-3383-43a1-97fe-d578bb991dcb) | 2 | Binary suction control |
+| [MOSFET driver channels](https://www.aliexpress.com/item/1005012281261714.html?spm=a2g0o.productlist.main.1.7233285fAT92xG&algo_pvid=6803e47b-b9fb-431a-a1f3-2365ddffdc3e&pdp_ext_f=%7B%22order%22%3A%2252%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005012281261714%7C_p_origin_prod%3A) | 8 | Switch solenoid valves |
+| [Vacuum pump](https://www.aliexpress.com/item/1005008832087128.html?src=google&src=google&albch=shopping&acnt=615-992-9880&isdl=y&slnk=&plac=&mtctp=&albbt=Google_7_shopping&aff_platform=google&aff_short_key=_oFgTQeV&albagn=888888&ds_e_adid=&ds_e_matchtype=&ds_e_device=c&ds_e_network=x&ds_e_product_group_id=&ds_e_product_id=en1005008832087128&ds_e_product_merchant_id=5853250165&ds_e_product_country=SG&ds_e_product_language=en&ds_e_product_channel=online&ds_e_product_store_id=&ds_url_v=2&albcp=23852500233&albag=&isSmbAutoCall=false&needSmbHouyi=false) | 1 | Generate vacuum |
+| [Flyback diodes](https://www.aliexpress.com/item/1005009115924719.html?spm=a2g0o.productlist.main.9.67b4c774DCiP9E&algo_pvid=b9e51a8c-a587-4d84-a2dc-8e386c59ae2d&pdp_ext_f=%7B%22order%22%3A%2227%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005009115924719%7C_p_origin_prod%3A) | 8 | Suppress inductive voltage transients |
 
 MOSFET drivers switch the solenoid valves without drawing coil current directly from the microcontroller. Flyback diodes suppress voltage transients when the coils are de-energised.
 
@@ -127,9 +129,9 @@ MOSFET drivers switch the solenoid valves without drawing coil current directly 
 <figcaption>Fig. 8 Flyback diode array</figcaption>
 </figure>
 
-## 3. Control Strategy and Theoretical Basis
+### 4.3 Control Strategy and Theoretical Basis
 
-### 3.1 Pressure sensing and Calibration
+#### 4.3.1 Pressure Sensing and Calibration
 
 The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in [Appendix B](#appendix-b-pressure-calibration-data).
 
@@ -149,11 +151,11 @@ The calibration achieved an <span markdown="0">\$R^2$</span> value of 0.99968 an
 <figcaption>Fig. 10 Pressure Calibration Curve</figcaption>
 </figure>
 
-### 3.2 Bang Bang Control Strategy
+#### 4.3.2 Bang-Bang Control Strategy
 
 Vacuum regulation uses feedback-based bang-bang control. The controller compares measured pressure against the target setpoint and calculates the error. Depending on the error, either the vacuum valve or vent valve is actuated. Both valves remain closed when the error falls within the defined deadband. Although the solenoid valves operate in discrete ON/OFF states, their effective influence on pressure can be adjusted through pulse duration.
 
-### 3.3 Governing Pneumatic Relationship
+#### 4.3.3 Governing Pneumatic Relationship
 
 The pressure response of a pneumatic volume can be approximated by:
 
@@ -163,9 +165,9 @@ where <span markdown="0">\(\dot{m}_{\mathrm{in}}\)</span> and <span markdown="0"
 
 This relationship shows that pressure changes depend on net airflow and system volume. Shorter valve pulses can therefore produce smaller pressure changes, improving achievable control resolution. However, the minimum practical pulse duration is limited by the solenoid valve response characteristics.
 
-## 4. Experimental Methodology
+### 4.4 Experimental Methodology
 
-### 4.1 Overview of experimental tests
+#### 4.4.1 Overview of Experimental Tests
 
 Three experiments were conducted to progressively evaluate the pneumatic control system, from initial valve characterisation to actuator-integrated operation.
 
@@ -177,15 +179,15 @@ Three experiments were conducted to progressively evaluate the pneumatic control
 
 The baseline configuration used 6 mm outer-diameter tubing. An additional 4 mm tubing configuration was investigated during Test 1 to evaluate flow restriction.
 
-### 4.2 Control Parameters
+#### 4.4.2 Control Parameters
 
 The controller uses a 2 kPa pressure deadband to prevent unnecessary valve switching near the target. Proportional gains determine vacuum and vent valve pulse durations based on pressure error, subject to a minimum pulse duration. Following each pulse, the controller allows the pneumatic system to respond before evaluating pressure again.
 
 The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in [Appendix C](#appendix-c-controller-implementation-and-source-code).
 
-## 5. Results and Discussion
+### 4.5 Results and Discussion
 
-### 5.1 Test 1- Initial Valve control
+#### 4.5.1 Test 1 - Initial Valve Control
 
 Initial testing evaluated the pressure response of the vacuum and vent valves without a Kresling actuator. Fixed-duration pulses were first applied, followed by proportional control with gains swept from 1 to 6.
 
@@ -205,7 +207,7 @@ Even short pulses produced substantial pressure changes. Proportional control al
 
 These results suggested that the initial hardware configuration provided insufficiently controllable airflow, which could not be resolved through controller gain adjustment alone.
 
-### 5.2 Flow Restriction and Hardware Improvements
+#### 4.5.2 Flow Restriction and Hardware Improvements
 
 The large pressure changes observed in Test 1 suggested that excessive airflow contributed to poor controllability. Since compressible flow equations ([Appendix E](#appendix-e-compressible-flow-equations)) tell us mass flow depends on pressure differential and flow restriction, tubing modifications were investigated to moderate pressure transients.
 
@@ -226,7 +228,7 @@ However, vacuum leakage remained. Three hardware improvements were subsequently 
 <figcaption>Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve</figcaption>
 </figure>
 
-### 5.3 Test 2 - Improved Valve Control
+#### 4.5.3 Test 2 - Improved Valve Control
 
 The improved hardware was evaluated using proportional control, with a gain of 0.5 selected following parameter tuning. Testing was conducted without a Kresling actuator to isolate the pneumatic system's pressure-regulation performance.
 
@@ -254,7 +256,7 @@ However, the vacuum and vent valves exhibited asymmetric responses. A 20 ms vacu
 <figcaption>Fig. 16 Vacuum and vent valve pulse-response characteristics</figcaption>
 </figure>
 
-### 5.4 Test 3 - Actuator-Integrated Control
+#### 4.5.4 Test 3 - Actuator-Integrated Control
 
 Test 3 connected a Kresling actuator to the improved valve arrangement from Test 2. A four-way push-in cross fitting joined the vacuum valve, the vent valve, the pressure sensor and the actuator (Fig. 17).
 
@@ -281,7 +283,7 @@ Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and s
 
 Only the 60 kPa setpoint met the ±1.5 kPa accuracy objective. At every lower setpoint, the pressure oscillated continuously around the target instead of settling. The oscillation grew steadily as the target vacuum decreased, from ±4.4 kPa at 50 kPa to ±6.6 kPa at 10 kPa.
 
-#### 5.4.1 Actuator leakage replaced the vent valve
+##### 4.5.4.1 Actuator leakage replaced the vent valve
 
 With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 19).
 
@@ -290,11 +292,11 @@ With the actuator connected, the vent valve never triggered during testing. The 
 <figcaption>Fig. 19 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
 </figure>
 
-#### 5.4.2 Low hardware resolution
+##### 4.5.4.2 Low hardware resolution
 
 The oscillations come from the limited resolution of the solenoid valves. A valve cannot open for less than its minimum reliable response time, so even the shortest pulse admits more vacuum than is needed to correct a small error, and the pressure overshoots past the deadband. Leakage then pulls it back across the target, the controller fires another minimum pulse, and the cycle repeats.
 
-From the governing relationship in Section 3.3, the pressure change from one pulse is approximately:
+From the governing relationship in Section 4.3.3, the pressure change from one pulse is approximately:
 
 <div class="legs-equation">\[ \Delta P \approx \frac{RT\,\dot{m}\,\Delta t_{\min}}{V} \]</div>
 
@@ -304,22 +306,22 @@ At low target vacuum, the pressure difference across the vacuum valve is largest
 <p>Test 3 shows that the solenoid-based controller cannot yet meet the ±1.5 kPa accuracy objective once an actuator is connected, except near 60 kPa. The minimum valve pulse delivers too much vacuum for the small actuator volume, and actuator leakage keeps the system cycling.</p>
 </div>
 
-These findings directly motivate the proposed vacuum reservoir, which increases <span markdown="0">\(V\)</span> so that each pulse produces a smaller pressure change, and further flow restriction in the vacuum line (Section 6.2). Sealing the actuator, as proposed in the Robot Body report, would also reduce the uncontrolled venting.
+These findings directly motivate the proposed vacuum reservoir, which increases <span markdown="0">\(V\)</span> so that each pulse produces a smaller pressure change, and further flow restriction in the vacuum line (Section 4.6.2). Sealing the actuator, as proposed in the Robot Body report, would also reduce the uncontrolled venting.
 
-## 6. Limitations and Future Work
+### 4.6 Limitations and Future Work
 
-### 6.1 Current Limitations
+#### 4.6.1 Current Limitations
 
 Although Test 2 demonstrated closed-loop pressure regulation on a standalone bench setup, several limitations remain. Discrete solenoid actuation limits pressure resolution, while asymmetric valve responses contribute to overshoot and control difficulties. Furthermore, the bench configuration does not fully represent the additional pneumatic volume, tubing resistance and actuator dynamics expected during integration. Repeatability and simultaneous independent regulation of all three Kresling actuators also require further validation.
 
-### 6.2 Proposed Improvements
+#### 4.6.2 Proposed Improvements
 
 1. **Vacuum reservoir integration:** Investigate an external vacuum reservoir to increase effective pneumatic volume. For a given mass of air transferred, a larger volume produces a smaller pressure change, potentially reducing pressure transients caused by individual valve pulses. Reservoir size must, however, be balanced against evacuation time and system response. Supporting calculations are provided in [Appendix G](#appendix-g-choked-flow-equations).
 2. **Tubing characterisation:** Evaluate longer pneumatic lines representative of deployment, with the pump and electronics located outside the fuel tank.
 3. **Flow restriction optimisation:** Investigate suitable restrictions in the vacuum and vent lines to moderate pressure changes without excessively slowing the system.
 4. **Controller refinement:** Optimise pulse durations, control gains and response intervals. An electropneumatic vacuum regulator may be considered if solenoid-based control cannot achieve the required resolution.
 
-### 6.3 Future Milestones and Validation Criteria
+#### 4.6.3 Future Milestones and Validation Criteria
 
 The improved subsystem should be evaluated against the following targets:
 

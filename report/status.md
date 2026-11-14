@@ -7,11 +7,13 @@ nav_order: 6
 permalink: /report/status/
 ---
 
-## Current Status: Where We Are Now
+## 6. Project Status and Milestones
+
+### 6.1 Current Status: Where We Are Now
 
 The Robot Body subsystem has completed its initial design and proof-of-concept phase. To date, the project has achieved the following milestones:
 
-### 1. Horizontal Crawling Demonstration
+#### 6.1.1 Horizontal Crawling Demonstration
 
 Successfully demonstrated horizontal locomotion, achieving **3 cm of forward displacement per stroke**. The effective stroke is currently limited by passive suction cup friction dragging against the floor, as synchronized inchworm gait control (which dynamically bends the body to lift the feet off the surface) has not yet been implemented.
 
@@ -32,7 +34,7 @@ Successfully demonstrated horizontal locomotion, achieving **3 cm of forward dis
   })();
 </script>
 
-### 2. Vertical Climbing Feasibility
+#### 6.1.2 Vertical Climbing Feasibility
 
 Validated initial vertical climbing capability on vertical surfaces, confirming that the soft spine can transfer sufficient adhesion forces to sustain and advance the vehicle against gravity. Executing continuous crawl-to-climb transitions will be carried out in the next semester.
 
@@ -44,7 +46,7 @@ Validated initial vertical climbing capability on vertical surfaces, confirming 
   <figcaption>Vertical climbing feasibility test validating soft spine adhesion against gravity.</figcaption>
 </figure>
 
-## Project Milestones: What We Plan to Do
+### 6.2 Project Milestones: What We Plan to Do
 
 The developmental roadmap for subsequent phases encompasses synchronized inchworm locomotion, automated gait sequencing, cross-chamber opening traversal, and fuel-tank environment testing:
 
