@@ -66,7 +66,7 @@ Soft robots are made of compliant materials that deform around obstacles and con
 
 <div class="stat-row">
   <div class="stat"><span class="value">0</span><span class="label">Humans in tank (goal)</span></div>
-  <div class="stat"><span class="value">2 mm/s</span><span class="label">Climb speed</span></div>
+  <div class="stat"><span class="value">25 mm</span><span class="label">Stroke Length</span></div>
   <div class="stat"><span class="value">506 g</span><span class="label">Body mass</span></div>
   <div class="stat"><span class="value">−80 kPa</span><span class="label">Suction vacuum</span></div>
 </div>
