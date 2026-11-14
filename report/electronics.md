@@ -7,18 +7,15 @@ nav_order: 4
 permalink: /report/electronics/
 ---
 
-# Electronic Hardware
+## 1. Introduction and Design Requirements
 
-# 1. Introduction and Design Requirements
-
-## 1.1 Role of the electronics and pneumatic subsystem
+### 1.1 Role of the electronics and pneumatic subsystem
 
 The electronics and pneumatic subsystem generates and distributes vacuum to the robot's Kresling actuators and suction cups. It performs two functions: independently regulating vacuum in the three Kresling actuators to achieve different bending configurations, and providing binary ON/OFF vacuum control for the four suction cups, arranged in two independently controlled pairs.
 
-## 1.2 Design Requirements and constraints
+### 1.2 Design Requirements and constraints
 
 The subsystem must satisfy the following system-level requirements:
-
 
 | Category | Relevant requirement |
 | --- | --- |
@@ -28,7 +25,7 @@ The subsystem must satisfy the following system-level requirements:
 
 These requirements necessitate an externally located control and vacuum-generation system, connected to the robot through pneumatic tubing.
 
-## 1.3 Design Objectives and Success Criteria
+### 1.3 Design Objectives and Success Criteria
 
 The subsystem is evaluated against four objectives:
 
@@ -37,50 +34,45 @@ The subsystem is evaluated against four objectives:
 3. **Repeatability:** Achieve consistent pressure regulation across repeated trials.
 4. **Integration:** Independently regulate all three Kresling actuators while maintaining reliable binary operation of the suction cups.
 
-# 2. System Architecture and Concept selection
+## 2. System Architecture and Concept selection
 
-## 2.1 Overall Pneumatic Architecture
+### 2.1 Overall Pneumatic Architecture
 
 A central vacuum pump supplies the pneumatic components through independently controlled channels. Three pressure sensors monitor the Kresling actuator channels and provide feedback to the microcontroller. The four suction cups are controlled in two pairs using separate binary ON/OFF valves, without individual pressure feedback (Fig. 1).
 
 The architecture therefore supports closed-loop vacuum regulation for the Kresling actuators and binary vacuum switching for the suction cups.
 
-
 <figure>
-  <img src="/images/electronics/figure-01.png" alt="Fig. 1 Overall Pneumatic Architecture" />
-  <figcaption>Fig. 1 Overall Pneumatic Architecture</figcaption>
+<img src="{{ '/images/electronics/figure-01.png' | relative_url }}" alt="Fig. 1 Overall Pneumatic Architecture">
+<figcaption>Fig. 1 Overall Pneumatic Architecture</figcaption>
 </figure>
 
-## 2.2 Evaluation of Control Architectures
+### 2.2 Evaluation of Control Architectures
 
 Three approaches were considered:
 
-Bang-bang solenoid valves: Electrically actuated ON/OFF valves regulate vacuum through feedback-based switching and pulse-duration control (Németh et al., 2004) (Parker Hannifin, 2023) .
-
+**Bang-bang solenoid valves:** Electrically actuated ON/OFF valves regulate vacuum through feedback-based switching and pulse-duration control (Németh et al., 2004) (Parker Hannifin, 2023).
 
 <figure>
-  <img src="/images/electronics/figure-02.png" alt="Fig. 2 Solenoid Valve" />
-  <figcaption>Fig. 2 Solenoid Valve</figcaption>
+<img src="{{ '/images/electronics/figure-02.png' | relative_url }}" alt="Fig. 2 Solenoid Valve">
+<figcaption>Fig. 2 Solenoid Valve</figcaption>
 </figure>
 
-Electropneumatic vacuum regulators: Electronically controlled regulators provide proportional vacuum adjustment and finer pressure regulation (Petit et al., 2024).
-
+**Electropneumatic vacuum regulators:** Electronically controlled regulators provide proportional vacuum adjustment and finer pressure regulation (Petit et al., 2024).
 
 <figure>
-  <img src="/images/electronics/figure-03.png" alt="Fig. 3 Electrovacuum pressure regulator" />
-  <figcaption>Fig. 3 Electrovacuum pressure regulator</figcaption>
+<img src="{{ '/images/electronics/figure-03.png' | relative_url }}" alt="Fig. 3 Electrovacuum pressure regulator">
+<figcaption>Fig. 3 Electrovacuum pressure regulator</figcaption>
 </figure>
 
-Vacuum generators: Venturi-based devices generate vacuum using compressed air, requiring an external compressed-air supply.
-
+**Vacuum generators:** Venturi-based devices generate vacuum using compressed air, requiring an external compressed-air supply.
 
 <figure>
-  <img src="/images/electronics/figure-04.png" alt="Fig. 4 Vacuum Generator" />
-  <figcaption>Fig. 4 Vacuum Generator</figcaption>
+<img src="{{ '/images/electronics/figure-04.png' | relative_url }}" alt="Fig. 4 Vacuum Generator">
+<figcaption>Fig. 4 Vacuum Generator</figcaption>
 </figure>
 
 A weighted decision matrix was used to compare the concepts.
-
 
 | Evaluation criterion | Weight | Bang-bang | E/P regulator | Vacuum generator |
 | --- | --- | --- | --- | --- |
@@ -90,36 +82,32 @@ A weighted decision matrix was used to compare the concepts.
 | Scalability/modularity | 15% | 4 | 4 | 3 |
 | Weighted score / 5 | 100% | 3.9 | 3.85 | 2.15 |
 
-The bang-bang architecture achieved the highest weighted score due to its lower cost, modularity and compatibility with the available hardware. Although electropneumatic regulators offer superior inherent pressure-control capability, their higher cost made them less suitable for the initial implementation. Vacuum generators were less favourable due to their dependence on an external compressed-air supply and additional infrastructure. Detailed scoring justifications are provided in Appendix A.
+The bang-bang architecture achieved the highest weighted score due to its lower cost, modularity and compatibility with the available hardware. Although electropneumatic regulators offer superior inherent pressure-control capability, their higher cost made them less suitable for the initial implementation. Vacuum generators were less favourable due to their dependence on an external compressed-air supply and additional infrastructure. Detailed scoring justifications are provided in [Appendix A](#appendix-a-evaluation-criteria-and-weighted-decision-matrix).
 
-## 2.3 Selected Architecture
+### 2.3 Selected Architecture
 
 Each Kresling actuator uses two solenoid valves: a vacuum valve connecting it to the vacuum supply and a vent valve connecting it to atmospheric pressure. The microcontroller compares measured pressure against the target and actuates the appropriate valve. Both valves close when the target is reached (Lake et al., 2017).
 
-
 <figure>
-  <img src="/images/electronics/figure-05.png" alt="Fig. 5 Bang Bang valve control arrangement" />
-  <figcaption>Fig. 5 Bang Bang valve control arrangement</figcaption>
+<img src="{{ '/images/electronics/figure-05.png' | relative_url }}" alt="Fig. 5 Bang Bang valve control arrangement">
+<figcaption>Fig. 5 Bang Bang valve control arrangement</figcaption>
 </figure>
 
 The suction-cup pairs use separate binary valve control to establish or release suction. Figure 6 illustrates the resulting pneumatic and electrical architecture. Pink lines indicate air tubes while orange lines are data lines.
 
-
 <figure>
-  <img src="/images/electronics/figure-06.png" alt="Fig. 6 Electrical and Pneumatic schematic" />
-  <figcaption>Fig. 6 Electrical and Pneumatic schematic</figcaption>
+<img src="{{ '/images/electronics/figure-06.png' | relative_url }}" alt="Fig. 6 Electrical and Pneumatic schematic">
+<figcaption>Fig. 6 Electrical and Pneumatic schematic</figcaption>
 </figure>
 
 A detailed schematic is attached below.
 
-
 <figure>
-  <img src="/images/electronics/figure-07.png" alt="Fig.7 Detailed Electronic diagram" />
-  <figcaption>Fig.7 Detailed Electronic diagram</figcaption>
+<img src="{{ '/images/electronics/figure-07.png' | relative_url }}" alt="Fig.7 Detailed Electronic diagram">
+<figcaption>Fig.7 Detailed Electronic diagram</figcaption>
 </figure>
 
-## 2.4 Key components
-
+### 2.4 Key components
 
 | Component | Quantity | Function |
 | --- | --- | --- |
@@ -134,56 +122,52 @@ A detailed schematic is attached below.
 
 MOSFET drivers switch the solenoid valves without drawing coil current directly from the microcontroller. Flyback diodes suppress voltage transients when the coils are de-energised.
 
-
 <figure>
-  <img src="/images/electronics/figure-08.png" alt="Fig. 8 Flyback diode array" />
-  <figcaption>Fig. 8 Flyback diode array</figcaption>
+<img src="{{ '/images/electronics/figure-08.png' | relative_url }}" alt="Fig. 8 Flyback diode array">
+<figcaption>Fig. 8 Flyback diode array</figcaption>
 </figure>
 
-# 3. Control Strategy and Theoretical Basis
+## 3. Control Strategy and Theoretical Basis
 
-## 3.1 Pressure sensing and Calibration
+### 3.1 Pressure sensing and Calibration
 
-The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in Appendix B.
-
+The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in [Appendix B](#appendix-b-pressure-calibration-data).
 
 <figure>
-  <img src="/images/electronics/figure-09.png" alt="Fig. 9 Setup illustration for pressure sensor calibration" />
-  <figcaption>Fig. 9 Setup illustration for pressure sensor calibration</figcaption>
+<img src="{{ '/images/electronics/figure-09.png' | relative_url }}" alt="Fig. 9 Setup illustration for pressure sensor calibration">
+<figcaption>Fig. 9 Setup illustration for pressure sensor calibration</figcaption>
 </figure>
 
 Ten measurements across 0 to -80 kPa were compared against a reference pressure gauge to obtain a linear calibration relationship:
 
-$$P_{\mathrm{cal}}=1.00298P_{\mathrm{raw}}-2.671$$
+<div class="legs-equation">\[ P_{\mathrm{cal}}=1.00298P_{\mathrm{raw}}-2.671 \]</div>
 
-The calibration achieved an (R^2) value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
-
+The calibration achieved an <span markdown="0">\$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
 
 <figure>
-  <img src="/images/electronics/figure-10.png" alt="Fig. 10 Pressure Calibration Curve" />
-  <figcaption>Fig. 10 Pressure Calibration Curve</figcaption>
+<img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 10 Pressure Calibration Curve">
+<figcaption>Fig. 10 Pressure Calibration Curve</figcaption>
 </figure>
 
-## 3.2 Bang Bang Control Strategy
+### 3.2 Bang Bang Control Strategy
 
 Vacuum regulation uses feedback-based bang-bang control. The controller compares measured pressure against the target setpoint and calculates the error. Depending on the error, either the vacuum valve or vent valve is actuated. Both valves remain closed when the error falls within the defined deadband. Although the solenoid valves operate in discrete ON/OFF states, their effective influence on pressure can be adjusted through pulse duration.
 
-## 3.3 Governing Pneumatic Relationship
+### 3.3 Governing Pneumatic Relationship
 
 The pressure response of a pneumatic volume can be approximated by:
 
-$$\frac{dP}{dt}=\frac{RT}{V}\left(\dot{m}_{\mathrm{in}}-\dot{m}_{\mathrm{out}}\right)$$
+<div class="legs-equation">\[ \frac{dP}{dt}=\frac{RT}{V}\left(\dot{m}_{\mathrm{in}}-\dot{m}_{\mathrm{out}}\right) \]</div>
 
-where $\dot{m}_{\mathrm{in}}$ and $\dot{m}_{\mathrm{out}}$ are the incoming and outgoing air mass flow rates, $dP/dt$ is the rate of change of pressure, $R$ is the specific gas constant (287 J/(kg·K)), $T$ is absolute temperature (~293 K), and $V$ is the volume of the system. The relationship assumes approximately constant temperature and volume (UCSB Physics Department, 2007) (Xavier et al., 2020) .
+where <span markdown="0">\(\dot{m}_{\mathrm{in}}\)</span> and <span markdown="0">\(\dot{m}_{\mathrm{out}}\)</span> are the incoming and outgoing air mass flow rates, <span markdown="0">\(dP/dt\)</span> is the rate of change of pressure, <span markdown="0">\(R\)</span> is the specific gas constant (287 J/(kg·K)), <span markdown="0">\(T\)</span> is absolute temperature (~293 K), and <span markdown="0">\(V\)</span> is the volume of the system. The relationship assumes approximately constant temperature and volume (UCSB Physics Department, 2007) (Xavier et al., 2020).
 
 This relationship shows that pressure changes depend on net airflow and system volume. Shorter valve pulses can therefore produce smaller pressure changes, improving achievable control resolution. However, the minimum practical pulse duration is limited by the solenoid valve response characteristics.
 
-# 4. Experimental Methodology
+## 4. Experimental Methodology
 
-## 4.1 Overview of experimental tests
+### 4.1 Overview of experimental tests
 
 Three experiments were conducted to progressively evaluate the pneumatic control system, from initial valve characterisation to actuator-integrated operation.
-
 
 | Test | Configuration | Objective |
 | --- | --- | --- |
@@ -193,26 +177,24 @@ Three experiments were conducted to progressively evaluate the pneumatic control
 
 The baseline configuration used 6 mm outer-diameter tubing. An additional 4 mm tubing configuration was investigated during Test 1 to evaluate flow restriction.
 
-## 4.2 Control Parameters
+### 4.2 Control Parameters
 
 The controller uses a 2 kPa pressure deadband to prevent unnecessary valve switching near the target. Proportional gains determine vacuum and vent valve pulse durations based on pressure error, subject to a minimum pulse duration. Following each pulse, the controller allows the pneumatic system to respond before evaluating pressure again.
 
-The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in Appendix C.
+The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in [Appendix C](#appendix-c-controller-implementation-and-source-code).
 
-# 5. Results and Discussion
+## 5. Results and Discussion
 
-## 5.1 Test 1- Initial Valve control
+### 5.1 Test 1- Initial Valve control
 
 Initial testing evaluated the pressure response of the vacuum and vent valves without a Kresling actuator. Fixed-duration pulses were first applied, followed by proportional control with gains swept from 1 to 6.
 
-
 <figure>
-  <img src="/images/electronics/figure-11.png" alt="Fig. 11 Test 1 Setup" />
-  <figcaption>Fig. 11 Test 1 Setup</figcaption>
+<img src="{{ '/images/electronics/figure-11.png' | relative_url }}" alt="Fig. 11 Test 1 Setup">
+<figcaption>Fig. 11 Test 1 Setup</figcaption>
 </figure>
 
-Even short pulses produced substantial pressure changes. Proportional control also exhibited significant overshoot and sustained oscillations across tested setpoints (Appendix D). Vacuum decay after actuation indicated leakage within the pneumatic setup.
-
+Even short pulses produced substantial pressure changes. Proportional control also exhibited significant overshoot and sustained oscillations across tested setpoints ([Appendix D](#appendix-d-proportional-gain-controller-test-results)). Vacuum decay after actuation indicated leakage within the pneumatic setup.
 
 | Pulse duration | Peak pressure change |
 | --- | --- |
@@ -223,11 +205,11 @@ Even short pulses produced substantial pressure changes. Proportional control al
 
 These results suggested that the initial hardware configuration provided insufficiently controllable airflow, which could not be resolved through controller gain adjustment alone.
 
-## 5.2 Flow Restriction and Hardware Improvements
+### 5.2 Flow Restriction and Hardware Improvements
 
-The large pressure changes observed in Test 1 suggested that excessive airflow contributed to poor controllability. Since compressible flow equations (Appendix E) tell us mass flow depends on pressure differential and flow restriction, tubing modifications were investigated to moderate pressure transients.
+The large pressure changes observed in Test 1 suggested that excessive airflow contributed to poor controllability. Since compressible flow equations ([Appendix E](#appendix-e-compressible-flow-equations)) tell us mass flow depends on pressure differential and flow restriction, tubing modifications were investigated to moderate pressure transients.
 
-An additional 4 mm tube configuration was introduced alongside the existing 6 mm tubing. The pressure change measured 300 ms after a 10 ms pulse decreased from 34.3 kPa to 16.1 kPa, a reduction of approximately 53%. Peak pressure change also decreased from 41.4 kPa to 19.6 kPa. (Appendix F)
+An additional 4 mm tube configuration was introduced alongside the existing 6 mm tubing. The pressure change measured 300 ms after a 10 ms pulse decreased from 34.3 kPa to 16.1 kPa, a reduction of approximately 53%. Peak pressure change also decreased from 41.4 kPa to 19.6 kPa. ([Appendix F](#appendix-f-4-mm-tube-configuration-results))
 
 However, vacuum leakage remained. Three hardware improvements were subsequently implemented:
 
@@ -235,71 +217,66 @@ However, vacuum leakage remained. Three hardware improvements were subsequently 
 - Needle valves to restrict airflow (Pustjens, 2024).
 - Check valves to prevent reverse airflow through the pump (RS, 2024).
 
-
 <figure>
-  <img src="/images/electronics/figure-12.png" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve" />
-  <img src="/images/electronics/figure-13.png" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve" />
-  <img src="/images/electronics/figure-14.png" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve" />
-  <figcaption>Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve</figcaption>
+<div class="figure-row">
+<img src="{{ '/images/electronics/figure-12.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
+<img src="{{ '/images/electronics/figure-13.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
+<img src="{{ '/images/electronics/figure-14.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
+</div>
+<figcaption>Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve</figcaption>
 </figure>
 
-## 5.3 Test 2 - Improved Valve Control
+### 5.3 Test 2 - Improved Valve Control
 
 The improved hardware was evaluated using proportional control, with a gain of 0.5 selected following parameter tuning. Testing was conducted without a Kresling actuator to isolate the pneumatic system's pressure-regulation performance.
 
-
 <figure>
-  <img src="/images/electronics/figure-15.png" alt="Fig. 13 Improved Test 2 Pneumatic setup" />
-  <figcaption>Fig. 13 Improved Test 2 Pneumatic setup</figcaption>
+<img src="{{ '/images/electronics/figure-15.png' | relative_url }}" alt="Fig. 13 Improved Test 2 Pneumatic setup">
+<figcaption>Fig. 13 Improved Test 2 Pneumatic setup</figcaption>
 </figure>
 
 Seven vacuum setpoints between 10 and 70 kPa were tested. All were maintained within ±1.5 kPa of their targets, achieving a mean absolute steady-state error of 0.81 kPa and a maximum absolute error of 1.48 kPa. The controller evaluated pressure at 300 ms intervals.
 
-
 <figure>
-  <img src="/images/electronics/figure-16.png" alt="Fig. 14 Test 2 setpoint tracking" />
-  <figcaption>Fig. 14 Test 2 setpoint tracking</figcaption>
+<img src="{{ '/images/electronics/figure-16.png' | relative_url }}" alt="Fig. 14 Test 2 setpoint tracking">
+<figcaption>Fig. 14 Test 2 setpoint tracking</figcaption>
 </figure>
 
-
 <figure>
-  <img src="/images/electronics/figure-17.png" alt="Fig. 15 Test 2 Steady state error" />
-  <figcaption>Fig. 15 Test 2 Steady state error</figcaption>
+<img src="{{ '/images/electronics/figure-17.png' | relative_url }}" alt="Fig. 15 Test 2 Steady state error">
+<figcaption>Fig. 15 Test 2 Steady state error</figcaption>
 </figure>
 
 However, the vacuum and vent valves exhibited asymmetric responses. A 20 ms vacuum pulse produced approximately 1-4 kPa of pressure change, whereas a vent pulse produced approximately 15-30 kPa. Consequently, vacuum could be increased in relatively small increments, but releasing vacuum remained comparatively aggressive. This asymmetry limits the achievable pressure-control resolution and motivates further investigation into flow restriction and pneumatic volume.
 
-
 <figure>
-  <img src="/images/electronics/figure-18.png" alt="Fig. 16 Vacuum and vent valve pulse-response characteristics" />
-  <figcaption>Fig. 16 Vacuum and vent valve pulse-response characteristics</figcaption>
+<img src="{{ '/images/electronics/figure-18.png' | relative_url }}" alt="Fig. 16 Vacuum and vent valve pulse-response characteristics">
+<figcaption>Fig. 16 Vacuum and vent valve pulse-response characteristics</figcaption>
 </figure>
 
-## 5.4 Test 3 - Actuator-Integrated Control
-
+### 5.4 Test 3 - Actuator-Integrated Control
 
 <figure>
-  <img src="/images/electronics/figure-19.png" alt="Fig. 17 Actuator-integrated Test 3 arrangement" />
-  <figcaption>Fig. 17 Actuator-integrated Test 3 arrangement</figcaption>
+<img src="{{ '/images/electronics/figure-19.png' | relative_url }}" alt="Fig. 17 Actuator-integrated Test 3 arrangement">
+<figcaption>Fig. 17 Actuator-integrated Test 3 arrangement</figcaption>
 </figure>
 
-# 6. Limitations and Future Work
+## 6. Limitations and Future Work
 
-## 6.1 Current Limitations
+### 6.1 Current Limitations
 
 Although Test 2 demonstrated closed-loop pressure regulation on a standalone bench setup, several limitations remain. Discrete solenoid actuation limits pressure resolution, while asymmetric valve responses contribute to overshoot and control difficulties. Furthermore, the bench configuration does not fully represent the additional pneumatic volume, tubing resistance and actuator dynamics expected during integration. Repeatability and simultaneous independent regulation of all three Kresling actuators also require further validation.
 
-## 6.2 Proposed Improvements
+### 6.2 Proposed Improvements
 
-1. **Vacuum reservoir integration:** Investigate an external vacuum reservoir to increase effective pneumatic volume. For a given mass of air transferred, a larger volume produces a smaller pressure change, potentially reducing pressure transients caused by individual valve pulses. Reservoir size must, however, be balanced against evacuation time and system response. Supporting calculations are provided in Appendix G.
+1. **Vacuum reservoir integration:** Investigate an external vacuum reservoir to increase effective pneumatic volume. For a given mass of air transferred, a larger volume produces a smaller pressure change, potentially reducing pressure transients caused by individual valve pulses. Reservoir size must, however, be balanced against evacuation time and system response. Supporting calculations are provided in [Appendix G](#appendix-g-choked-flow-equations).
 2. **Tubing characterisation:** Evaluate longer pneumatic lines representative of deployment, with the pump and electronics located outside the fuel tank.
 3. **Flow restriction optimisation:** Investigate suitable restrictions in the vacuum and vent lines to moderate pressure changes without excessively slowing the system.
 4. **Controller refinement:** Optimise pulse durations, control gains and response intervals. An electropneumatic vacuum regulator may be considered if solenoid-based control cannot achieve the required resolution.
 
-## 6.3 Future Milestones and Validation Criteria
+### 6.3 Future Milestones and Validation Criteria
 
 The improved subsystem should be evaluated against the following targets:
-
 
 | Criterion | Proposed target |
 | --- | --- |
@@ -313,44 +290,31 @@ The improved subsystem should be evaluated against the following targets:
 
 Successful validation would demonstrate the subsystem's readiness for further integration into the complete SoftCrawl platform.
 
-# 7. References
+## References
 
-Lake, J. R., Heyde, K. C., & Ruder, W. C. (2017). Low-cost feedback-controlled syringe pressure pumps for microfluidics applications. PLOS ONE, 12(4), Article e0175089. https://doi.org/10.1371/journal.pone.0175089
+- Lake, J. R., Heyde, K. C., & Ruder, W. C. (2017). Low-cost feedback-controlled syringe pressure pumps for microfluidics applications. PLOS ONE, 12(4), Article e0175089. <https://doi.org/10.1371/journal.pone.0175089>
+- Nandagopal, N. S. (2025). Compressible flow through pipes and pipelines: Isothermal compressible flow. In Compressible flow (pp. 305–363). Springer. <https://doi.org/10.1007/978-3-031-84752-3_7>
+- NASA Glenn Research Center. (2024, April 26). Thrust equations summary. <https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/thrust-equations-summary/>
+- Németh, H., Palkovics, L., & Hangos, K. M. (2004). Feedforward bang-bang control design for electro-pneumatic protection valves. Periodica Polytechnica Transportation Engineering, 32(1–2), 3–20
+- Parker Hannifin. (2023, October 10). Solenoid valves 101. <https://www.parker.com/us/en/divisions/fluid-control-division/resources/solenoid-valves-101.html>
+- Petit, P., Plebuch, A., Guenther, M., Kiefel, D., Cazin, B., & Reichstadt, S. (2024). Development of a closed-loop electromechanical pressure regulator for an orbital spacecraft [Conference paper]. Deutscher Luft- und Raumfahrtkongress 2024. <https://doi.org/10.25967/630409dglr>
+- Pustjens, J.-W. (2024, August 18). Needle valve—How they work. Tameson. <https://tameson.com/pages/needle-valve>
+- RS. (2024, March 15). A complete guide to check valves. <https://ph.rs-online.com/web/content/discovery/ideas-and-advice/check-valves-guide>
+- Thermopedia. (2011, March 16). Critical flow. <https://www.thermopedia.com/content/267>
+- University of California, Santa Barbara, Physics Department. (n.d.). Vacuum techniques [Laboratory manual]. <https://web.physics.ucsb.edu/~phys128/experiments/vacuum/VacuumRev07.pdf>
+- Xavier, M. S., Fleming, A. J., & Yong, Y. K. (2020). Modelling and simulation of pneumatic sources for soft robotic applications. In 2020 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) (pp. 916–921). IEEE. <https://doi.org/10.1109/AIM43001.2020.9158802>
 
-Nandagopal, N. S. (2025). Compressible flow through pipes and pipelines: Isothermal compressible flow. In Compressible flow (pp. 305–363). Springer. https://doi.org/10.1007/978-3-031-84752-3_7
+## Appendix
 
-NASA Glenn Research Center. (2024, April 26). Thrust equations summary. https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/thrust-equations-summary/
-
-Németh, H., Palkovics, L., & Hangos, K. M. (2004). Feedforward bang-bang control design for electro-pneumatic protection valves. Periodica Polytechnica Transportation Engineering, 32(1–2), 3–20
-
-Parker Hannifin. (2023, October 10). Solenoid valves 101. https://www.parker.com/us/en/divisions/fluid-control-division/resources/solenoid-valves-101.html
-
-Petit, P., Plebuch, A., Guenther, M., Kiefel, D., Cazin, B., & Reichstadt, S. (2024). Development of a closed-loop electromechanical pressure regulator for an orbital spacecraft [Conference paper].
-
-Deutscher Luft- und Raumfahrtkongress 2024. https://doi.org/10.25967/630409dglr
-
-Pustjens, J.-W. (2024, August 18). Needle valve—How they work. Tameson. https://tameson.com/pages/needle-valvetameson
-
-RS. (2024, March 15). A complete guide to check valves. https://ph.rs-online.com/web/content/discovery/ideas-and-advice/check-valves-guide
-
-Thermopedia. (2011, March 16). Critical flow. https://www.thermopedia.com/content/267/thermopedia
-
-University of California, Santa Barbara, Physics Department. (n.d.). Vacuum techniques [Laboratory manual]. https://web.physics.ucsb.edu/~phys128/experiments/vacuum/VacuumRev07.pdfweb.physics.ucsb
-
-Xavier, M. S., Fleming, A. J., & Yong, Y. K. (2020). Modelling and simulation of pneumatic sources for soft robotic applications. In 2020 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) (pp. 916–921). IEEE. https://doi.org/10.1109/AIM43001.2020.9158802
-
-# 8. Appendix
-
-## Appendix A — Evaluation Criteria and Weighted Decision Matrix
+### Appendix A: Evaluation Criteria and Weighted Decision Matrix
 
 Pressure-control capability received the highest weighting because independently adjustable vacuum levels are essential for controlling the Kresling actuators. Cost and hardware requirements were also weighted significantly because the subsystem must be implemented within the available project resources and infrastructure. Scalability was considered to accommodate the three actuator channels and two suction-cup pairs. The concepts were scored on a scale of 1-5, with higher scores representing more favourable performance against the respective criterion.
 
 The weighted score was calculated using:
 
-$$\mathrm{Total\ Score}=\sum(\mathrm{Score}\times\mathrm{Weight})$$
+<div class="legs-equation">\[ \mathrm{Total\ Score}=\sum(\mathrm{Score}\times\mathrm{Weight}) \]</div>
 
 The following summarises the engineering considerations behind the assigned scores.
-
 
 | Criterion | Bang-bang solenoid valves | E/P regulator | Vacuum generator |
 | --- | --- | --- | --- |
@@ -359,8 +323,7 @@ The following summarises the engineering considerations behind the assigned scor
 | Hardware requirements | Requires solenoid valves, drivers and pressure feedback | Requires electronic regulators and associated control interfaces | Requires compressed-air supply and additional pressure-regulation hardware |
 | Scalability | Modular arrangement of independently controlled valve channels | Modular regulator-based arrangement | Expansion requires additional pneumatic infrastructure |
 
-## Appendix B — Pressure calibration data
-
+### Appendix B: Pressure calibration data
 
 | Actual pressure (kPa) | Arduino average (kPa) | Error |
 | --- | --- | --- |
@@ -375,7 +338,7 @@ The following summarises the engineering considerations behind the assigned scor
 | −60 | −56.846 | +3.154 |
 | −73 | −70.412 | +2.588 |
 
-## Appendix C — Controller Implementation and Source Code
+### Appendix C: Controller Implementation and Source Code
 
 The controller was implemented using an Arduino Mega and two independently actuated solenoid valves: a vacuum valve and an atmospheric vent valve. Pressure feedback was obtained from the XGZP6847A sensor connected to analogue input A0.
 
@@ -678,7 +641,6 @@ void loop()
 }
 ```
 
-
 | Parameter | What it does |
 | --- | --- |
 | DEADBAND | Defines the acceptable error range within which both valves remain closed. Consistently set to 2kPa across experiments |
@@ -687,10 +649,9 @@ void loop()
 | MIN_PULSE | Minimum permitted valve actuation duration (decided by the hardware limitation of the valve itself) |
 | SETTLE_MS | Waiting period after each pulse before the controller evaluates pressure and acts again. |
 
-## Appendix D — Proportional Gain controller test results
+### Appendix D: Proportional Gain controller test results
 
-A proportional gain controller was also implemented where the pulse width was directly scaled to the measured error using  $$t_{\mathrm{pulse}}=K_P e$$  and was tested with Kp swept from 1-6.
-
+A proportional gain controller was also implemented where the pulse width was directly scaled to the measured error using  <span markdown="0">\(t_{\mathrm{pulse}}=K_P e\)</span>  and was tested with Kp swept from 1-6.
 
 | Target Vacuum | Experimental Observation |
 | --- | --- |
@@ -698,14 +659,13 @@ A proportional gain controller was also implemented where the pulse width was di
 | 30kPa | Oscillations between ~13kPa and 57kPa |
 | 70kPa | Oscillations between ~47kPa and 75kPa |
 
-## Appendix E — Compressible Flow Equations
+### Appendix E: Compressible Flow Equations
 
-The compressible flow equation states  $$\dot{m}=\frac{\pi}{4}\frac{(P_1^2-P_2^2)MD^5}{fLRT}$$  where  $\dot{m}$  is air flow rate, P1 and P2 are pressures in and out, M is molar mass of gas (constant), R is universal gas constant (constant), T is absolute temperature of gas (constant), f is the friction factor which is constant for the same gas, and D is the diameter of the tube and L is the length of the tube (Nandagopal, 2025). This indicates that the flow rate is very sensitive to tubing diameter and less, but still sensitive to tubing length.
+The compressible flow equation states  <span markdown="0">\(\dot{m}=\frac{\pi}{4}\frac{(P_1^2-P_2^2)MD^5}{fLRT}\)</span>  where  <span markdown="0">\(\dot{m}\)</span>  is air flow rate, P1 and P2 are pressures in and out, M is molar mass of gas (constant), R is universal gas constant (constant), T is absolute temperature of gas (constant), f is the friction factor which is constant for the same gas, and D is the diameter of the tube and L is the length of the tube (Nandagopal, 2025). This indicates that the flow rate is very sensitive to tubing diameter and less, but still sensitive to tubing length.
 
-## Appendix F — 4 mm Tube Configuration Results
+### Appendix F: 4 mm Tube Configuration Results
 
 A quick fix was implemented where 1.5m long, 4mm outer diameter tubes were added to both the vacuum and vent valves alongside the 6mm tubes. Test 1 with proportional error controller was repeated and the following key observations were made.
-
 
 | Metric | 6mm only configuration | Added 4mm tube configuration |
 | --- | --- | --- |
@@ -713,16 +673,33 @@ A quick fix was implemented where 1.5m long, 4mm outer diameter tubes were added
 | Pressure change at 300ms after pulse | 34.3kPa | 16.1kPa |
 | Post pulse vacuum decay rate | 24kPa/s | 14.7kPa/s |
 
-## Appendix G — Choked Flow Equations
+### Appendix G: Choked Flow Equations
 
 Air flow rate is also inversely proportional to the actuator volume. In fact, critical flow equations (Thermopedia, 2011)  tell us that when the ratio of the air pressure out of the needle valve P2 to air pressure into the needle valve P1 exceeds 0.528, air velocity hits Mach 1 at the narrowest point.
 
-$$\frac{P_2}{P_1}\leq 0.528$$
+<div class="legs-equation">\[ \frac{P_2}{P_1}\leq 0.528 \]</div>
 
 This means for our vent valve, when P2~101.3kPa absolute (atmosphere), the critical threshold of 0.528 is hit when our actuator has reached 53.5kPa absolute or -47.8kPa gauge vacuum. This means that if the actuator is < -48kPa, air flow is sonic. Under these conditions, the choked flow equations (NASA Glenn Research Center, 2024) say
 
-$$\dot{m}_{\mathrm{choked}}=C_d A P_1\sqrt{\frac{\gamma}{RT}}\left(\frac{2}{\gamma+1}\right)^{\frac{\gamma+1}{2(\gamma-1)}}$$ , where  $$\gamma=1.4,\qquad R=287\ \mathrm{J/(kg\cdot K)}$$
+<div class="legs-equation">\[ \dot{m}_{\mathrm{choked}}=C_d A P_1\sqrt{\frac{\gamma}{RT}}\left(\frac{2}{\gamma+1}\right)^{\frac{\gamma+1}{2(\gamma-1)}} \]</div>
 
-And from  $$\Delta P_{\min}=\frac{RT\dot{m}\Delta t_{\min}}{V}$$ , we can calculate  $$\Delta V_{\mathrm{atm}}\approx 2.58\times A\;(\mathrm{m^3})$$ . Theoretically, for a 2mm diameter orifice (orifice is the set needle valve gap) and a 20ms pulse, for our current setup with an estimated volume of  $$14.5\ \mathrm{mL}\;(14500\ \mathrm{mm^2})$$ , the theoretical max pressure change we can see is  $$\Delta P=56.7\ \mathrm{kPa}$$ . However, if we increase the actuator volume to  $$500\ \mathrm{mL}\;(500000\ \mathrm{mm^2})$$ ,  the theoretical max pressure change we can see is  $$\Delta P=1.6\ \mathrm{kPa}$$ .
+where <span markdown="0">$\gamma=1.4$</span> and <span markdown="0">$R=287\ \mathrm{J/(kg\cdot K)}$</span>.
+
+And from <span markdown="0">$\Delta P_{\min}=\frac{RT\dot{m}\Delta t_{\min}}{V}$</span> , we can calculate <span markdown="0">$\Delta V_{\mathrm{atm}}\approx 2.58\times A\;(\mathrm{m^3})$</span> . Theoretically, for a 2mm diameter orifice (orifice is the set needle valve gap) and a 20ms pulse, for our current setup with an estimated volume of <span markdown="0">$14.5\ \mathrm{mL}\;(14500\ \mathrm{mm^2})$</span> , the theoretical max pressure change we can see is <span markdown="0">$\Delta P=56.7\ \mathrm{kPa}$</span> . However, if we increase the actuator volume to <span markdown="0">$500\ \mathrm{mL}\;(500000\ \mathrm{mm^2})$</span> , the theoretical max pressure change we can see is <span markdown="0">$\Delta P=1.6\ \mathrm{kPa}$</span> .
 
 The reservoir would provide a larger pre-evacuated volume, reducing the relative pressure disturbance caused by individual valve pulses. This could improve pressure stability and reduce the sensitivity of the system to discrete valve actuation. Its effectiveness must be experimentally evaluated, since reservoir size also affects evacuation time and overall system response.
+
+<!-- Page-local MathJax setup: required when the report layout does not load a math renderer. -->
+<script>
+window.MathJax = window.MathJax || {
+  tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]},
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+.legs-equation {text-align:center; overflow-x:auto; margin:1.15rem 0; padding:.35rem 0;}
+.legs-equation mjx-container[display="true"] {margin:.3em 0 !important;}
+a[href^="http"] {overflow-wrap:anywhere; word-break:break-word;}
+table {width:100%;}
+</style>
