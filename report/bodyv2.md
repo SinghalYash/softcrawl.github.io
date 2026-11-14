@@ -244,6 +244,11 @@ This was resolved at the assembly level by integrating:
 - **Shaft, Bearing & E-Clip:** The end cap houses a print-in-place bearing, through which a central PLA shaft is captured by an E-clip to resist axial pull-out.
 - **Pneumatic Seal:** An M5-to-6 mm OD push-in fitting is screwed into a threaded insert in the end cap, creating an airtight vacuum path into the actuator.
 
+<figure>
+  <img src="{{ '/images/body/image30.png' | relative_url }}">
+  <figcaption>Figure 11. Exploded view of twist-lock end cap assembly showing ball bearing, central shaft, and pneumatic seal.</figcaption>
+</figure>
+
 To complete the assembly, three identical actuators are mounted in a 120 degree equilateral triangle between rigid front and rear plates. This parallel arrangement constrains the remaining degrees of freedom, producing controllable 3D bending when the pressure in each Kresling actuator is controlled independently, and therefore linear crawling (see [Appendix B](#appendix-b-design-principles)).
 
 The layout was chosen deliberately rather than by default; each choice below is worked through in [Appendix B](#appendix-b-design-principles):
@@ -255,10 +260,7 @@ The layout was chosen deliberately rather than by default; each choice below is 
 
 Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D simulator. The simulator showed that the bend angle is inversely proportional to the distance between the Kresling actuators: placing them closer together gives a larger bend for the same contraction, but lowers the bending stiffness. The simulation and the resulting spacing trade-off are described in [Appendix B.7](#b7-simulation).
 
-<figure>
-  <img src="{{ '/images/body/image30.png' | relative_url }}">
-  <figcaption>Figure 11. Exploded view of twist-lock end cap assembly showing ball bearing, central shaft, and pneumatic seal.</figcaption>
-</figure>
+
 
 <figure>
   <img src="{{ '/images/body/image18.png' | relative_url }}">
