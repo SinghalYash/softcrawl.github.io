@@ -327,7 +327,7 @@ Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and s
 
 Only the 60 kPa setpoint met the ±1.5 kPa accuracy objective. At every lower setpoint, the pressure oscillated continuously around the target instead of settling. The oscillation grew steadily as the target vacuum decreased, from ±4.4 kPa at 50 kPa to ±6.6 kPa at 10 kPa.
 
-##### 4.5.4.1 Actuator leakage replaced the vent valve
+#### 4.5.4.1 Actuator leakage replaced the vent valve
 
 With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 19).
 
@@ -336,7 +336,7 @@ With the actuator connected, the vent valve never triggered during testing. The 
 <figcaption>Fig. 19 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
 </figure>
 
-##### 4.5.4.2 Low hardware resolution
+#### 4.5.4.2 Low hardware resolution
 
 The oscillations come from the limited resolution of the solenoid valves. A valve cannot open for less than its minimum reliable response time, so even the shortest pulse admits more vacuum than is needed to correct a small error, and the pressure overshoots past the deadband. Leakage then pulls it back across the target, the controller fires another minimum pulse, and the cycle repeats.
 
