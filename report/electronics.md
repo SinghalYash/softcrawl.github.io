@@ -146,12 +146,9 @@ The suction-cup pairs use separate binary valve control to establish or release 
 <figcaption>Fig. 6 Electrical and Pneumatic schematic</figcaption>
 </figure>
 
-A detailed schematic is attached below.
+A detailed schematic is attached in [Appendix B]((#appendix-b-detailed-schematic)).
 
-<figure>
-<img src="{{ '/images/electronics/figure-07.png' | relative_url }}" alt="Fig.7 Detailed Electronic diagram">
-<figcaption>Fig.7 Detailed Electronic diagram</figcaption>
-</figure>
+
 
 #### 4.2.4 Key Components
 
@@ -177,7 +174,7 @@ MOSFET drivers switch the solenoid valves without drawing coil current directly 
 
 #### 4.3.1 Pressure Sensing and Calibration
 
-The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in [Appendix B](#appendix-b-pressure-calibration-data).
+The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in [Appendix C](#appendix-c-pressure-calibration-data).
 
 <figure>
 <img src="{{ '/images/electronics/figure-09.png' | relative_url }}" alt="Fig. 9 Setup illustration for pressure sensor calibration">
@@ -188,7 +185,7 @@ Ten measurements across 0 to -80 kPa were compared against a reference pressure 
 
 <div class="legs-equation">\[ P_{\mathrm{cal}}=1.00298P_{\mathrm{raw}}-2.671 \]</div>
 
-The calibration achieved an <span markdown="0">\$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
+The calibration achieved an <span>$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
 
 <figure>
 <img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 10 Pressure Calibration Curve">
@@ -227,7 +224,7 @@ The baseline configuration used 6 mm outer-diameter tubing. An additional 4 mm t
 
 The controller uses a 2 kPa pressure deadband to prevent unnecessary valve switching near the target. Proportional gains determine vacuum and vent valve pulse durations based on pressure error, subject to a minimum pulse duration. Following each pulse, the controller allows the pneumatic system to respond before evaluating pressure again.
 
-The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in [Appendix C](#appendix-c-controller-implementation-and-source-code).
+The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in [Appendix D](#appendix-d-controller-implementation-and-source-code).
 
 ### 4.5 Results and Discussion
 
@@ -240,7 +237,7 @@ Initial testing evaluated the pressure response of the vacuum and vent valves wi
 <figcaption>Fig. 11 Test 1 Setup</figcaption>
 </figure>
 
-Even short pulses produced substantial pressure changes. Proportional control also exhibited significant overshoot and sustained oscillations across tested setpoints ([Appendix D](#appendix-d-proportional-gain-controller-test-results)). Vacuum decay after actuation indicated leakage within the pneumatic setup.
+Even short pulses produced substantial pressure changes. Proportional control also exhibited significant overshoot and sustained oscillations across tested setpoints ([Appendix E](#appendix-e-proportional-gain-controller-test-results)). Vacuum decay after actuation indicated leakage within the pneumatic setup.
 
 | Pulse duration | Peak pressure change |
 | --- | --- |
@@ -253,9 +250,9 @@ These results suggested that the initial hardware configuration provided insuffi
 
 #### 4.5.2 Flow Restriction and Hardware Improvements
 
-The large pressure changes observed in Test 1 suggested that excessive airflow contributed to poor controllability. Since compressible flow equations ([Appendix E](#appendix-e-compressible-flow-equations)) tell us mass flow depends on pressure differential and flow restriction, tubing modifications were investigated to moderate pressure transients.
+The large pressure changes observed in Test 1 suggested that excessive airflow contributed to poor controllability. Since compressible flow equations ([Appendix F](#appendix-f-compressible-flow-equations)) tell us mass flow depends on pressure differential and flow restriction, tubing modifications were investigated to moderate pressure transients.
 
-An additional 4 mm tube configuration was introduced alongside the existing 6 mm tubing. The pressure change measured 300 ms after a 10 ms pulse decreased from 34.3 kPa to 16.1 kPa, a reduction of approximately 53%. Peak pressure change also decreased from 41.4 kPa to 19.6 kPa. ([Appendix F](#appendix-f-4-mm-tube-configuration-results))
+An additional 4 mm tube configuration was introduced alongside the existing 6 mm tubing. The pressure change measured 300 ms after a 10 ms pulse decreased from 34.3 kPa to 16.1 kPa, a reduction of approximately 53%. Peak pressure change also decreased from 41.4 kPa to 19.6 kPa. ([Appendix G](#appendix-g-4-mm-tube-configuration-results))
 
 However, vacuum leakage remained. Three hardware improvements were subsequently implemented:
 
@@ -327,7 +324,7 @@ Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and s
 
 Only the 60 kPa setpoint met the ±1.5 kPa accuracy objective. At every lower setpoint, the pressure oscillated continuously around the target instead of settling. The oscillation grew steadily as the target vacuum decreased, from ±4.4 kPa at 50 kPa to ±6.6 kPa at 10 kPa.
 
-#### 4.5.4.1 Actuator leakage replaced the vent valve
+##### 4.5.4.1 Actuator leakage replaced the vent valve
 
 With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 19).
 
@@ -336,7 +333,7 @@ With the actuator connected, the vent valve never triggered during testing. The 
 <figcaption>Fig. 19 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
 </figure>
 
-#### 4.5.4.2 Low hardware resolution
+##### 4.5.4.2 Low hardware resolution
 
 The oscillations come from the limited resolution of the solenoid valves. A valve cannot open for less than its minimum reliable response time, so even the shortest pulse admits more vacuum than is needed to correct a small error, and the pressure overshoots past the deadband. Leakage then pulls it back across the target, the controller fires another minimum pulse, and the cycle repeats.
 
@@ -360,7 +357,7 @@ Although Test 2 demonstrated closed-loop pressure regulation on a standalone ben
 
 #### 4.6.2 Proposed Improvements
 
-1. **Vacuum reservoir integration:** Investigate an external vacuum reservoir to increase effective pneumatic volume. For a given mass of air transferred, a larger volume produces a smaller pressure change, potentially reducing pressure transients caused by individual valve pulses. Reservoir size must, however, be balanced against evacuation time and system response. Supporting calculations are provided in [Appendix G](#appendix-g-choked-flow-equations).
+1. **Vacuum reservoir integration:** Investigate an external vacuum reservoir to increase effective pneumatic volume. For a given mass of air transferred, a larger volume produces a smaller pressure change, potentially reducing pressure transients caused by individual valve pulses. Reservoir size must, however, be balanced against evacuation time and system response. Supporting calculations are provided in [Appendix H](#appendix-h-choked-flow-equations).
 2. **Tubing characterisation:** Evaluate longer pneumatic lines representative of deployment, with the pump and electronics located outside the fuel tank.
 3. **Flow restriction optimisation:** Investigate suitable restrictions in the vacuum and vent lines to moderate pressure changes without excessively slowing the system.
 4. **Controller refinement:** Optimise pulse durations, control gains and response intervals. An electropneumatic vacuum regulator may be considered if solenoid-based control cannot achieve the required resolution.
@@ -413,8 +410,13 @@ The following summarises the engineering considerations behind the assigned scor
 | Cost | Low-cost and readily implementable components | Higher cost, approximately US$500 per channel in the original assessment | Moderate component cost, but requires supporting compressed-air infrastructure |
 | Hardware requirements | Requires solenoid valves, drivers and pressure feedback | Requires electronic regulators and associated control interfaces | Requires compressed-air supply and additional pressure-regulation hardware |
 | Scalability | Modular arrangement of independently controlled valve channels | Modular regulator-based arrangement | Expansion requires additional pneumatic infrastructure |
+### Appendix B: Detailed schematic
+<figure>
+<img src="{{ '/images/electronics/figure-07.png' | relative_url }}" alt="Fig.7 Detailed Electronic diagram">
+<figcaption>Fig.7 Detailed Electronic diagram</figcaption>
+</figure>
 
-### Appendix B: Pressure calibration data
+### Appendix C: Pressure calibration data
 
 | Actual pressure (kPa) | Arduino average (kPa) | Error |
 | --- | --- | --- |
@@ -429,7 +431,7 @@ The following summarises the engineering considerations behind the assigned scor
 | −60 | −56.846 | +3.154 |
 | −73 | −70.412 | +2.588 |
 
-### Appendix C: Controller Implementation and Source Code
+### Appendix D: Controller Implementation and Source Code
 
 The controller was implemented using an Arduino Mega and two independently actuated solenoid valves: a vacuum valve and an atmospheric vent valve. Pressure feedback was obtained from the XGZP6847A sensor connected to analogue input A0.
 
@@ -740,7 +742,7 @@ void loop()
 | MIN_PULSE | Minimum permitted valve actuation duration (decided by the hardware limitation of the valve itself) |
 | SETTLE_MS | Waiting period after each pulse before the controller evaluates pressure and acts again. |
 
-### Appendix D: Proportional Gain controller test results
+### Appendix E: Proportional Gain controller test results
 
 A proportional gain controller was also implemented where the pulse width was directly scaled to the measured error using  <span markdown="0">\(t_{\mathrm{pulse}}=K_P e\)</span>  and was tested with Kp swept from 1-6.
 
@@ -750,11 +752,11 @@ A proportional gain controller was also implemented where the pulse width was di
 | 30kPa | Oscillations between ~13kPa and 57kPa |
 | 70kPa | Oscillations between ~47kPa and 75kPa |
 
-### Appendix E: Compressible Flow Equations
+### Appendix F: Compressible Flow Equations
 
 The compressible flow equation states  <span markdown="0">\(\dot{m}=\frac{\pi}{4}\frac{(P_1^2-P_2^2)MD^5}{fLRT}\)</span>  where  <span markdown="0">\(\dot{m}\)</span>  is air flow rate, P1 and P2 are pressures in and out, M is molar mass of gas (constant), R is universal gas constant (constant), T is absolute temperature of gas (constant), f is the friction factor which is constant for the same gas, and D is the diameter of the tube and L is the length of the tube (Nandagopal, 2025). This indicates that the flow rate is very sensitive to tubing diameter and less, but still sensitive to tubing length.
 
-### Appendix F: 4 mm Tube Configuration Results
+### Appendix G: 4 mm Tube Configuration Results
 
 A quick fix was implemented where 1.5m long, 4mm outer diameter tubes were added to both the vacuum and vent valves alongside the 6mm tubes. Test 1 with proportional error controller was repeated and the following key observations were made.
 
@@ -764,7 +766,7 @@ A quick fix was implemented where 1.5m long, 4mm outer diameter tubes were added
 | Pressure change at 300ms after pulse | 34.3kPa | 16.1kPa |
 | Post pulse vacuum decay rate | 24kPa/s | 14.7kPa/s |
 
-### Appendix G: Choked Flow Equations
+### Appendix H: Choked Flow Equations
 
 Air flow rate is also inversely proportional to the actuator volume. In fact, critical flow equations (Thermopedia, 2011)  tell us that when the ratio of the air pressure out of the needle valve P2 to air pressure into the needle valve P1 exceeds 0.528, air velocity hits Mach 1 at the narrowest point.
 
