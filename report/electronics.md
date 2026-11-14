@@ -67,8 +67,6 @@ The subsystem must satisfy the following system-level requirements:
 
 | Category | Relevant requirement |
 | --- | --- |
-| Electronics | No electronic components inside the fuel tank, except the camera and lighting |
-| Control | Independent control of each leg |
 | Pneumatics | Independently adjustable vacuum levels for the Kresling actuators and binary suction-cup operation |
 
 These requirements necessitate an externally located control and vacuum-generation system, connected to the robot through pneumatic tubing.
