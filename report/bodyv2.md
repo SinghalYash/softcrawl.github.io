@@ -190,6 +190,8 @@ This was resolved at the assembly level by integrating:
 
 To complete the assembly, three identical actuators are mounted in a 120 degree equilateral triangle between rigid front and rear plates. This parallel arrangement constrains the remaining degrees of freedom, producing controllable 3D bending when the pressure in each Kresling actuator is controlled independently, and therefore linear crawling (see [Appendix B](#appendix-b-design-principles)).
 
+Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D simulator. The simulator showed that the bend angle is inversely proportional to the distance between the Kresling actuators: placing them closer together gives a larger bend for the same contraction, but lowers the bending stiffness. The simulation and the resulting spacing trade-off are described in [Appendix B.3](#b3-simulation).
+
 <figure>
   <img src="{{ '/images/body/image30.png' | relative_url }}">
   <figcaption>Twist-lock end cap assembly</figcaption>
@@ -237,9 +239,12 @@ A load was attached to check actuator contraction while carrying weight. The wei
 <img src="{{ '/images/body/image21.png' | relative_url }}">
 <figcaption>Contraction under load results</figcaption>
 </figure>
+
 #### 2.7.3 Bending angle
 
 The actuator was held in place with two G-clamps and an angle sheet was placed underneath it. A phone on a stand filmed each bend from a fixed position so that every trial used the same view, and a pressure regulator controlled the pressure. The best bend reached 72.7 degrees, with the actuator snapping during bending. Other measurements were 68.9 and 53.4 degrees. At about 55 kPa in each run, "snapping" occurred, when the Kresling actuator would bend completely on its fold line.
+
+For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spacing (see [Appendix B.3](#b3-simulation)). The measured 72.7° is about 10° lower. This is likely because the simulator ignores air leakage, friction in the end plates and the early snap at about 55 kPa.
 
 <figure>
 <img src="{{ '/images/body/image22.png' | relative_url }}">
@@ -348,6 +353,7 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
 - Wickeler, A. L., McLellan, K., Sun, Y.-C., & Naguib, H. E. (2023). 4D printed origami-inspired accordion, Kresling, and Yoshimura tubes: A comparative study. *Journal of Intelligent Material Systems and Structures, 34*(11), 1285–1298. <https://doi.org/10.1177/1045389X221144005>
 - eSUN. (n.d.). *What is TPU? Flexible 3D printing guide & eSUN TPU*. eSUN Wiki. Retrieved November 12, 2026, from <https://www.esun3d.com/wiki/tpu-material>
 - U.S. Bellows, Inc. (n.d.). *Bellows deflections: Axial, lateral & angular*. Retrieved November 13, 2026, from <https://usbellows.com/bellows-deflections-axial-lateral-angular/>
+- Sviridenko, M., & Berinskii, I. E. (2026). Dynamical simulation of origami-based elastic structures using discrete models. *Smart Materials and Structures*. <https://github.com/Sv1r/ORYGDYN>
 
 ---
 
@@ -403,7 +409,63 @@ An equilateral triangle was preferred over an isosceles one. It has the same ben
 #### B.3 Simulation
 
 The layout was also checked in the team's SoftCrawl 3D simulator, which implements the Webster and Jones model. Its purpose was to see how leg spacing affects the bend angle before printing. It confirmed that a wider spacing gives a smaller bend for the same length difference.
+##### B.3.1 Tools
 
-<!-- TODO: SoftCrawl 3D simulator output showing bend angle against leg spacing. Use slides 56 to 58; add axis labels and units. -->
+Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source MATLAB package by Sviridenko and Berinskii (2026), was explored. It simulates the dynamics of origami structures using a bar-and-hinge model and includes a Kresling example. At the body level, the team built the SoftCrawl 3D simulator. It models the 7-link actuators and the rigid shared plates, and it calculates bending with the piecewise-constant-curvature (PCC) model of Webster and Jones (2010).
 
-*Figure B2. Simulated bend angle against leg spacing.*
+<figure>
+<div class="figure-row">
+<img src="{{ '/images/body/image34.png' | relative_url }}">
+<img src="{{ '/images/body/image35.png' | relative_url }}">
+</div>
+<figcaption>Figure B2. Simulation tools: (a) ORYGDYN bar-and-hinge origami package (Sviridenko and Berinskii, 2026) and (b) SoftCrawl 3D simulator.</figcaption>
+</figure>
+
+##### B.3.2 Simulator set-up
+
+| Parameter | Value |
+|---|---|
+| Actuator | Kresling, 7 links |
+| Unit resting height | 20 mm (140 mm per actuator) |
+| Maximum contraction ratio | 40% |
+| Twist per unit contraction | 12° per unit |
+| Triangular pitch circle radius, *d* | 25.5 mm |
+| Top plate | Rigid, shared |
+| 1608 bearing decoupling | On |
+| Suction standoff height | 16 mm |
+
+*Table B2. SoftCrawl 3D simulator settings*
+{: style="text-align: center;"}
+
+##### B.3.3 Bending model for three actuators
+
+For three actuators of lengths *l*₁, *l*₂ and *l*₃ placed at 120° on a pitch circle of radius *d*, the PCC model gives the curvature *κ* and the bend angle *θ* as:
+
+$$
+\kappa = \frac{2\sqrt{l_1^2 + l_2^2 + l_3^2 - l_1 l_2 - l_2 l_3 - l_1 l_3}}{d\,(l_1 + l_2 + l_3)}, \qquad
+\theta = \kappa\,\bar{l} = \frac{2\sqrt{l_1^2 + l_2^2 + l_3^2 - l_1 l_2 - l_2 l_3 - l_1 l_3}}{3d}
+$$
+
+Here *l̄* is the mean actuator length. For any given set of actuator lengths, the bend angle is therefore **inversely proportional to the spacing *d***. This is the three-actuator form of the two-actuator relation in B.1.
+
+##### B.3.4 Result: bend angle against spacing
+
+In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the other two were left relaxed. With *d* = 25.5 mm, the simulator reported a curvature of 11.91 m⁻¹ and a bend angle of **82.3°**. This agrees with the hand calculation from the equation above (83.9°). Keeping the same contraction and changing only *d* gives:
+
+| Spacing *d* (mm) | Bend angle *θ* (°) |
+|---|---|
+| 20.0 | 106.9 |
+| 25.5 (current) | 83.9 |
+| 30.0 | 71.3 |
+| 35.0 | 61.1 |
+| 40.0 | 53.5 |
+
+*Table B3. Predicted bend angle against actuator spacing for one actuator fully contracted*
+{: style="text-align: center;"}
+
+<figure>
+<img src="{{ '/images/body/image36.png' | relative_url }}">
+<figcaption>Figure B3. Simulated bend angle against actuator spacing (SoftCrawl 3D simulator).</figcaption>
+</figure>
+
+When the spacing is doubled, the bend angle halves. The reason is that the same difference in length is spread over a longer lever arm, so the plate rotates less. This sets up a trade-off with B.1. Bending stiffness grows with *d*² (*K*_bend = 1.5 *k d*²), while the bend angle falls with 1/*d*. A smaller spacing gives the larger bends needed for 90° corners. A larger spacing gives a stiffer body that droops less under load. Under the simulator's assumptions, reaching 90° with the 40% contraction would need *d* ≤ 23.8 mm.
