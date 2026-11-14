@@ -22,6 +22,11 @@ layout: default
         {%- endfor -%}
       </ul>
     {%- endfor -%}
+    <div class="in-page-toc" id="in-page-toc">
+      <hr class="toc-divider">
+      <p class="toc-nav-title">On this page</p>
+      <ul id="toc-list" class="toc-list"></ul>
+    </div>
   </aside>
 
   <article class="post">
@@ -46,3 +51,5 @@ layout: default
     {%- endfor -%}
   </article>
 </div>
+
+<script src="{{ '/assets/toc.js' | relative_url }}"></script>

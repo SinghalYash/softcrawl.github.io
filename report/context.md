@@ -46,15 +46,15 @@ These conditions make inspection physically demanding and introduce occupational
 
 Aircraft fuel-tank inspection aims to identify defects that may affect structural integrity, fuel containment and operational safety. Three important categories of defects are considered in this project:
 
-#### Sealant Failure
+#### 1.3.1 Sealant Failure
 
 Aircraft fuel tanks rely on sealants to prevent fuel leakage through structural joints, fasteners and interfaces. Over time, sealant deterioration, cracking or separation may compromise the integrity of these joints, resulting in fuel leakage and maintenance requirements.
 
-#### Structural and Composite Damage
+#### 1.3.2 Structural and Composite Damage
 
 Aircraft structures may experience damage caused by impact, fatigue or environmental exposure. Such damage may be difficult to identify through conventional visual inspection, particularly when it occurs in restricted locations or beneath the surface. Where composite structures are present, barely visible impact damage and delamination may require specialised nondestructive inspection methods.
 
-#### Crack Propagation
+#### 1.3.3 Crack Propagation
 
 Repeated mechanical loading can initiate and propagate cracks in structural components. Detecting visible cracks and other signs of structural deterioration is important for identifying locations requiring further inspection or maintenance.
 
@@ -69,19 +69,19 @@ Repeated mechanical loading can initiate and propagate cracks in structural comp
 
 The challenges associated with conventional aircraft fuel-tank inspection can be divided into three categories.
 
-#### Safety Challenges
+#### 1.4.1 Safety Challenges
 
 Technicians may be exposed to hazardous confined-space conditions, including residual fuel vapours, restricted ventilation and limited emergency access. These risks necessitate strict safety procedures and personnel monitoring.
 
-#### Operational Challenges
+#### 1.4.2 Operational Challenges
 
 The complex internal geometry restricts technician movement and makes certain inspection locations difficult to access. Inspection can also require substantial preparation, including tank access, atmospheric testing and equipment setup. These activities contribute to labour-intensive maintenance procedures.
 
-#### Business Impact
+#### 1.4.3 Business Impact
 
 Aircraft maintenance can result in periods during which the aircraft is unavailable for commercial operations. Extended downtime may affect airline schedules, maintenance expenditure and aircraft utilisation. Consequently, reducing the need for personnel to enter confined fuel-tank regions could provide both operational and economic benefits.
 
-#### Problem Statement
+#### 1.4.4 Problem Statement
 
 > Aircraft fuel-tank inspection exposes maintenance personnel to hazardous confined environments while requiring time-consuming and labour-intensive procedures. The restricted geometry also limits inspection accessibility, contributing to operational inefficiencies and aircraft downtime.
 >
@@ -93,15 +93,15 @@ The proposed value of SoftCrawl is evaluated across three dimensions: safety, ti
 
 <div class="card-grid"> <div class="value-card"> <h3>Safety</h3> <p>Conventional fuel-tank maintenance may require multiple personnel for inspection, equipment operation and safety monitoring. For example, published maintenance accounts describe leak-testing procedures involving a technician inside the tank, an external equipment operator and a safety attendant. A remotely operated inspection robot could reduce the need for personnel to enter the tank for selected inspection tasks.</p> </div> <div class="value-card time"> <h3>Time</h3> <p>Fuel-tank inspection involves preparation, access, inspection and restoration activities. SoftCrawl aims to improve accessibility by allowing a robot to navigate towards inspection locations while being controlled externally. This could reduce selected inspection-related activities, although actual time savings must be established through future operational studies.</p> </div> <div class="value-card money"> <h3>Cost</h3> <p>Reducing inspection-related aircraft downtime could provide financial benefits to airlines and MRO providers. However, potential savings depend on the aircraft type, maintenance procedure, labour requirements and actual reduction in downtime. The financial value of SoftCrawl is therefore currently a projected benefit rather than a demonstrated outcome.</p> </div> </div> <figure> <div class="img-placeholder">Value proposition: safety, time, cost</div> <figcaption>Figure 4. Proposed value of SoftCrawl across safety, time and cost.</figcaption> </figure>
 
-#### Safety
+#### 1.5.1 Safety
 
 Conventional fuel-tank maintenance may require multiple personnel for inspection, equipment operation and safety monitoring. For example, published maintenance accounts describe leak-testing procedures involving a technician inside the tank, an external equipment operator and a safety attendant. A remotely operated inspection robot could potentially reduce the need for personnel to enter the tank for selected inspection tasks.
 
-#### Time
+#### 1.5.2 Time
 
 Fuel-tank inspection involves preparation, access, inspection and restoration activities. SoftCrawl aims to improve accessibility by allowing a robot to navigate towards inspection locations while being controlled externally. This could reduce selected inspection-related activities, although actual time savings must be established through future operational studies.
 
-#### Cost
+#### 1.5.3 Cost
 
 Reducing inspection-related aircraft downtime could provide financial benefits to airlines and MRO providers. However, potential savings depend on the aircraft type, maintenance procedure, labour requirements and actual reduction in downtime. Accordingly, the financial value of SoftCrawl is currently a projected benefit rather than a demonstrated outcome.
 
@@ -170,7 +170,7 @@ Several inspection technologies have been investigated to address the accessibil
 
 *Table 2. Existing fuel-tank inspection technologies.*
 
-#### Identified Design Gap
+#### 1.9.1 Identified Design Gap
 
 Existing approaches demonstrate different trade-offs between inspection reach, mobility, structural compliance and system complexity. Externally supported inspection tools remain constrained by their workspace, while independently mobile robotic concepts face challenges associated with navigation and validation.
 
