@@ -4,6 +4,7 @@ theme: minima
 
 # Pages shown in the top menu, in this order
 header_pages:
+  - home.md
   - about.md
   - report/index.md
   - contact.md
