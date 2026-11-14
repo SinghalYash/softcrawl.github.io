@@ -145,7 +145,8 @@ Reducing inspection-related aircraft downtime could provide financial benefits t
 
 The development and implementation of SoftCrawl involve several stakeholders with different levels of influence and interest. A power–interest matrix was used to identify the stakeholders most relevant to the project.
 
-<table class="styled-table">
+<div class="table-fillet">
+<table>
   <thead>
     <tr>
       <th>Stakeholder</th>
@@ -156,31 +157,32 @@ The development and implementation of SoftCrawl involve several stakeholders wit
   </thead>
   <tbody>
     <tr>
-      <td>MRO teams and airlines</td>
+      <td><strong>MRO teams and airlines</strong></td>
       <td>High</td>
       <td>High</td>
       <td>Manage closely</td>
     </tr>
     <tr>
-      <td>Aircraft maintenance technicians and inspection crews</td>
+      <td><strong>Aircraft maintenance technicians and inspection crews</strong></td>
       <td>High</td>
       <td>Lower organisational influence</td>
       <td>Keep informed and involved</td>
     </tr>
     <tr>
-      <td>Aviation regulators and industry bodies</td>
+      <td><strong>Aviation regulators and industry bodies</strong></td>
       <td>Lower direct project interest</td>
       <td>High</td>
       <td>Keep satisfied</td>
     </tr>
     <tr>
-      <td>Passengers</td>
+      <td><strong>Passengers</strong></td>
       <td>Lower direct interest</td>
       <td>Low</td>
       <td>Monitor</td>
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 1. Stakeholder interest, influence and engagement strategy.</p>
 
 - **MRO teams and airlines** are key decision-makers because they are responsible for maintenance operations, resource allocation and potential technology adoption.
@@ -221,7 +223,8 @@ However, fuel removal, ventilation, atmospheric testing and other safety procedu
 
 Several inspection technologies have been investigated to address the accessibility challenges associated with aircraft fuel tanks (Federal Aviation Administration, 1997; Jordan, 2017; Heilemann et al., 2021; Dhoot &amp; Fan, 2022).
 
-<table class="styled-table">
+<div class="table-fillet">
+<table>
   <thead>
     <tr>
       <th>Technology</th>
@@ -232,37 +235,38 @@ Several inspection technologies have been investigated to address the accessibil
   </thead>
   <tbody>
     <tr>
-      <td>Borescope</td>
+      <td><strong>Borescope</strong></td>
       <td>Rigid or flexible camera probe inserted through access openings</td>
       <td>Established and simple to operate</td>
       <td>Reach and manoeuvrability limited by probe length and operator control</td>
     </tr>
     <tr>
-      <td>RANDE</td>
+      <td><strong>RANDE</strong></td>
       <td>Snake-like robotic arm carrying inspection equipment (Jordan, 2017)</td>
       <td>Navigates around obstacles; reported to save about 29 h of inspection time (Panzino, 2017)</td>
       <td>External base and finite arm length limit the workspace</td>
     </tr>
     <tr>
-      <td>Eeloscope 1</td>
+      <td><strong>Eeloscope 1</strong></td>
       <td>Endoscope propelled through fuel by fluid jets</td>
       <td>Self-propelled inside the tank</td>
       <td>Tether friction, insufficient propulsion and poor visibility through fuel</td>
     </tr>
     <tr>
-      <td>Eeloscope 2</td>
+      <td><strong>Eeloscope 2</strong></td>
       <td>Externally controlled robotic arm with an inspection extension</td>
       <td>Reaches internal fuel-tank regions</td>
       <td>Reach depends on the arm and access geometry</td>
     </tr>
     <tr>
-      <td>Caterpillar robot</td>
+      <td><strong>Caterpillar robot</strong></td>
       <td>Tracked locomotion along internal tank surfaces</td>
       <td>Targets independent movement within the tank</td>
       <td>Full operational validation not yet established</td>
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 2. Existing fuel-tank inspection technologies.</p>
 
 #### 1.9.1 Identified Design Gap
@@ -295,7 +299,8 @@ SoftCrawl adopts a pneumatically actuated Kresling-origami body to generate cont
 
 The proposed system must satisfy the following preliminary design requirements:
 
-<table class="styled-table">
+<div class="table-fillet">
+<table>
   <thead>
     <tr>
       <th style="width: 25%;">Category</th>
@@ -340,6 +345,7 @@ The proposed system must satisfy the following preliminary design requirements:
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 3. SoftCrawl system requirements.</p>
 
 The proposed architecture consists of a pneumatically actuated robot body, a suction-cup attachment subsystem, external pneumatic and control hardware, and an inspection interface.
