@@ -16,7 +16,53 @@ permalink: /report/electronics/
 The electronics and pneumatic subsystem generates and distributes vacuum to the robot's Kresling actuators and suction cups. It performs two functions: independently regulating vacuum in the three Kresling actuators to achieve different bending configurations, and providing binary ON/OFF vacuum control for the four suction cups, arranged in two independently controlled pairs.
 
 #### 4.1.2 Design Requirements and constraints
-
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
+  <thead>
+    <tr>
+      <th style="width: 25%; text-align: center; font-weight: 700; color: #f6eedc; border: 1.5px solid #000; padding: 14px 16px; background: #0e3557; letter-spacing: 0.05em;">Category</th>
+      <th style="text-align: center; font-weight: 700; color: #f6eedc; border: 1.5px solid #000; padding: 14px 16px; background: #0e3557; letter-spacing: 0.05em;">Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Geometry</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Fit within a 300 × 200 mm access opening</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Actuator never expands beyond the body, avoiding snags</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Electronics</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">No electronics in the tank except camera and light</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Adhesion</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Actuate with a 0.75 kg robot mass with safety factor 2 on vertical surfaces</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Adhesion on thin oil film over aluminium sheet</td>
+    </tr>
+    <tr>
+      <td rowspan="3" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Locomotion</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">Control each leg individually</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">Climb 90 degree corners</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Pass through 30cm x 30cm access hole to next fuel tank chamber</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Material compatibility</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">No damage to fuel tank internal surfaces</td>
+    </tr>
+    <tr>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">No swelling/damage due to prolonged oil exposure</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 The subsystem must satisfy the following system-level requirements:
 
 | Category | Relevant requirement |
