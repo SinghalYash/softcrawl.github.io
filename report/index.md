@@ -17,6 +17,15 @@ Overview of the report. Pick a subsystem from the sidebar, or below.
   <a class="subsystem-card" href="{{ '/report/status/' | relative_url }}"><span class="tag">SEC-06</span><h3>Project Status</h3><p>Crawling & climbing tests, future milestones.</p></a>
 </div>
 
+<div style="background: #ffffff; border: 2px solid #0e3557; border-radius: 12px; padding: 22px 28px; margin: 36px 0 24px; box-shadow: 0 4px 16px rgba(14, 53, 87, 0.08);">
+  <h3 style="margin-top: 0; margin-bottom: 10px; font-size: 18px; color: #0e3557; font-family: Montserrat, sans-serif;">
+    AI Declaration
+  </h3>
+  <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #2c3e50;">
+    <strong>Declaration:</strong> We used Claude (Anthropic), Gemini (Google), and ChatGPT (OpenAI) to generate ideas, design and implement the complete website layout and styling, format paragraphs, improve expression, structure web documentation, produce code drafts, refine, and finalise this assignment. We are responsible for the content, accuracy, and quality of the submitted work.
+  </p>
+</div>
+
 Word Count: 7329
 
 GitHub: [github.com/SinghalYash/softcrawl.github.io](https://github.com/SinghalYash/softcrawl.github.io/tree/website)
