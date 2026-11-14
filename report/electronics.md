@@ -256,10 +256,55 @@ However, the vacuum and vent valves exhibited asymmetric responses. A 20 ms vacu
 
 ### 5.4 Test 3 - Actuator-Integrated Control
 
+Test 3 connected a Kresling actuator to the improved valve arrangement from Test 2. A four-way push-in cross fitting joined the vacuum valve, the vent valve, the pressure sensor and the actuator (Fig. 17).
+
 <figure>
-<img src="{{ '/images/electronics/figure-19.png' | relative_url }}" alt="Fig. 17 Actuator-integrated Test 3 arrangement">
+<img src="{{ '/images/electronics/figure-20.png' | relative_url }}" alt="Fig. 17 Actuator-integrated Test 3 arrangement">
 <figcaption>Fig. 17 Actuator-integrated Test 3 arrangement</figcaption>
 </figure>
+
+Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and stepping down in 10 kPa increments. Fig. 18 shows the measured vacuum against the target at each setpoint, with the shaded band marking the oscillation range.
+
+<figure>
+<img src="{{ '/images/electronics/figure-21.png' | relative_url }}" alt="Fig. 18 Test 3 setpoint tracking with the Kresling actuator">
+<figcaption>Fig. 18 Test 3 setpoint tracking with the Kresling actuator</figcaption>
+</figure>
+
+| Target vacuum | Oscillation band | Within ±1.5 kPa target? |
+| --- | --- | --- |
+| 60 kPa | ±0.4 kPa | Yes |
+| 50 kPa | ±4.4 kPa | No |
+| 40 kPa | ±5.3 kPa | No |
+| 30 kPa | ±5.9 kPa | No |
+| 20 kPa | ±6.2 kPa | No |
+| 10 kPa | ±6.6 kPa | No |
+
+Only the 60 kPa setpoint met the ±1.5 kPa accuracy objective. At every lower setpoint, the pressure oscillated continuously around the target instead of settling. The oscillation grew steadily as the target vacuum decreased, from ±4.4 kPa at 50 kPa to ±6.6 kPa at 10 kPa.
+
+#### 5.4.1 Actuator leakage replaced the vent valve
+
+With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 19).
+
+<figure>
+<img src="{{ '/images/electronics/figure-22.png' | relative_url }}" alt="Fig. 19 Test 3 arrangement with actuator leakage acting as the vent">
+<figcaption>Fig. 19 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
+</figure>
+
+#### 5.4.2 Low hardware resolution
+
+The oscillations come from the limited resolution of the solenoid valves. A valve cannot open for less than its minimum reliable response time, so even the shortest pulse admits more vacuum than is needed to correct a small error, and the pressure overshoots past the deadband. Leakage then pulls it back across the target, the controller fires another minimum pulse, and the cycle repeats.
+
+From the governing relationship in Section 3.3, the pressure change from one pulse is approximately:
+
+<div class="legs-equation">\[ \Delta P \approx \frac{RT\,\dot{m}\,\Delta t_{\min}}{V} \]</div>
+
+At low target vacuum, the pressure difference across the vacuum valve is largest, so the mass flow <span markdown="0">\(\dot{m}\)</span> during each pulse is largest and each minimum pulse produces a larger jump. This is consistent with the oscillation band widening as the target decreases. Near 60 kPa, the pressure difference across the valve is small, each pulse adds only a small increment, and the controller holds the target closely. The small internal volume <span markdown="0">\(V\)</span> of a single actuator magnifies this effect.
+
+<div class="callout warning">
+<p>Test 3 shows that the solenoid-based controller cannot yet meet the ±1.5 kPa accuracy objective once an actuator is connected, except near 60 kPa. The minimum valve pulse delivers too much vacuum for the small actuator volume, and actuator leakage keeps the system cycling.</p>
+</div>
+
+These findings directly motivate the proposed vacuum reservoir, which increases <span markdown="0">\(V\)</span> so that each pulse produces a smaller pressure change, and further flow restriction in the vacuum line (Section 6.2). Sealing the actuator, as proposed in the Robot Body report, would also reduce the uncontrolled venting.
 
 ## 6. Limitations and Future Work
 
