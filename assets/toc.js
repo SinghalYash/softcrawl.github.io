@@ -21,11 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Filter out detailed appendix sub-items (e.g. "Appendix A: ...", "Appendix B: ...")
-    if (/^Appendix\s+[A-Za-z0-9]/i.test(txt)) {
-      return;
-    }
-
     headings.push(h);
   });
 

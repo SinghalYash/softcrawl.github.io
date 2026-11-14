@@ -129,12 +129,25 @@ Three origami patterns are commonly used for tubular actuators: Accordion, Yoshi
 <p class="table-caption">Table 2. Comparison of candidate origami crease patterns</p>
 
 <figure> 
-<div class="figure-row three"> 
-<img src="{{ '/images/body/image4.png' | relative_url }}">
-<img src="{{ '/images/body/image5.png' | relative_url }}">
-<img src="{{ '/images/body/image6.png' | relative_url }}">
-</div>
-<figcaption>Figure 2. Accordion, Yoshimura and Kresling origami patterns: (a) patterns, (b) crease folding, (c) force against deformation (adapted from Wickeler et al., 2023).</figcaption> 
+  <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; max-width: 860px; margin: 0 auto;">
+    <!-- Top row: (a) and (b) side-by-side, labels underneath -->
+    <div style="display: flex; justify-content: center; align-items: flex-end; gap: 24px; width: 100%; flex-wrap: wrap;">
+      <div style="flex: 1 1 270px; text-align: center;">
+        <img src="{{ '/images/body/image4.png' | relative_url }}" style="max-height: 230px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+        <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(a) Crease patterns</span>
+      </div>
+      <div style="flex: 1.5 1 380px; text-align: center;">
+        <img src="{{ '/images/body/image5.png' | relative_url }}" style="max-height: 280px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+        <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(b) Crease folding</span>
+      </div>
+    </div>
+    <!-- Bottom row: (c) centered below, label underneath -->
+    <div style="text-align: center; width: 100%; max-width: 620px;">
+      <img src="{{ '/images/body/image6.png' | relative_url }}" style="max-height: 240px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(c) Force against deformation</span>
+    </div>
+  </div>
+  <figcaption>Figure 2. Accordion, Yoshimura and Kresling origami patterns: (a) patterns, (b) crease folding, (c) force against deformation (adapted from Wickeler et al., 2023).</figcaption> 
 </figure>
 
 - **Higher Load-Bearing without Buckling:** While the Accordion tube exhibits the lowest load capacity and the Yoshimura suffers wall buckling after reaching peak load, the Kresling achieves nearly 3 times the compressive strength of the Accordion by channeling deformation along controlled, repeatable hinge lines.
@@ -171,12 +184,18 @@ To achieve the linear displacement required for locomotion, individual Kresling 
 
 Through multiple prototyping iterations, the actuator evolved from an initial 5-link to a 7-link stack. This increased the uncompressed actuator height to 214 mm, providing an unconstrained axial stroke exceeding 104 mm (51.4% contraction). This increased stroke length provides the necessary clearance for the robot's feet to advance during crawling and facilitates transitions when climbing obstacles.
 
-<figure>
-<div class="figure-row">
-<img src="{{ '/images/body/image9.png' | relative_url }}" alt="5-link stack">
-<img src="{{ '/images/body/image10.png' | relative_url }}" alt="7-link stack">
-</div>
-<figcaption>Figure 5. Kresling actuator stacks: (a) 5-link (V2) and (b) 7-link (V3).</figcaption>
+<figure style="max-width: 680px; margin: 28px auto;">
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 32px; padding: 10px 0; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <img src="{{ '/images/body/image9.png' | relative_url }}" alt="5-link stack" style="max-height: 390px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(a) 5-link stack (V2)</span>
+    </div>
+    <div style="text-align: center;">
+      <img src="{{ '/images/body/image10.png' | relative_url }}" alt="7-link stack" style="max-height: 390px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(b) 7-link stack (V3)</span>
+    </div>
+  </div>
+  <figcaption>Figure 5. Kresling actuator stacks: (a) 5-link (V2) and (b) 7-link (V3).</figcaption>
 </figure>
 
 #### 2.4.2 Embedded Rigid PLA Boundary Rings & Print-in-Place
@@ -217,19 +236,35 @@ To resolve chaotic panel buckling observed in uniform-thickness prototypes, the 
 
 - **V2:** Improved manufacturing quality, optimized print parameters, and introduced thicker PLA boundary rings. These structural reinforcements prevented inward collapse and successfully scaled the actuator up to a stable 5-link stack. Additionally added a twist-cap mechanism for assembly onto the robot body.
 
-<figure>
-  <img src="{{ '/images/body/image15.png' | relative_url }}">
-  <figcaption>Figure 9. Prototype V2: reinforced 5-link stack with thickened PLA boundary rings and twist-cap mechanism.</figcaption>
+<figure style="max-width: 800px; margin: 28px auto;">
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 24px; padding: 10px 0; flex-wrap: wrap;">
+    <div style="flex: 1 1 300px; text-align: center;">
+      <img src="{{ '/images/body/image15.png' | relative_url }}" style="max-height: 380px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(a) Prototype V2 5-link stack</span>
+    </div>
+    <div style="flex: 1 1 300px; text-align: center;">
+      <video controls autoplay loop muted playsinline style="max-height: 380px; width: auto; max-width: 100%; border-radius: 8px; background: #000; margin: 0 auto 8px;">
+        <source src="{{ '/videos/kresling-v3.mp4' | relative_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(b) Kresling V2 actuator operation under vacuum</span>
+    </div>
+  </div>
+  <figcaption>Figure 9. Prototype V2: (a) 5-link stack and (b) Kresling V2 actuator operation under vacuum.</figcaption>
 </figure>
 
 - **V3:** Increased overall structural stiffness to scale the stack further to 7 links (maximizing stroke length), and introduced 0.4 mm facet thickening. This created localized compliant hinges that eliminated chaotic wrinkling and ensured smooth, repeatable folding.
 
-<figure>
-<div class="figure-row">
-<img src="{{ '/images/body/image16.png' | relative_url }}">
-<img src="{{ '/images/body/image9.png' | relative_url }}">
-</div>
-<figcaption>Figure 10. Prototype V3: 7-link stack with localized 0.4 mm facet thickening for smooth folding.</figcaption>
+<figure style="max-width: 680px; margin: 28px auto;">
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 32px; padding: 10px 0; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <img src="{{ '/images/body/image16.png' | relative_url }}" style="max-height: 390px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+    </div>
+    <div style="text-align: center;">
+      <img src="{{ '/images/body/image9.png' | relative_url }}" style="max-height: 390px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+    </div>
+  </div>
+  <figcaption>Figure 10. Prototype V3: 7-link stack with localized 0.4 mm facet thickening for smooth folding.</figcaption>
 </figure>
 ---
 
@@ -262,8 +297,8 @@ Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D s
 
 
 
-<figure>
-  <img src="{{ '/images/body/image18.png' | relative_url }}">
+<figure style="max-width: 760px; margin: 28px auto;">
+  <img src="{{ '/images/body/image18.png' | relative_url }}" style="max-height: 460px; width: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; margin: 0 auto;">
   <figcaption>Figure 12. Complete SoftCrawl robot assembly featuring three parallel Kresling actuators and integrated leg mounts.</figcaption>
 </figure>
 
@@ -316,9 +351,9 @@ Under zero external load, the actuator's axial stroke was characterized across f
 
 A load was attached to check actuator contraction while carrying weight. The weight was progressively increased and the contraction was measured, as shown in the graph below. We stopped our test at 3.3 kg.
 
-<figure>
-<img src="{{ '/images/body/image20.png' | relative_url }}">
-<figcaption>Figure 14. Experimental test setup for contraction under 3.3 kg load with V3 actuator.</figcaption>
+<figure style="max-width: 480px; margin: 28px auto;">
+  <img src="{{ '/images/body/image20.png' | relative_url }}" style="max-height: 480px; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; margin: 0 auto;">
+  <figcaption>Figure 14. Experimental test setup for contraction under 3.3 kg load with V3 actuator.</figcaption>
 </figure>
 
 <figure>
@@ -337,13 +372,26 @@ For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spa
 <figcaption>Figure 16. Bending test setup with angular measurement grid and pressure regulator.</figcaption>
 </figure>
 
-<figure>
-<div class="figure-row three">
-<img src="{{ '/images/body/image31.png' | relative_url }}">
-<img src="{{ '/images/body/image32.png' | relative_url }}">
-<img src="{{ '/images/body/image33.png' | relative_url }}">
-</div>
-<figcaption>Figure 17. Actuator bending trials: reaching a peak bend angle of 72.7°.</figcaption>
+<figure style="max-width: 800px; margin: 28px auto;">
+  <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%;">
+    <!-- Top row: (a) and (b) side-by-side, labels underneath -->
+    <div style="display: flex; justify-content: center; align-items: flex-end; gap: 24px; width: 100%; flex-wrap: wrap;">
+      <div style="flex: 1 1 300px; text-align: center;">
+        <img src="{{ '/images/body/image31.png' | relative_url }}" style="max-height: 240px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+        <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(a) 53.4° bend trial</span>
+      </div>
+      <div style="flex: 1 1 300px; text-align: center;">
+        <img src="{{ '/images/body/image32.png' | relative_url }}" style="max-height: 240px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+        <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(b) 68.9° bend trial</span>
+      </div>
+    </div>
+    <!-- Bottom row: (c) centered below, label underneath -->
+    <div style="text-align: center; width: 100%; max-width: 520px;">
+      <img src="{{ '/images/body/image33.png' | relative_url }}" style="max-height: 260px; width: auto; max-width: 100%; margin: 0 auto 8px; border-radius: 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(c) 72.7° peak bend trial</span>
+    </div>
+  </div>
+  <figcaption>Figure 17. Actuator bending trials reaching a peak bend angle of 72.7°: (a) 53.4°, (b) 68.9°, and (c) 72.7°.</figcaption>
 </figure>
 
 
@@ -759,6 +807,14 @@ Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source 
 </div>
 <p class="table-caption">Table B2. SoftCrawl 3D simulator settings</p>
 
+<figure style="max-width: 760px; margin: 28px auto;">
+  <video controls autoplay loop muted playsinline style="width: 100%; max-height: 440px; border-radius: 8px; background: #000;">
+    <source src="{{ '/videos/sim.mp4' | relative_url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Figure B8. SoftCrawl 3D simulator kinematics showing multi-actuator differential contraction and 3D continuum bending.</figcaption>
+</figure>
+
 #### B.7.3 Bending model for three actuators
 
 For three actuators of lengths *l*₁, *l*₂ and *l*₃ placed at 120° on a pitch circle of radius *d*, the PCC model gives the curvature *κ* and the bend angle *θ* as:
@@ -813,10 +869,24 @@ In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the ot
 
 <figure>
 <img src="{{ '/images/body/image37.png' | relative_url }}">
-<figcaption>Figure B8. Simulated bend angle against actuator spacing (SoftCrawl 3D simulator).</figcaption>
+<figcaption>Figure B9. Simulated bend angle against actuator spacing (SoftCrawl 3D simulator).</figcaption>
 </figure>
 
 When the spacing is doubled, the bend angle halves. The reason is that the same difference in length is spread over a longer lever arm, so the plate rotates less. This sets up a trade-off with B.2. Bending stiffness grows with *d*² (*K*<sub>bend</sub> = 1.5 *k d*²), while the bend angle falls with 1/*d*. A smaller spacing gives the larger bends needed for 90° corners. A larger spacing gives a stiffer body that droops less under load. Under the simulator's assumptions, reaching 90° with the 40% contraction would need *d* ≤ 23.8 mm.
+
+---
+
+### Appendix C: Paper Prototype Demonstration
+
+To validate the deployable folding kinematics and snap-through multistability of the Kresling unit cell prior to multi-material 3D printing, a physical paper prototype was constructed. The demonstration video below confirms the axial contraction, torsional twisting, and compliant facet deformation under manual compression.
+
+<figure style="max-width: 760px; margin: 28px auto;">
+  <video controls autoplay loop muted playsinline style="width: 100%; max-height: 440px; border-radius: 8px; background: #000;">
+    <source src="{{ '/videos/paper-prototype.mp4' | relative_url }}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <figcaption>Figure C1. Handheld paper prototype demonstration showing bistable folding and axial contraction kinematics.</figcaption>
+</figure>
 
 <!-- Page-local MathJax setup: required when the report layout does not load a math renderer. -->
 <script>
