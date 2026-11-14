@@ -20,51 +20,53 @@ The objective is a soft, spark-free body that fits through standard access panel
 
 To translate these operational goals into actionable engineering constraints, the overall mission requirements were flowed down into four core mechanical specifications, detailed in Table 1:
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
-      <th style="width: 25%;">Category</th>
-      <th>Requirement</th>
+      <th style="width: 25%; text-align: center; font-weight: 700; color: #f6eedc; border: 1.5px solid #000; padding: 14px 16px; background: #0e3557; letter-spacing: 0.05em;">Category</th>
+      <th style="text-align: center; font-weight: 700; color: #f6eedc; border: 1.5px solid #000; padding: 14px 16px; background: #0e3557; letter-spacing: 0.05em;">Requirement</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;">Geometry</td>
-      <td class="highlight-green">Fit within a 300 × 200 mm access opening</td>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Geometry</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Fit within a 300 × 200 mm access opening</td>
     </tr>
     <tr>
-      <td class="highlight-green">Actuator never expands beyond the body, avoiding snags</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">Actuator never expands beyond the body, avoiding snags</td>
     </tr>
     <tr>
-      <td style="vertical-align: middle;">Electronics</td>
-      <td>No electronics in the tank except camera and light</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Electronics</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">No electronics in the tank except camera and light</td>
     </tr>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;">Adhesion</td>
-      <td class="highlight-green">Actuate with a 0.75 kg robot mass with safety factor 2 on vertical surfaces</td>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Adhesion</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">Actuate with a 0.75 kg robot mass with safety factor 2 on vertical surfaces</td>
     </tr>
     <tr>
-      <td>Adhesion on thin oil film over aluminium sheet</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Adhesion on thin oil film over aluminium sheet</td>
     </tr>
     <tr>
-      <td rowspan="3" style="vertical-align: middle;">Locomotion</td>
-      <td>Control each leg individually</td>
+      <td rowspan="3" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Locomotion</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Control each leg individually</td>
     </tr>
     <tr>
-      <td class="highlight-green">Climb 90 degree corners</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">Climb 90 degree corners</td>
     </tr>
     <tr>
-      <td>Pass through 30 cm × 30 cm access hole to next fuel tank chamber</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">Pass through 30cm x 30cm access hole to next fuel tank chamber</td>
     </tr>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;">Material compatibility</td>
-      <td>No damage to fuel tank internal surfaces</td>
+      <td rowspan="2" style="border: 1.5px solid #000; padding: 12px 16px; vertical-align: middle; color: #000;">Material compatibility</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; color: #000;">No damage to fuel tank internal surfaces</td>
     </tr>
     <tr>
-      <td class="highlight-green">No swelling/damage due to prolonged oil exposure</td>
+      <td style="border: 1.5px solid #000; padding: 12px 16px; background-color: #55ff22; color: #000;">No swelling/damage due to prolonged oil exposure</td>
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 1. Robot Body requirements</p>
 
 ---
@@ -76,12 +78,12 @@ To translate these operational goals into actionable engineering constraints, th
 The body must contract and bend the robot using only air supplied from outside the tank. Three pneumatic actuation approaches were considered (Hoque et al., 2023; Wang et al., 2024).
 
 <figure>
-  <div class="figure-row">
+  <div class="figure-row three">
     <img src="{{ '/images/body/image1.png' | relative_url }}">
     <img src="{{ '/images/body/image2.png' | relative_url }}">
     <img src="{{ '/images/body/image3.png' | relative_url }}">
   </div>
-  <figcaption>Figure 1. Pneumatic actuation options considered for the Robot Body: (a) artificial muscle, (b) bellows, (c) origami</figcaption>
+  <figcaption>Figure 1. Pneumatic actuation options considered for the Robot Body: (a) artificial muscle, (b) bellows, (c) origami.</figcaption>
 </figure>
 
 Following a comparative evaluation of candidate actuation concepts against our design requirements (see [Appendix A](#appendix-a-detailed-actuation-mechanism-comparison)), we selected origami-based actuators. The primary deciding factor was **zero radial expansion**: unlike artificial muscles and bellows, which balloon outward when pressurized, an origami actuator remains strictly within the robot's body envelope. Furthermore, it operates reliably at low pressure, which is ideal for long pneumatic lines.
@@ -92,7 +94,8 @@ Because mechanical behavior varies substantially across different origami crease
 
 Three origami patterns are commonly used for tubular actuators: Accordion, Yoshimura and Kresling (Wickeler et al., 2023; Melancon et al., 2022). They were compared on load capacity, stability and speed.
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
       <th style="width: 25%;">Criterion</th>
@@ -122,10 +125,11 @@ Three origami patterns are commonly used for tubular actuators: Accordion, Yoshi
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 2. Comparison of candidate origami crease patterns</p>
 
 <figure> 
-<div class="figure-row"> 
+<div class="figure-row three"> 
 <img src="{{ '/images/body/image4.png' | relative_url }}">
 <img src="{{ '/images/body/image5.png' | relative_url }}">
 <img src="{{ '/images/body/image6.png' | relative_url }}">
@@ -152,7 +156,7 @@ A critical finding in Kresling mechanics is that structural stiffness decreases 
 
 <figure>
 <img src="{{ '/images/body/image8.png' | relative_url }}">
-<figcaption>Figure 4. Kresling unit geometry and parameters</figcaption> 
+<figcaption>Figure 4. Kresling unit geometry and parameters.</figcaption> 
 </figure>
 
 ---
@@ -185,8 +189,8 @@ Three complementary design decisions enabled a functional, sealed actuator:
 
 <figure>
   <img src="{{ '/images/body/image11.png' | relative_url }}">
-  <!-- <figcaption>Figure 3. Tunable multistability of the Kresling pattern (Melancon et al., 2022).</figcaption> -->
-  </figure>
+  <figcaption>Figure 6. Embedded rigid PLA boundary rings preventing radial inward collapse under vacuum.</figcaption>
+</figure>
 
 #### 2.4.3 Compliant Flexure Hinges via 0.4 mm Facet Offset
 
@@ -194,8 +198,8 @@ To resolve chaotic panel buckling observed in uniform-thickness prototypes, the 
 
 <figure>
   <img src="{{ '/images/body/image12.png' | relative_url }}">
-  <!-- <figcaption>Figure 3. Tunable multistability of the Kresling pattern (Melancon et al., 2022).</figcaption> -->
-  </figure>
+  <figcaption>Figure 7. Triangular facet geometry with 0.4 mm outward offset establishing compliant flexure hinges.</figcaption>
+</figure>
 
 ---
 
@@ -208,14 +212,14 @@ To resolve chaotic panel buckling observed in uniform-thickness prototypes, the 
 <img src="{{ '/images/body/image13.png' | relative_url }}">
 <img src="{{ '/images/body/image14.png' | relative_url }}">
 </div>
-<!-- <figcaption>Figure 5. Kresling actuator stacks: (a) 5-link (V2) and (b) 7-link (V3).</figcaption> -->
+<figcaption>Figure 8. Prototype V1: (a) printed baseline stack and (b) inward radial collapse under vacuum.</figcaption>
 </figure>
 
 - **V2:** Improved manufacturing quality, optimized print parameters, and introduced thicker PLA boundary rings. These structural reinforcements prevented inward collapse and successfully scaled the actuator up to a stable 5-link stack. Additionally added a twist-cap mechanism for assembly onto the robot body.
 
 <figure>
   <img src="{{ '/images/body/image15.png' | relative_url }}">
-  <!-- <figcaption>Figure 3. Tunable multistability of the Kresling pattern (Melancon et al., 2022).</figcaption> -->
+  <figcaption>Figure 9. Prototype V2: reinforced 5-link stack with thickened PLA boundary rings and twist-cap mechanism.</figcaption>
 </figure>
 
 - **V3:** Increased overall structural stiffness to scale the stack further to 7 links (maximizing stroke length), and introduced 0.4 mm facet thickening. This created localized compliant hinges that eliminated chaotic wrinkling and ensured smooth, repeatable folding.
@@ -225,7 +229,7 @@ To resolve chaotic panel buckling observed in uniform-thickness prototypes, the 
 <img src="{{ '/images/body/image16.png' | relative_url }}">
 <img src="{{ '/images/body/image9.png' | relative_url }}">
 </div>
-<!-- <figcaption>Figure 5. Kresling actuator stacks: (a) 5-link (V2) and (b) 7-link (V3).</figcaption> -->
+<figcaption>Figure 10. Prototype V3: 7-link stack with localized 0.4 mm facet thickening for smooth folding.</figcaption>
 </figure>
 ---
 
@@ -246,12 +250,12 @@ Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D s
 
 <figure>
   <img src="{{ '/images/body/image30.png' | relative_url }}">
-  <figcaption>Twist-lock end cap assembly</figcaption>
+  <figcaption>Figure 11. Exploded view of twist-lock end cap assembly showing ball bearing, central shaft, and pneumatic seal.</figcaption>
 </figure>
 
 <figure>
   <img src="{{ '/images/body/image18.png' | relative_url }}">
-  <figcaption>Whole robot assembly</figcaption>
+  <figcaption>Figure 12. Complete SoftCrawl robot assembly featuring three parallel Kresling actuators and integrated leg mounts.</figcaption>
 </figure>
 
 ---
@@ -260,7 +264,8 @@ Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D s
 
 Three tests checked the V3 body against its specifications: contraction under no load, contraction under load and bending angle.
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
       <th style="width: 30%;">Test</th>
@@ -286,6 +291,7 @@ Three tests checked the V3 body against its specifications: contraction under no
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 3. Experimental testing matrix and corresponding specifications</p>
 
 #### 2.7.1 Contraction under no load
@@ -294,7 +300,7 @@ Under zero external load, the actuator's axial stroke was characterized across f
 
 <figure>
 <img src="{{ '/images/body/image19.png' | relative_url }}">
-<figcaption>Unloaded contraction of the V3 actuator</figcaption>
+<figcaption>Figure 13. Unloaded contraction of the V3 actuator from 214 mm to 104 mm (51.4% stroke).</figcaption>
 </figure>
 
 #### 2.7.2 Contraction under load
@@ -303,12 +309,12 @@ A load was attached to check actuator contraction while carrying weight. The wei
 
 <figure>
 <img src="{{ '/images/body/image20.png' | relative_url }}">
-<figcaption>Contraction under 3.3kg load with V3 actuator</figcaption>
+<figcaption>Figure 14. Experimental test setup for contraction under 3.3 kg load with V3 actuator.</figcaption>
 </figure>
 
 <figure>
 <img src="{{ '/images/body/image21.png' | relative_url }}">
-<figcaption>Contraction under load results</figcaption>
+<figcaption>Figure 15. Measured actuator contraction versus applied external load.</figcaption>
 </figure>
 
 #### 2.7.3 Bending angle
@@ -319,21 +325,22 @@ For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spa
 
 <figure>
 <img src="{{ '/images/body/image22.png' | relative_url }}">
-<figcaption>Bending test setup</figcaption>
+<figcaption>Figure 16. Bending test setup with angular measurement grid and pressure regulator.</figcaption>
 </figure>
 
 <figure>
-<div class="figure-row">
+<div class="figure-row three">
 <img src="{{ '/images/body/image31.png' | relative_url }}">
 <img src="{{ '/images/body/image32.png' | relative_url }}">
 <img src="{{ '/images/body/image33.png' | relative_url }}">
 </div>
-<figcaption>Bending angle results</figcaption>
+<figcaption>Figure 17. Actuator bending trials: reaching a peak bend angle of 72.7°.</figcaption>
 </figure>
 
 
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
       <th style="width: 35%;">Measure</th>
@@ -359,6 +366,7 @@ For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spa
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table 4. Summary of test results against requirements</p>
 
 ---
@@ -376,7 +384,7 @@ Due to micro-porosity along thin printed walls and layer interfaces, the actuato
 
 <figure>
 <img src="{{ '/images/body/image23.png' | relative_url }}">
-<figcaption>Pressure loss</figcaption>
+<figcaption>Figure 18. Measured pressure loss over time showing leak rate from printed wall porosity.</figcaption>
 </figure>
 
 The proposed improvement is to coat the actuator with a flexible polymer, such as Loctite fabric adhesive or Sil-Poxy, and to increase the number of printed walls from two to three. Success will be judged by repeating the pressure-loss measurement on the coated actuator against a target agreed with the controls team.
@@ -386,7 +394,7 @@ The proposed improvement is to coat the actuator with a flexible polymer, such a
 <img src="{{ '/images/body/image24.png' | relative_url }}">
 <img src="{{ '/images/body/image25.png' | relative_url }}">
 </div>
-<figcaption>Solutions to air loss</figcaption>
+<figcaption>Figure 19. Proposed sealing solutions: flexible polymer coating and three-wall perimeter printing.</figcaption>
 </figure>
 
 #### 2.8.2 Tubing
@@ -397,7 +405,7 @@ The proposed improvement is to bundle all lines into a single low-friction umbil
 
 <figure>
 <img src="{{ '/images/body/image26.png' | relative_url }}">
-<figcaption>Tubing running alongside the robot</figcaption>
+<figcaption>Figure 20. Pneumatic and electrical umbilical tubing running alongside the robot body.</figcaption>
 </figure>
 
 ---
@@ -416,7 +424,7 @@ Current actuators are monostable, snapping abruptly between 0% and 100% contract
 <img src="{{ '/images/body/image27.png' | relative_url }}">
 <img src="{{ '/images/body/image7.png' | relative_url }}">
 </div>
-<figcaption>Programmable multistability in Kresling actuators</figcaption>
+<figcaption>Figure 21. Programmable multistability concept using rigid facet stiffeners for zero-power angle holding.</figcaption>
 </figure>
 
 #### 2.9.2 Varying Unit Shapes for Tuned Bending
@@ -428,7 +436,7 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
 
 <figure>
 <img src="{{ '/images/body/image29.png' | relative_url }}">
-<figcaption>Different origamis in a single actuator</figcaption>
+<figcaption>Figure 22. Hybrid actuator concept combining alternating origami fold geometries.</figcaption>
 </figure>
 ---
 
@@ -451,7 +459,8 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
 
 ### Appendix A: Detailed Actuation Mechanism Comparison
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
       <th style="width: 28%;">Mechanism</th>
@@ -477,6 +486,7 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table A1. Detailed actuation mechanism comparison</p>
 
 ### Appendix B: Design Principles
@@ -501,7 +511,8 @@ The model assumes identical actuators, small turns and axial loads only.
 
 Two actuators give two degrees of freedom: one contraction and one bend in a single plane. Three actuators at 120 degrees bend in any direction. A fourth actuator was also considered.
 
-<table class="styled-table">
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
   <thead>
     <tr>
       <th style="width: 25%;">Criterion</th>
@@ -542,6 +553,7 @@ Two actuators give two degrees of freedom: one contraction and one bend in a sin
     </tr>
   </tbody>
 </table>
+</div>
 <p class="table-caption">Table B1. Evaluation of actuator arrangement concepts</p>
 
 The triangle was selected because three actuators are the minimum for full 3D bending, it needs fewer valves and tubes, and it keeps control of each actuator independent. The rectangle is stiffer and has redundancy, but its control is coupled and over-constrained.
@@ -569,19 +581,51 @@ Two simulation tools were used. At the unit-cell level, ORYGDYN, an open-source 
 
 ##### B.3.2 Simulator set-up
 
-| Parameter | Value |
-|---|---|
-| Actuator | Kresling, 7 links |
-| Unit resting height | 20 mm (140 mm per actuator) |
-| Maximum contraction ratio | 40% |
-| Twist per unit contraction | 12° per unit |
-| Triangular pitch circle radius, *d* | 25.5 mm |
-| Top plate | Rigid, shared |
-| 1608 bearing decoupling | On |
-| Suction standoff height | 16 mm |
-
-*Table B2. SoftCrawl 3D simulator settings*
-{: style="text-align: center;"}
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
+  <thead>
+    <tr>
+      <th style="width: 50%;">Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Actuator</td>
+      <td>Kresling, 7 links</td>
+    </tr>
+    <tr>
+      <td>Unit resting height</td>
+      <td>20 mm (140 mm per actuator)</td>
+    </tr>
+    <tr>
+      <td>Maximum contraction ratio</td>
+      <td>40%</td>
+    </tr>
+    <tr>
+      <td>Twist per unit contraction</td>
+      <td>12° per unit</td>
+    </tr>
+    <tr>
+      <td>Triangular pitch circle radius, <em>d</em></td>
+      <td>25.5 mm</td>
+    </tr>
+    <tr>
+      <td>Top plate</td>
+      <td>Rigid, shared</td>
+    </tr>
+    <tr>
+      <td>1608 bearing decoupling</td>
+      <td>On</td>
+    </tr>
+    <tr>
+      <td>Suction standoff height</td>
+      <td>16 mm</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="table-caption">Table B2. SoftCrawl 3D simulator settings</p>
 
 ##### B.3.3 Bending model for three actuators
 
@@ -598,16 +642,39 @@ Here *l̄* is the mean actuator length. For any given set of actuator lengths, t
 
 In the simulator, one actuator was fully contracted (140 mm to 84 mm) and the other two were left relaxed. With *d* = 25.5 mm, the simulator reported a curvature of 11.91 m⁻¹ and a bend angle of **82.3°**. This agrees with the hand calculation from the equation above (83.9°). Keeping the same contraction and changing only *d* gives:
 
-| Spacing *d* (mm) | Bend angle *θ* (°) |
-|---|---|
-| 20.0 | 106.9 |
-| 25.5 (current) | 83.9 |
-| 30.0 | 71.3 |
-| 35.0 | 61.1 |
-| 40.0 | 53.5 |
-
-*Table B3. Predicted bend angle against actuator spacing for one actuator fully contracted*
-{: style="text-align: center;"}
+<div class="table-fillet" style="border: 1.5px solid #000; border-radius: 12px; overflow: hidden; margin: 24px 0 10px; background: #fff;">
+<table style="width: 100%; border-collapse: collapse; border: none; margin: 0; font-size: 15px; background: #fff;">
+  <thead>
+    <tr>
+      <th style="width: 50%;">Spacing <em>d</em> (mm)</th>
+      <th>Bend angle <em>θ</em> (°)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>20.0</td>
+      <td>106.9</td>
+    </tr>
+    <tr>
+      <td>25.5 (current)</td>
+      <td>83.9</td>
+    </tr>
+    <tr>
+      <td>30.0</td>
+      <td>71.3</td>
+    </tr>
+    <tr>
+      <td>35.0</td>
+      <td>61.1</td>
+    </tr>
+    <tr>
+      <td>40.0</td>
+      <td>53.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<p class="table-caption">Table B3. Predicted bend angle against actuator spacing for one actuator fully contracted</p>
 
 <figure>
 <img src="{{ '/images/body/image36.png' | relative_url }}">
