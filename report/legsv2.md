@@ -7,7 +7,7 @@ nav_order: 3
 permalink: /report/legs/
 ---
 
-<div class="stat-row"> <div class="stat"><span class="value">40 N</span><span class="label">Vertical hold, 4 cups</span></div> <div class="stat"><span class="value">−60%</span><span class="label">Shear loss with oil</span></div> <div class="stat"><span class="value">17.2 N</span><span class="label">2-cup oily shear</span></div> <div class="stat"><span class="value">Ø40 mm</span><span class="label">Festo PU cup</span></div> </div>
+<div class="stat-row"> <div class="stat"><span class="value">40 N</span><span class="label">Vertical hold, 4 cups</span></div> <div class="stat"><span class="value">17.2 N</span><span class="label">2-cup oily shear</span></div> <div class="stat"><span class="value">Ø40 mm</span><span class="label">Festo PU cup</span></div> </div>
 
 ## 2. Locomotion Requirements and Concept Selection
 
@@ -17,7 +17,7 @@ Aircraft fuel-tank inspection requires the robot to navigate internal surfaces w
 
 <figure>
 <img src="{{ '/images/legs/image1.png' | relative_url }}">
-<!-- <figcaption>Figure 10. Forces on a suction foot on a vertical wall, showing the peel and slip conditions.</figcaption> -->
+<figcaption>Figure 1. Types of locomotion methods (Yuan et al., 2026).</figcaption>
 </figure>
 
 Soft robots can move in many ways, but two locomotion modes are particularly relevant to our use case:
@@ -29,13 +29,13 @@ The robot must also be able to navigate between the different chambers of the fu
 
 ### 2.2 Evaluation of Adhesion Mechanisms
 
-Our climbing and crawling soft robot achieves movement through the deformation of the compliant Kresling actuator. The main focus for the robot legs is therefore the gripping mechanism itself. Depending on the design, locomotion may be produced through pneumatic actuation, tendon-driven mechanisms, shape-memory materials, electroactive actuators or other deformation-based methods. The adhesion mechanism must anchor the robot to the surface and support its weight and any additional payload, grip on oily surfaces, and not damage the robot itself.
+The compliant Kresling actuator produces body movement, while the Robot Legs subsystem provides surface adhesion. The attachment mechanism must support the robot and its payload, maintain grip on oil-contaminated surfaces and avoid damaging the contacted structures.
 
 Four principal adhesion approaches were considered (see [Appendix C](#appendix-c-comparison-of-adhesion-mechanisms)).
 
-Vacuum suction was selected as the primary adhesion mechanism for SoftCrawl because it provides controllable attachment to suitable non-ferromagnetic surfaces, including smooth aluminium and acrylic. It avoids the high-voltage actuation associated with electroadhesion. Gecko-inspired dry adhesion was considered but presents challenges related to effective control and durability.
+Vacuum suction was selected as the primary adhesion mechanism for SoftCrawl because it provides controllable attachment to suitable non-ferromagnetic surfaces, including smooth aluminium and acrylic. It avoids the high-voltage actuation associated with electroadhesion. Gecko-inspired dry adhesion was also considered, but contamination and durability are concerns.
 
-However, vacuum suction remains sensitive to leakage and eccentric loading, necessitating experimental investigation of sealing, shear resistance and peeling under representative operating conditions. This led to the investigation of two ideas for our subsystem.
+However, vacuum suction remains sensitive to leakage and eccentric loading, necessitating experimental investigation of sealing, shear resistance and peeling under representative operating conditions. This motivated parallel investigation of passive and active suction concepts.
 
 ---
 
@@ -50,7 +50,7 @@ Based on the overall system requirements for our robot, we have highlighted the 
 | **Geometry** | Fit within a 300 × 200 mm access opening |
 | | Actuator never expands beyond the body, avoiding snags |
 | **Electronics** | No electronics in the tank except camera and light |
-| **Adhesion** | Actuate with a 0.75 kg robot mass with safety factor 2 on vertical surfaces |
+| **Adhesion** | Support a provisional 0.75 kg robot mass with a target safety factor of 2 on vertical surfaces |
 | | Adhesion on thin oil film over aluminium sheet |
 | **Locomotion** | Control each leg individually |
 | | Climb 90 degree corners |
@@ -62,7 +62,7 @@ Based on the overall system requirements for our robot, we have highlighted the 
 
 ### 3.2 Morphological Matrix
 
-Based on the subsystem requirements and the adhesion mechanism selected, we listed the specific functions our robot legs need to fulfil, ranked in order of importance, and explored different solution principles for each in a morphological chart. Two main ideas came out of it.
+A morphological matrix was developed to compare solution principles for the ranked Robot Legs functions. Two concepts—passive and active suction—were selected for parallel development.
 
 | Rank | Function | Solution Principles |
 |---|---|---|---|---|
@@ -88,7 +88,7 @@ Based on the subsystem requirements and the adhesion mechanism selected, we list
 | 4 | Release cup on command | **Plunging skeleton** |
 | 5 | Protect vacuum line from oil ingestion | Not needed (no vacuum line) |
 
-*Figure 8. Passive suction path (Idea 1) through the morphological matrix.*
+*Table 3. Passive suction concept (Idea 1) selected from the morphological matrix.*
 
 Within the morphological matrix in Section 3.2, Idea 1 combined a passive bellows cup, a fluorosilicone final material and a plunging-skeleton release mechanism.
 
@@ -185,7 +185,7 @@ Testing exposed four limitations:
 
 ### 3.4 Active Vacuum Suction: Design Adaptation
 
-Following the investigation of passive suction, active vacuum suction was explored as an alternative attachment approach.
+Active vacuum suction was investigated in parallel with passive suction development to enable early testing using commercially available components.
 
 | Rank | Function | Idea 2 selection |
 |---|---|---|
@@ -195,9 +195,9 @@ Following the investigation of passive suction, active vacuum suction was explor
 | 4 | Release cup on command | **Solenoid valve** |
 | 5 | Protect vacuum line from oil ingestion | **Vacuum filter** |
 
-*Figure 15. Active suction path (Idea 2) through the morphological matrix.*
+*Table 6. Active suction concept (Idea 2) selected from the morphological matrix.*
 
-To accelerate testing, commercial suction cups repurposed for robotic locomotion were evaluated in parallel with passive suction development. This enabled early investigation of their suitability for robotic locomotion, focusing on sizing, mechanical integration, load capacity, oil contamination and failure mechanisms.
+Commercial suction cups were adapted for robotic locomotion, allowing early evaluation of load capacity, mechanical integration, oil contamination and failure mechanisms.
 
 #### 3.4.1 Suction-Cup Geometry Selection
 
@@ -209,18 +209,18 @@ Unlike conventional industrial suction cups primarily used for gripping and lift
 
 ### 3.5 Failure Modes of Suction Cups
 
-Three loading conditions were identified to guide experimental validation: axial loading, tangential shear and eccentric loading.
+Three loading conditions were considered to guide experimental validation: axial (normal), tangential (shear) and eccentric (moment) loading (Mantriota & Messina, 2011).
 
 | | Axial / Normal Load | Shear / Tangential Load | Peeling / Moment Load |
 |---|---|---|---|
 | **Free body diagram** | <img src="{{ '/images/legs/image8.png' | relative_url }}" alt="Axial load FBD"> | <img src="{{ '/images/legs/image9.png' | relative_url }}" alt="Shear load FBD"> | <img src="{{ '/images/legs/image10.png' | relative_url }}" alt="Peel load FBD"> |
-| **Estimation method** | Manufacturer datasheet | Simple physics model (with sliding friction coefficient from datasheet) | Experimental validation (hard to model) |
+| **Estimation method** | Manufacturer datasheet | Friction model using an assumed or measured coefficient | Experimental validation (hard to model) |
 
-*Table 6. Suction-cup failure modes and how each was estimated.*
+*Table 7. Suction-cup loading conditions and assessment methods.*
 
 ### 3.6 Suction-Cup Sizing Calculation & Selection
 
-Based on the payload requirements, surface conditions and robot configuration, the minimum effective diameter was calculated as *d*<sub>min</sub> = 32.26 mm (see [Appendix E](#appendix-e-suction-cup-sizing-calculations)). The Festo VAS-40-1/4-PUR-B polyurethane suction cup was selected based on cost, availability and geometry, with a nominal diameter of 40 mm, a reported effective diameter of 34.4 mm and a rated axial holding force of approximately 60 N. Polyurethane was chosen for its resistance to mineral oils, petroleum-based lubricants, greases and synthetic oils.
+Based on the payload requirements, surface conditions and robot configuration, the minimum effective diameter was calculated as *d*<sub>min</sub> = 32.26 mm (see [Appendix E](#appendix-e-suction-cup-sizing-calculations)). The Festo VAS-40-1/4-PUR-B polyurethane suction cup was selected based on cost, availability and geometry, with a nominal diameter of 40 mm, an effective diameter of 34.4 mm as used in the design calculations and a rated axial holding force of approximately 60 N. Polyurethane was chosen for its reported resistance to oils and lubricants (AMES Direct, 2025); compatibility with the specific tank contaminants remains to be verified.
 
 The simplified model assumes uniform pressure and equal load sharing, excluding peeling and seal deformation. Experimental validation was therefore necessary.
 
@@ -230,7 +230,7 @@ A 3D-printed mounting interface was developed to integrate the suction cups with
 
 <figure>
 <img src="{{ '/images/legs/image11.png' | relative_url }}" alt="Suction cup mounting interface">
-<figcaption>3D-printed suction-cup mounting interface on the robot body.</figcaption>
+<figcaption>Figure 8. CAD model of the suction-cup-to-body mounting interface.</figcaption>
 </figure>
 
 ### 3.8 Experimental Evaluation of Payload Capacity
@@ -239,7 +239,7 @@ A configurable testing jig was used to measure failure loads at approximately �
 
 <figure>
 <img src="{{ '/images/legs/image12.png' | relative_url }}" alt="Suction cup mounting interface">
-<!-- <figcaption>3D-printed suction-cup mounting interface on the robot body.</figcaption> -->
+<!-- <figcaption>Figure 8. CAD model of the suction-cup-to-body mounting interface.</figcaption> -->
 </figure>
 
 
@@ -248,24 +248,24 @@ A configurable testing jig was used to measure failure loads at approximately �
 <img src="{{ '/images/legs/image13.png' | relative_url }}" alt="Horizontal loading test">
 <img src="{{ '/images/legs/image14.png' | relative_url }}" alt="Vertical loading test">
 </div>
-<figcaption>Figure 17. Payload testing jig under (a) horizontal and (b) vertical loading.</figcaption>
+<figcaption>Figure 10. Experimental setup for suction-cup payload testing under horizontal and vertical loading.</figcaption>
 </figure>
 
-The rear-two-cup configuration was the limiting case, failing at only 10 N vertically. This demonstrates that attachment geometry and load distribution significantly influence capacity beyond theoretical suction force (see [Appendix F](#appendix-f-suction-cup-payload-testing)).
+The rear-two-foot configuration was the limiting case, failing at only 10 N vertically. This demonstrates that attachment geometry and load distribution significantly influence capacity beyond theoretical suction force (see [Appendix F](#appendix-f-suction-cup-payload-testing)).
 
 ### 3.9 Peeling Failure Under Eccentric Loading
 
 Vertical-wall testing identified moment-induced peeling as a critical failure mechanism. When the load acts away from the attachment surface, an overturning moment is generated:
 
-$$
+<div class="legs-equation">\[
 M = F \cdot e
-$$
+\]</div>
 
 This moment causes uneven suction-cup deformation, potentially lifting the sealing edge and allowing air leakage, ultimately resulting in detachment.
 
 <figure>
 <img src="{{ '/images/legs/image16.png' | relative_url }}" alt="Peeling under eccentric load">
-<figcaption>Suction-cup peeling under eccentric loading.</figcaption>
+<figcaption>Figure 12. Illustration of suction-cup peeling under eccentric loading.</figcaption>
 </figure>
 
 This explains why the measured vertical load capacity was lower than predicted by the initial friction-based sizing model (see [Appendix G](#appendix-g-suction-cup-peeling-math)).
@@ -276,7 +276,7 @@ Additional tests investigated the relationship between suction-cup spacing and m
 
 <figure>
 <img src="{{ '/images/legs/image17.png' | relative_url }}" alt="Failure load against cup spacing">
-<figcaption>Failure load against suction-cup spacing.</figcaption>
+<figcaption>Figure 13. Test setup for varying suction-cup spacing.</figcaption>
 </figure>
 
 Increasing the suction-cup spacing from 23 mm to 161 mm increased the maximum failure load from 4 N to 10 N, a 2.5-fold improvement. This trend is consistent with Rutkowski et al. (2009), demonstrating the influence of attachment geometry on moment resistance and informing SoftCrawl's footprint design (see [Appendix H](#appendix-h-suction-cup-configuration-testing)).
@@ -289,15 +289,15 @@ At −80 kPa, slippage on the oily surface was observed at 8.6 N per cup. Back-c
 
 Assuming two supporting cups contribute equally:
 
-$$
+<div class="legs-equation">\[
 F_{shear,total} = 2 \times 8.6 = 17.2\ \text{N}
-$$
+\]</div>
 
 For a robot mass of 750 g and a target safety factor of 2:
 
-$$
+<div class="legs-equation">\[
 F_{required} = 2 \times 0.75 \times 9.81 = 14.72\ \text{N}
-$$
+\]</div>
 
 Since 17.2 N > 14.72 N, the estimated two-cup shear capacity exceeds the preliminary sliding requirement.
 
@@ -307,7 +307,7 @@ Oil entered the vacuum tubing during contaminated-surface testing, risking damag
 
 <figure>
 <img src="{{ '/images/legs/image18.png' | relative_url }}" alt="Inline vacuum filter">
-<figcaption>Inline vacuum filter installed in the suction line.</figcaption>
+<figcaption>Figure 14. Inline vacuum filter installed during oil-ingress testing.</figcaption>
 </figure>
 
 Preliminary testing showed no visible oil breakthrough and approximately one second of additional suction response time. Fine oil-mist filtration and long-term reliability remain unverified.
@@ -322,12 +322,12 @@ To mitigate peeling, a rigid or semi-rigid support skeleton is proposed to restr
 
 <figure>
 <img src="{{ '/images/legs/image19.png' | relative_url }}" alt="Reinforced suction cup concept">
-<figcaption>Proposed reinforced suction-cup structure.</figcaption>
+<figcaption>Figure 15. Mechanically reinforced suction-cup concept (He et al., 2026).</figcaption>
 </figure>
 
 <figure>
 <img src="{{ '/images/legs/image20.png' | relative_url }}" alt="Reinforced suction cup concept">
-<!-- <figcaption>Proposed reinforced suction-cup structure.</figcaption> -->
+<figcaption>Figure 16. Schematic of the proposed support skeleton limiting suction-cup deformation during peeling.</figcaption>
 </figure>
 
 
@@ -339,14 +339,24 @@ Future testing will evaluate integrated locomotion with the Kresling body, focus
 
 ## References
 
-- de Wolff, J. (2017). *[TODO: add full thesis reference]*.
-- Festo SE & Co. KG. (2023). *Suction cup complete VAS-40-1/4-PUR-B (Part No. 1396092)* [Data sheet]. <https://ftp.festo.com/public/PNEUMATIC/SOFTWARE_SERVICE/DataSheet/EN_US/1396092.pdf>
+- AMES Direct. (2025, July 15). *Polyurethane or rubber? What top manufacturing plants choose*. <https://amesdirect.com.au/2025/07/15/polyurethane-or-rubber-what-top-manufacturing-plants-choose/>
+- de Wolff, T. (2017). *The design and fabrication of a biomimetic lifting aid* [Master's thesis, University of Twente]. University of Twente Student Theses. <https://essay.utwente.nl/fileshare/file/71802/Wolff%2C%20de_MA_Engineering%20Technology.pdf>
+- Festo. (n.d.). *Basic principles of vacuum technology: Brief overview*. <https://media.festo.com/media/114150_documentation.pdf>
+- Festo AG & Co. KG. (2020). *Suction cup VAS-40-1/4-PUR-B (Part No. 1396092)* [Technical data sheet]. <https://docs.rs-online.com/aeed/A700000006937653.pdf>
 - He, Y., Pfeifer, P. L., Feng, R., & Li, S. (2026). Controllable passive suction cups with mechanical programmability for soft robotics. *Advanced Functional Materials, 36*(56), Article e75782. <https://doi.org/10.1002/adfm.75782>
+- J. Schmalz GmbH. (2016). *Vacuum training-set manual: World of vacuum technology*. <https://pimmedia.schmalz.com/MAM_Library/Dokumente/Bedienungsanleitung/30/3030/303001/30300100961/8171d43fa32f_BAL_30.30.01.00961_en-EN.pdf>
+- J. Schmalz GmbH. (n.d.). *Suction cup shapes*. <https://www.schmalz.com/en-us/support/know-how/vacuum-knowledge/the-vacuum-system-and-its-components/vacuum-suction-cups/suction-cup-shapes>
 - Kawasaki, S., & Kikuchi, K. (2014). Development of a small legged wall climbing robot with passive suction cups. In *Proceedings of the 3rd International Conference on Design Engineering and Science (ICDES 2014)* (pp. 112–116).
 - Mantriota, G., & Messina, A. (2011). Theoretical and experimental study of the performance of flat suction cups in the presence of tangential loads. *Mechanism and Machine Theory, 46*(5), 607–617. <https://doi.org/10.1016/j.mechmachtheory.2011.01.003>
-- Rutkowski, et al. (2009). *[TODO: add full reference]*.
+- Raschig GmbH. (2018). *Mass transfer products* (Product Bulletin 101). <https://www.christianberner.fi/globalassets/leverantorer/raschig/dokument/raschig-mass-transfer-products-101.pdf>
+- Rutkowski, M. M., Smolinski, P. J., & Miller, M. C. (2009). The geometry of vacuum assisted interface adhesion: Resistance to axial moment. *Vacuum, 83*(5), 869–872. <https://doi.org/10.1016/j.vacuum.2008.09.004>
+- SMC Corporation. (n.d.-a). *AMJ: Drain separator for vacuum* [Product specifications]. <https://www.smcusa.com/products/amj-drain-separator-for-vacuum~177107>
+- SMC Corporation. (n.d.-b). *AM series: Mist separator* [Product specifications]. <https://www.smcworld.com/products/solutions/en-sg/filter/filter_am.html>
+- SMC Corporation. (n.d.-c). *ZFC: In-line air filter with one-touch fitting* [Product specifications]. <https://www.smcusa.com/products/zfc-in-line-air-filter-with-one-touch-fitting~161860>
+- Wang, D., Liu, H., Li, Y., Lan, T., Shao, Y., Wei, R., Fu, S., Yi, R., Ren, Y., Ye, S., Zheng, Z., Wang, X., Hu, H., Tian, H., & Shao, J. (2026). Bioinspired dry adhesives: From challenging surface adhesion to controllable release. *Advanced Bionics, 2*(2), 195–217. <https://doi.org/10.1016/j.abs.2026.08.001>
 - Wang, L., Ha, K.-H., Rodin, G. J., Liechti, K. M., & Lu, N. (2020). Mechanics of crater-enabled soft dry adhesives: A review. *Frontiers in Mechanical Engineering, 6*, Article 601510. <https://doi.org/10.3389/fmech.2020.601510>
-
+- Yuan, Z., Ji, H., Huang, K., Chen, F., & Gu, G. (2026). Multimodal locomotion of soft robots. *Advanced Intelligent Systems, 8*(2), Article e202500782. <https://doi.org/10.1002/aisy.202500782>
+- Zhu, J., Zhu, Y., & Zhang, P. (2024). Review of advancements in wall climbing robot techniques. *Franklin Open, 8*, Article 100148. <https://doi.org/10.1016/j.fraope.2024.100148>
 ---
 
 ## Appendix
@@ -355,26 +365,26 @@ Future testing will evaluate integrated locomotion with the Kresling body, focus
 
 The cup operates on Boyle's law. Pressing the cup expels air (*V*₁ ≈ 0, *P*₁ = *P*<sub>atm</sub>). When released, the walls spring back and the enclosed volume grows to *V*₂, so *P*₂ < *P*<sub>atm</sub>. The resulting holding force is:
 
-$$
+<div class="legs-equation">\[
 F = P_{atm}\left(1 - \frac{V_1}{V_2}\right) A
-$$
+\]</div>
 
 <figure>
 <img src="{{ '/images/legs/image21.png' | relative_url }}" alt="Passive suction cup operating principle">
-<figcaption>Figure A1. Operating principle of a passive suction cup: press, release and hold.</figcaption>
+<figcaption>Figure A1. Passive suction-cup operation: compression, recovery and adhesion.</figcaption>
 </figure>
 
 Wall stiffness was controlled through plate flexural rigidity:
 
-$$
+<div class="legs-equation">\[
 D = \frac{E t^3}{12(1 - \nu^2)}
-$$
+\]</div>
 
 Because *D* scales with *t*³, doubling the wall thickness makes it eight times stiffer. A wall that is too thin folds easily but cannot spring back, while one that is too thick holds its shape but will not fold flat.
 
 <figure>
 <img src="{{ '/images/legs/image22.png' | relative_url }}" alt="Plate flexural rigidity">
-<figcaption>Figure A2. Plate flexural rigidity and its effect on where a thin wall folds.</figcaption>
+<figcaption>Figure A2. Influence of wall thickness on flexural rigidity and bellows folding.</figcaption>
 </figure>
 
 ### Appendix B: Passive Cup Hold-Time Testing
@@ -391,7 +401,7 @@ Each cup was loaded and timed until the seal failed. Hold time is used as a prox
 
 <figure>
 <img src="{{ '/images/legs/image23.png' | relative_url }}" alt="Hold time of each prototype">
-<figcaption>Figure B1. Hold time of each prototype before seal failure.</figcaption>
+<figcaption>Figure B1. Measured seal-retention times of passive suction-cup prototypes V1–V3.</figcaption>
 </figure>
 
 ### Appendix C: Comparison of Adhesion Mechanisms
@@ -400,8 +410,10 @@ Each cup was loaded and timed until the seal failed. Hold time is used as a prox
 |---|---|---|
 | Magnetic adhesion | Strong, controllable attachment on ferromagnetic surfaces | Ineffective on non-ferromagnetic aluminium structures |
 | Electroadhesion | Electrically controllable adhesion and proprioceptive | Requires high-voltage circuitry; electrical safety and contamination sensitivity are concerns |
-| Gecko-inspired dry adhesion | Lightweight, potentially passive attachment; exploits van der Waals forces | Difficult to control; prone to wear and tear |
+| Gecko-inspired dry adhesion | Lightweight, potentially passive attachment based on van der Waals forces | Surface contamination and durability can reduce performance |
 | Vacuum suction | Industry standard, high axial payload capacity, controllable attachment | Requires reliable sealing; vulnerable to leakage, oil-related shear reduction and moment-induced peeling |
+
+*Table C1. Comparison of adhesion mechanisms considered for SoftCrawl.*
 
 ### Appendix D: Suction-Cup Geometry Comparison
 
@@ -411,7 +423,9 @@ Each cup was loaded and timed until the seal failed. Hold time is used as a prox
 | Bellows suction cup | Greater axial compliance; accommodates height differences and misalignment | Taller profile; less precise positioning | **Moderate** — additional compliance not prioritised |
 | Deep-concave suction cup | Conforms to curved or highly contoured workpieces | Greater cup depth; less suitable for compact mounting | **Low** — unnecessary for primarily flat surfaces |
 
-Three suction-cup geometries were considered: flat, bellows and deep-concave cups. Bellows cups provide greater axial compliance and can accommodate inclined surfaces but offer less precise positioning; deep-concave cups are used for round or deeply undulating workpieces; and flat cups offer a compact profile for flat or slightly undulating surfaces. Since SoftCrawl is intended to operate primarily on comparatively smooth aluminium and acrylic surfaces, and our priority is to minimise the robot's footprint, a flat suction cup with a compliant sealing edge was selected for preliminary development.
+Flat, bellows and deep-concave geometries were compared using manufacturer guidance (Festo, n.d.; J. Schmalz GmbH, n.d.). Bellows cups provide height compensation, while deep-concave cups suit curved workpieces. A flat cup with a compliant sealing edge was selected for its compact profile and suitability for relatively smooth aluminium and acrylic surfaces.
+
+*Table D1. Comparison of suction-cup geometries for SoftCrawl.*
 
 ### Appendix E: Suction-Cup Sizing Calculations
 
@@ -426,41 +440,43 @@ A preliminary sizing model was developed to determine the effective suction-cup 
 | Cups per foot, *n* | 1 |
 | Safety factor, *s* | 2 |
 
+*Table E1. Parameters used for preliminary suction-cup sizing.*
+
 The suction force generated by one cup is approximated by:
 
-$$
+<div class="legs-equation">\[
 F_{suction} = P A
-$$
+\]</div>
 
 where *P* is the vacuum pressure differential and *A* is the effective sealed area. Assuming Coulomb-type frictional resistance, the combined shear capacity is:
 
-$$
+<div class="legs-equation">\[
 F_{shear} = \mu\, n\, f\, P A
-$$
+\]</div>
 
 where *μ* is the assumed friction coefficient, *n* is the number of cups per foot and *f* is the number of supporting feet. To incorporate a safety factor *s*:
 
-$$
+<div class="legs-equation">\[
 \mu\, n\, f\, P A \geq s\, m g
-$$
+\]</div>
 
 Using the effective suction area of a circular cup:
 
-$$
+<div class="legs-equation">\[
 A = \frac{\pi d^2}{4}
-$$
+\]</div>
 
 The minimum required diameter is:
 
-$$
+<div class="legs-equation">\[
 d_{min} = \sqrt{\frac{4\, s\, m g}{\pi\, \mu\, n\, f\, P}} = \sqrt{\frac{4 \times 2 \times 0.75 \times 9.81}{\pi \times 0.1 \times 1 \times 2 \times 90\,000}} = 32.26\ \text{mm}
-$$
+\]</div>
 
-> **Note:** *d* here is the effective diameter of the suction cup, not its nominal diameter.
+> **Note:** The diameter *d* denotes the effective suction diameter, not the nominal outer diameter (J. Schmalz GmbH, 2016). The 90 kPa design assumption differs from the approximately 80 kPa used in subsequent tests.
 
 <figure>
-<img src="{{ '/images/legs/image24.png' | relative_url }}" alt="Reinforced suction cup concept">
-<figcaption>Proposed reinforced suction-cup structure.</figcaption>
+<img src="{{ '/images/legs/image24.png' | relative_url }}" alt="Free-body diagram of suction cups supporting robot weight">
+<figcaption>Figure E1. Free-body diagram used for preliminary suction-cup sizing.</figcaption>
 </figure>
 
 ### Appendix F: Suction-Cup Payload Testing
@@ -474,8 +490,8 @@ $$
 *Table F1. Failure loads at approximately −80 kPa.*
 
 <figure>
-<img src="{{ '/images/legs/image25.png' | relative_url }}" alt="Reinforced suction cup concept">
-<figcaption>Proposed reinforced suction-cup structure.</figcaption>
+<img src="{{ '/images/legs/image25.png' | relative_url }}" alt="Payload testing configurations">
+<figcaption>Figure F1. Suction-cup payload testing with different active-cup configurations.</figcaption>
 </figure>
 
 
@@ -489,7 +505,7 @@ De Wolff (2017, pp. 90–92) investigated peeling resistance using a mechanical 
 
 De Wolff formulated a peeling-force relationship based on the geometry of the loaded structure and the applied gravitational and external forces. One of the expressions presented is:
 
-<!-- TODO: paste the peeling-force equation from De Wolff (2017) here as $$ ... $$ -->
+<div class="legs-equation">\[ F_{\mathrm{peeling},A}=\frac{2l_3\left(F_{\mathrm{gravity}}+F_{\mathrm{pull}}\right)x}{l_2^2} \]</div>
 
 where the geometric parameters are defined by the specific mechanical configuration investigated in the thesis.
 
@@ -499,11 +515,11 @@ This shows that the predicted peeling force depends not only on the applied load
 
 De Wolff further proposed that partial detachment can convert a portion of the original contact area into additional suction area, provided the sealing boundary remains intact. The corresponding additional suction contribution is expressed as:
 
-<!-- TODO: paste the additional-suction equation here as $$ ... $$ -->
+<div class="legs-equation">\[ F_{\mathrm{conversion}}=A_{\mathrm{contact}}\left(P_{\mathrm{ambient}}-P_{\mathrm{detachment}}\right) \]</div>
 
 Under the model's assumptions, the total suction force during detachment becomes:
 
-<!-- TODO: paste the total-suction-force equation here as $$ ... $$ -->
+<div class="legs-equation">\[ F_{\mathrm{suction}}=A_{\mathrm{pad}}\left(P_{\mathrm{ambient}}-P_{\mathrm{detachment}}\right) \]</div>
 
 The analysis also identifies a second effect: deformation can increase the enclosed suction volume, temporarily changing the internal pressure. This pressure response depends on detachment speed, surface topography and leakage behaviour.
 
@@ -531,8 +547,8 @@ Increasing the spacing from 23 mm to 161 mm increased the measured failure load 
 This trend is consistent with the general principle established by Rutkowski et al. (2009) that suction-cup arrangement geometry influences moment resistance. However, the loading conditions differ between the two studies: Rutkowski et al. investigated resistance to axial torque, whereas SoftCrawl's experiments involved eccentric loading on a vertical surface, where suction-cup deformation and peeling were observed.
 
 <figure>
-<img src="{{ '/images/legs/image26.png' | relative_url }}" alt="Reinforced suction cup concept">
-<figcaption>Proposed reinforced suction-cup structure.</figcaption>
+<img src="{{ '/images/legs/image26.png' | relative_url }}" alt="Force versus suction-cup spacing plot">
+<figcaption>Figure H1. Failure load versus suction-cup spacing under the tested eccentric loading configuration.</figcaption>
 </figure>
 
 
@@ -551,27 +567,27 @@ Oil contamination reduced the measured shear resistance by approximately 60% at 
 
 Taking *F*<sub>shear,max</sub> from the experimental results and reverse-calculating with the 34.4 mm effective diameter gives the apparent friction coefficient of the oily surface:
 
-$$
+<div class="legs-equation">\[
 \mu_{app} = \frac{F_{shear,max}}{P A} = \frac{8.6}{80\,000 \times \frac{\pi (0.0344)^2}{4}} \approx 0.116
-$$
+\]</div>
 
 Assuming two supporting cups contribute equally:
 
-$$
+<div class="legs-equation">\[
 F_{shear,total} = 2 \times 8.6 = 17.2\ \text{N}
-$$
+\]</div>
 
 For a robot mass of 750 g and a target safety factor of 2:
 
-$$
+<div class="legs-equation">\[
 F_{required} = 2 \times 0.75 \times 9.81 = 14.72\ \text{N}
-$$
+\]</div>
 
 Since 17.2 N > 14.72 N, the estimated two-cup shear capacity exceeds the preliminary sliding requirement.
 
 ### Appendix J: Oil Ingestion
 
-Oil can enter the vacuum line in three forms:
+Oil contamination was grouped into three illustrative categories (Raschig GmbH, 2018):
 
 | Type of oil contamination | Approximate size | Typical formation / occurrence |
 |---|---|---|
@@ -579,7 +595,7 @@ Oil can enter the vacuum line in three forms:
 | Entrained oil droplets | 10–100 µm | Droplets carried by airflow during suction |
 | Fine oil mist / aerosol | 1–10 µm | Fine atomisation caused by high-velocity airflow, turbulence or spraying |
 
-*Table J1. Forms of oil ingress.*
+*Table J1. Illustrative forms of oil contamination and their occurrence; size ranges are not strict boundaries.*
 
 | Protection method | Advantage | Limitation |
 |---|---|---|
@@ -587,4 +603,16 @@ Oil can enter the vacuum line in three forms:
 | Oil-mist coalescing filter | Captures entrained oil droplets and aerosol mist | Greater size, cost or maintenance requirements |
 | Inline vacuum filter | Compact and straightforward to integrate | Filtration capability depends on media and contamination type |
 
-*Table J2. Industry solutions to oil ingestion.*
+*Table J2. Comparison of vacuum-line protection options (SMC Corporation, n.d.-a, n.d.-b, n.d.-c).*
+<!-- Page-local MathJax setup: required when the report layout does not load a math renderer. -->
+<script>
+window.MathJax = window.MathJax || {
+  tex: {inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']]},
+  options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<style>
+.legs-equation {text-align:center; overflow-x:auto; margin:1.15rem 0; padding:.35rem 0;}
+.legs-equation mjx-container[display="true"] {margin:.3em 0 !important;}
+</style>
