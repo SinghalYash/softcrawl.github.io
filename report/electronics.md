@@ -80,6 +80,8 @@ The subsystem is evaluated against four objectives:
 3. **Repeatability:** Achieve consistent pressure regulation across repeated trials.
 4. **Integration:** Independently regulate all three Kresling actuators while maintaining reliable binary operation of the suction cups.
 
+---
+
 ### 4.2 System Architecture and Concept Selection
 
 #### 4.2.1 Overall Pneumatic Architecture
@@ -170,6 +172,8 @@ MOSFET drivers switch the solenoid valves without drawing coil current directly 
 <figcaption>Fig. 8 Flyback diode array</figcaption>
 </figure>
 
+---
+
 ### 4.3 Control Strategy and Theoretical Basis
 
 #### 4.3.1 Pressure Sensing and Calibration
@@ -206,6 +210,8 @@ where <span markdown="0">\(\dot{m}_{\mathrm{in}}\)</span> and <span markdown="0"
 
 This relationship shows that pressure changes depend on net airflow and system volume. Shorter valve pulses can therefore produce smaller pressure changes, improving achievable control resolution. However, the minimum practical pulse duration is limited by the solenoid valve response characteristics.
 
+---
+
 ### 4.4 Experimental Methodology
 
 #### 4.4.1 Overview of Experimental Tests
@@ -225,6 +231,8 @@ The baseline configuration used 6 mm outer-diameter tubing. An additional 4 mm t
 The controller uses a 2 kPa pressure deadband to prevent unnecessary valve switching near the target. Proportional gains determine vacuum and vent valve pulse durations based on pressure error, subject to a minimum pulse duration. Following each pulse, the controller allows the pneumatic system to respond before evaluating pressure again.
 
 The controller evaluation interval was set to 300 ms in Test 2. Detailed parameter definitions, controller implementation, and experimental code are provided in [Appendix D](#appendix-d-controller-implementation-and-source-code).
+
+---
 
 ### 4.5 Results and Discussion
 
@@ -349,6 +357,8 @@ At low target vacuum, the pressure difference across the vacuum valve is largest
 
 These findings directly motivate the proposed vacuum reservoir, which increases <span markdown="0">\(V\)</span> so that each pulse produces a smaller pressure change, and further flow restriction in the vacuum line (Section 4.6.2). Sealing the actuator, as proposed in the Robot Body report, would also reduce the uncontrolled venting.
 
+---
+
 ### 4.6 Limitations and Future Work
 
 #### 4.6.1 Current Limitations
@@ -378,6 +388,8 @@ The improved subsystem should be evaluated against the following targets:
 
 Successful validation would demonstrate the subsystem's readiness for further integration into the complete SoftCrawl platform.
 
+---
+
 ## References
 
 - Lake, J. R., Heyde, K. C., & Ruder, W. C. (2017). Low-cost feedback-controlled syringe pressure pumps for microfluidics applications. PLOS ONE, 12(4), Article e0175089. <https://doi.org/10.1371/journal.pone.0175089>
@@ -391,6 +403,8 @@ Successful validation would demonstrate the subsystem's readiness for further in
 - Thermopedia. (2011, March 16). Critical flow. <https://www.thermopedia.com/content/267>
 - University of California, Santa Barbara, Physics Department. (n.d.). Vacuum techniques [Laboratory manual]. <https://web.physics.ucsb.edu/~phys128/experiments/vacuum/VacuumRev07.pdf>
 - Xavier, M. S., Fleming, A. J., & Yong, Y. K. (2020). Modelling and simulation of pneumatic sources for soft robotic applications. In 2020 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM) (pp. 916–921). IEEE. <https://doi.org/10.1109/AIM43001.2020.9158802>
+
+---
 
 ## Appendix
 
