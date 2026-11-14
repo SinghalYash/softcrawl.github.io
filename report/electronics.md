@@ -168,8 +168,8 @@ A detailed schematic is attached in [Appendix B]((#appendix-b-detailed-schematic
 MOSFET drivers switch the solenoid valves without drawing coil current directly from the microcontroller. Flyback diodes suppress voltage transients when the coils are de-energised.
 
 <figure>
-<img src="{{ '/images/electronics/figure-08.png' | relative_url }}" alt="Fig. 8 Flyback diode array">
-<figcaption>Fig. 8 Flyback diode array</figcaption>
+<img src="{{ '/images/electronics/figure-08.png' | relative_url }}" alt="Fig. 7 Flyback diode array">
+<figcaption>Fig. 7 Flyback diode array</figcaption>
 </figure>
 
 ---
@@ -181,8 +181,8 @@ MOSFET drivers switch the solenoid valves without drawing coil current directly 
 The XGZP6847A pressure sensor measures gauge pressure over a nominal range of 0 to −100 kPa and provides analogue voltage signals to the Arduino Mega. Atmospheric pressure is treated as 0 kPa gauge. For reporting and control purposes, vacuum magnitude is expressed as a positive value, corresponding to the negative gauge-pressure measurement from the sensor. Data is attached in [Appendix C](#appendix-c-pressure-calibration-data).
 
 <figure>
-<img src="{{ '/images/electronics/figure-09.png' | relative_url }}" alt="Fig. 9 Setup illustration for pressure sensor calibration">
-<figcaption>Fig. 9 Setup illustration for pressure sensor calibration</figcaption>
+<img src="{{ '/images/electronics/figure-09.png' | relative_url }}" alt="Fig. 8 Setup illustration for pressure sensor calibration">
+<figcaption>Fig. 8 Setup illustration for pressure sensor calibration</figcaption>
 </figure>
 
 Ten measurements across 0 to -80 kPa were compared against a reference pressure gauge to obtain a linear calibration relationship:
@@ -192,8 +192,8 @@ Ten measurements across 0 to -80 kPa were compared against a reference pressure 
 The calibration achieved an <span>$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
 
 <figure>
-<img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 10 Pressure Calibration Curve">
-<figcaption>Fig. 10 Pressure Calibration Curve</figcaption>
+<img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 9 Pressure Calibration Curve">
+<figcaption>Fig. 9 Pressure Calibration Curve</figcaption>
 </figure>
 
 #### 4.3.2 Bang-Bang Control Strategy
@@ -241,8 +241,8 @@ The controller evaluation interval was set to 300 ms in Test 2. Detailed paramet
 Initial testing evaluated the pressure response of the vacuum and vent valves without a Kresling actuator. Fixed-duration pulses were first applied, followed by proportional control with gains swept from 1 to 6.
 
 <figure>
-<img src="{{ '/images/electronics/figure-11.png' | relative_url }}" alt="Fig. 11 Test 1 Setup">
-<figcaption>Fig. 11 Test 1 Setup</figcaption>
+<img src="{{ '/images/electronics/figure-11.png' | relative_url }}" alt="Fig. 10 Test 1 Setup">
+<figcaption>Fig. 10 Test 1 Setup</figcaption>
 </figure>
 
 Even short pulses produced substantial pressure changes. Proportional control also exhibited significant overshoot and sustained oscillations across tested setpoints ([Appendix E](#appendix-e-proportional-gain-controller-test-results)). Vacuum decay after actuation indicated leakage within the pneumatic setup.
@@ -270,11 +270,11 @@ However, vacuum leakage remained. Three hardware improvements were subsequently 
 
 <figure>
 <div class="figure-row">
-<img src="{{ '/images/electronics/figure-12.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
-<img src="{{ '/images/electronics/figure-13.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
-<img src="{{ '/images/electronics/figure-14.png' | relative_url }}" alt="Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve">
+<img src="{{ '/images/electronics/figure-12.png' | relative_url }}" alt="Fig. 11 Vacuum rated solenoid valve, Needle Valve and check valve">
+<img src="{{ '/images/electronics/figure-13.png' | relative_url }}" alt="Fig. 11 Vacuum rated solenoid valve, Needle Valve and check valve">
+<img src="{{ '/images/electronics/figure-14.png' | relative_url }}" alt="Fig. 11 Vacuum rated solenoid valve, Needle Valve and check valve">
 </div>
-<figcaption>Fig. 12 Vacuum rated solenoid valve, Needle Valve and check valve</figcaption>
+<figcaption>Fig. 11 Vacuum rated solenoid valve, Needle Valve and check valve</figcaption>
 </figure>
 
 #### 4.5.3 Test 2 - Improved Valve Control
@@ -282,43 +282,38 @@ However, vacuum leakage remained. Three hardware improvements were subsequently 
 The improved hardware was evaluated using proportional control, with a gain of 0.5 selected following parameter tuning. Testing was conducted without a Kresling actuator to isolate the pneumatic system's pressure-regulation performance.
 
 <figure>
-<img src="{{ '/images/electronics/figure-15.png' | relative_url }}" alt="Fig. 13 Improved Test 2 Pneumatic setup">
-<figcaption>Fig. 13 Improved Test 2 Pneumatic setup</figcaption>
+<img src="{{ '/images/electronics/figure-15.png' | relative_url }}" alt="Fig. 12 Improved Test 2 Pneumatic setup">
+<figcaption>Fig. 12 Improved Test 2 Pneumatic setup</figcaption>
 </figure>
 
 Seven vacuum setpoints between 10 and 70 kPa were tested. All were maintained within ±1.5 kPa of their targets, achieving a mean absolute steady-state error of 0.81 kPa and a maximum absolute error of 1.48 kPa. The controller evaluated pressure at 300 ms intervals.
 
 <figure>
-<img src="{{ '/images/electronics/figure-16.png' | relative_url }}" alt="Fig. 14 Test 2 setpoint tracking">
-<figcaption>Fig. 14 Test 2 setpoint tracking</figcaption>
+<img src="{{ '/images/electronics/figure-16.png' | relative_url }}" alt="Fig. 13 Test 2 setpoint tracking">
+<figcaption>Fig. 13 Test 2 setpoint tracking</figcaption>
 </figure>
 
 <figure>
-<img src="{{ '/images/electronics/figure-17.png' | relative_url }}" alt="Fig. 15 Test 2 Steady state error">
-<figcaption>Fig. 15 Test 2 Steady state error</figcaption>
+<img src="{{ '/images/electronics/figure-17.png' | relative_url }}" alt="Fig. 14 Test 2 Steady state error">
+<figcaption>Fig. 14 Test 2 Steady state error</figcaption>
 </figure>
 
 However, the vacuum and vent valves exhibited asymmetric responses. A 20 ms vacuum pulse produced approximately 1-4 kPa of pressure change, whereas a vent pulse produced approximately 15-30 kPa. Consequently, vacuum could be increased in relatively small increments, but releasing vacuum remained comparatively aggressive. This asymmetry limits the achievable pressure-control resolution and motivates further investigation into flow restriction and pneumatic volume.
 
-<figure>
-<img src="{{ '/images/electronics/figure-18.png' | relative_url }}" alt="Fig. 16 Vacuum and vent valve pulse-response characteristics">
-<figcaption>Fig. 16 Vacuum and vent valve pulse-response characteristics</figcaption>
-</figure>
-
 #### 4.5.4 Test 3 - Actuator-Integrated Control
 
-Test 3 connected a Kresling actuator to the improved valve arrangement from Test 2. A four-way push-in cross fitting joined the vacuum valve, the vent valve, the pressure sensor and the actuator (Fig. 17).
+Test 3 connected a Kresling actuator to the improved valve arrangement from Test 2. A four-way push-in cross fitting joined the vacuum valve, the vent valve, the pressure sensor and the actuator (Fig. 15).
 
 <figure>
-<img src="{{ '/images/electronics/figure-20.png' | relative_url }}" alt="Fig. 17 Actuator-integrated Test 3 arrangement">
-<figcaption>Fig. 17 Actuator-integrated Test 3 arrangement</figcaption>
+<img src="{{ '/images/electronics/figure-20.png' | relative_url }}" alt="Fig. 15 Actuator-integrated Test 3 arrangement">
+<figcaption>Fig. 15 Actuator-integrated Test 3 arrangement</figcaption>
 </figure>
 
-Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and stepping down in 10 kPa increments. Fig. 18 shows the measured vacuum against the target at each setpoint, with the shaded band marking the oscillation range.
+Six vacuum setpoints between 10 and 60 kPa were tested, starting at 60 kPa and stepping down in 10 kPa increments. Fig. 16 shows the measured vacuum against the target at each setpoint, with the shaded band marking the oscillation range.
 
 <figure>
-<img src="{{ '/images/electronics/figure-21.png' | relative_url }}" alt="Fig. 18 Test 3 setpoint tracking with the Kresling actuator">
-<figcaption>Fig. 18 Test 3 setpoint tracking with the Kresling actuator</figcaption>
+<img src="{{ '/images/electronics/figure-21.png' | relative_url }}" alt="Fig. 16 Test 3 setpoint tracking with the Kresling actuator">
+<figcaption>Fig. 16 Test 3 setpoint tracking with the Kresling actuator</figcaption>
 </figure>
 
 | Target vacuum | Oscillation band | Within ±1.5 kPa target? |
@@ -334,11 +329,11 @@ Only the 60 kPa setpoint met the ±1.5 kPa accuracy objective. At every lower se
 
 ##### 4.5.4.1 Actuator leakage replaced the vent valve
 
-With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 19).
+With the actuator connected, the vent valve never triggered during testing. The 3D-printed Kresling actuator leaks air through its walls and layer boundaries, so vacuum decays on its own after every pulse. Each pulse slightly overshot the target, the leak then pulled the pressure back down past it, and the controller responded with another vacuum pulse before the error ever grew large enough to need venting. The actuator therefore acted as a continuous, uncontrolled vent, and the controller regulated pressure using vacuum pulses alone (Fig. 17).
 
 <figure>
-<img src="{{ '/images/electronics/figure-22.png' | relative_url }}" alt="Fig. 19 Test 3 arrangement with actuator leakage acting as the vent">
-<figcaption>Fig. 19 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
+<img src="{{ '/images/electronics/figure-22.png' | relative_url }}" alt="Fig. 17 Test 3 arrangement with actuator leakage acting as the vent">
+<figcaption>Fig. 17 Test 3 arrangement with actuator leakage acting as the vent</figcaption>
 </figure>
 
 ##### 4.5.4.2 Low hardware resolution
