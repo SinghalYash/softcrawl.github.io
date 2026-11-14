@@ -136,6 +136,8 @@ The bang-bang architecture achieved the highest weighted score due to its lower 
 
 Each Kresling actuator uses two solenoid valves: a vacuum valve connecting it to the vacuum supply and a vent valve connecting it to atmospheric pressure. The microcontroller compares measured pressure against the target and actuates the appropriate valve. Both valves close when the target is reached (Lake et al., 2017).
 
+Vacuum regulation uses feedback-based bang-bang control. The controller compares measured pressure against the target setpoint and calculates the error. Depending on the error, either the vacuum valve or vent valve is actuated. Both valves remain closed when the error falls within the defined deadband. Although the solenoid valves operate in discrete ON/OFF states, their effective influence on pressure can be adjusted through pulse duration.
+
 <figure>
 <img src="{{ '/images/electronics/figure-05.png' | relative_url }}" alt="Fig. 5 Bang Bang valve control arrangement">
 <figcaption>Fig. 5 Bang Bang valve control arrangement</figcaption>
@@ -189,18 +191,14 @@ Ten measurements across 0 to -80 kPa were compared against a reference pressure 
 
 <div class="legs-equation">\[ P_{\mathrm{cal}}=1.00298P_{\mathrm{raw}}-2.671 \]</div>
 
-The calibration achieved an <span>$R^2$</span> value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
+The calibration achieved an R^2 value of 0.99968 and an RMSE of 0.37 kPa. The resulting equation was applied to subsequent pressure measurements to reduce systematic measurement error.
 
 <figure>
 <img src="{{ '/images/electronics/figure-10.png' | relative_url }}" alt="Fig. 9 Pressure Calibration Curve">
 <figcaption>Fig. 9 Pressure Calibration Curve</figcaption>
 </figure>
 
-#### 4.3.2 Bang-Bang Control Strategy
-
-Vacuum regulation uses feedback-based bang-bang control. The controller compares measured pressure against the target setpoint and calculates the error. Depending on the error, either the vacuum valve or vent valve is actuated. Both valves remain closed when the error falls within the defined deadband. Although the solenoid valves operate in discrete ON/OFF states, their effective influence on pressure can be adjusted through pulse duration.
-
-#### 4.3.3 Governing Pneumatic Relationship
+#### 4.3.2 Governing Pneumatic Relationship
 
 The pressure response of a pneumatic volume can be approximated by:
 
@@ -412,6 +410,7 @@ The weighted score was calculated using:
 <div class="legs-equation">\[ \mathrm{Total\ Score}=\sum(\mathrm{Score}\times\mathrm{Weight}) \]</div>
 
 The following summarises the engineering considerations behind the assigned scores.
+
 
 | Criterion | Bang-bang solenoid valves | E/P regulator | Vacuum generator |
 | --- | --- | --- | --- |
