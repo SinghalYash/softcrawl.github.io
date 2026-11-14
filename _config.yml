@@ -2,6 +2,8 @@ title: Soft Crawl
 description: A soft pneumatic climbing robot for aircraft fuel tank inspection — ASI-404, NUS.
 theme: minima
 
+# GitHub Pages project-site path
+baseurl: "/softcrawl.github.io"
 # Pages shown in the top menu, in this order
 header_pages:
   - home.md
