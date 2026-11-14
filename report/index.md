@@ -14,6 +14,7 @@ Overview of the report. Pick a subsystem from the sidebar, or below.
   <a class="subsystem-card" href="{{ '/report/legs/' | relative_url }}"><span class="tag">SEC-03</span><h3>Robot Legs</h3><p>Gripping mechanisms and materials.</p></a>
   <a class="subsystem-card" href="{{ '/report/electronics/' | relative_url }}"><span class="tag">SEC-04</span><h3>Electronic hardware</h3><p>Valves, pumps, MCU and power.</p></a>
   <a class="subsystem-card" href="{{ '/report/next-steps/' | relative_url }}"><span class="tag">SEC-05</span><h3>Next Steps</h3><p>Chamber traversal and future work.</p></a>
+  <a class="subsystem-card" href="{{ '/report/status/' | relative_url }}"><span class="tag">SEC-06</span><h3>Project Status</h3><p>Crawling & climbing tests, future milestones.</p></a>
 </div>
 
 <!-- | Subsystem           | Status |
