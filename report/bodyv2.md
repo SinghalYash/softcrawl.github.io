@@ -8,13 +8,11 @@ permalink: /report/structure/
 ---
 
 
-# SoftCrawl: Robot Body Subsystem
-
 ## 2. Robot Body: Soft Actuation Subsystem
 
 The Robot Body is the soft actuated spine of SoftCrawl. It contracts and bends so that the legs can step, climb vertical walls and turn 90 degree corners inside the wing tank.
 
-<div class="stat-row"> <div class="stat"><span class="value">43.2%</span><span class="label">Contraction</span></div> <div class="stat"><span class="value">&gt;3.3 kg</span><span class="label">Load held</span></div> <div class="stat"><span class="value">72.7°</span><span class="label">Best bend</span></div> <div class="stat"><span class="value">506 g</span><span class="label">Body mass</span></div> </div>
+<div class="stat-row"> <div class="stat"><span class="value">51.4%</span><span class="label">Axial contraction ratio</span></div> <div class="stat"><span class="value">&gt;3.3 kg</span><span class="label">Load held</span></div> <div class="stat"><span class="value">72.7°</span><span class="label">Best bend</span></div> <div class="stat"><span class="value">506 g</span><span class="label">Body mass</span></div> </div>
 
 ### 2.1 Subsystem Requirements
 
@@ -22,21 +20,52 @@ The objective is a soft, spark-free body that fits through standard access panel
 
 To translate these operational goals into actionable engineering constraints, the overall mission requirements were flowed down into four core mechanical specifications, detailed in Table 1:
 
-| Category | Requirement |
-|---|---|
-| **Geometry** | Fit within a 300 × 200 mm access opening |
-| | Actuator never expands beyond the body, avoiding snags |
-| **Electronics** | No electronics in the tank except camera and light |
-| **Adhesion** | Actuate with a 0.75 kg robot mass with safety factor 2 on oily vertical surfaces |
-| | Adhesion on thin oil film over aluminium sheet |
-| **Locomotion** | Control each leg individually |
-| | Climb 90 degree corners |
-| | Pass through 30 cm × 30 cm access hole to next fuel tank chamber |
-| **Material compatibility** | No damage to fuel tank internal surfaces |
-| | No swelling/damage due to prolonged oil exposure |
-
-*Table 1. Robot Body requirements*
-{: style="text-align: center;"}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Category</th>
+      <th>Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Geometry</td>
+      <td class="highlight-green">Fit within a 300 × 200 mm access opening</td>
+    </tr>
+    <tr>
+      <td class="highlight-green">Actuator never expands beyond the body, avoiding snags</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;">Electronics</td>
+      <td>No electronics in the tank except camera and light</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Adhesion</td>
+      <td class="highlight-green">Actuate with a 0.75 kg robot mass with safety factor 2 on vertical surfaces</td>
+    </tr>
+    <tr>
+      <td>Adhesion on thin oil film over aluminium sheet</td>
+    </tr>
+    <tr>
+      <td rowspan="3" style="vertical-align: middle;">Locomotion</td>
+      <td>Control each leg individually</td>
+    </tr>
+    <tr>
+      <td class="highlight-green">Climb 90 degree corners</td>
+    </tr>
+    <tr>
+      <td>Pass through 30 cm × 30 cm access hole to next fuel tank chamber</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Material compatibility</td>
+      <td>No damage to fuel tank internal surfaces</td>
+    </tr>
+    <tr>
+      <td class="highlight-green">No swelling/damage due to prolonged oil exposure</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 1. Robot Body requirements</p>
 
 ---
 
@@ -63,14 +92,37 @@ Because mechanical behavior varies substantially across different origami crease
 
 Three origami patterns are commonly used for tubular actuators: Accordion, Yoshimura and Kresling (Wickeler et al., 2023; Melancon et al., 2022). They were compared on load capacity, stability and speed.
 
-| Criterion | Accordion | Yoshimura | Kresling |
-|---|---|---|---|
-| Load capacity and deformation mode | Lowest load capacity | Highest peak load, but fails by buckling | High load capacity and controlled crease folding |
-| Stability | Monostable | Monostable | Tunable multistability |
-| Speed and energy release | Slow | Slow | Fast, rapid snap rebound |
-
-*Table 2.*
-{: style="text-align: center;"}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Criterion</th>
+      <th>Accordion</th>
+      <th>Yoshimura</th>
+      <th>Kresling</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Load capacity and deformation mode</strong></td>
+      <td>Lowest load capacity</td>
+      <td>Highest peak load, but fails by buckling</td>
+      <td>High load capacity and controlled crease folding</td>
+    </tr>
+    <tr>
+      <td><strong>Stability</strong></td>
+      <td>Monostable</td>
+      <td>Monostable</td>
+      <td>Tunable multistability</td>
+    </tr>
+    <tr>
+      <td><strong>Speed and energy release</strong></td>
+      <td>Slow</td>
+      <td>Slow</td>
+      <td>Fast, rapid snap rebound</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 2. Comparison of candidate origami crease patterns</p>
 
 <figure> 
 <div class="figure-row"> 
@@ -208,14 +260,33 @@ Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D s
 
 Three tests checked the V3 body against its specifications: contraction under no load, contraction under load and bending angle.
 
-| Test | Purpose | Specification tested |
-|---|---|---|
-| Contraction under no load | Measure the stroke available to the legs | Locomotion; geometry |
-| Contraction under load | Confirm the body carries the robot with margin | 0.75 kg with safety factor 2 |
-| Bending angle | Measure how far the body can turn | Climb 90 degree corners |
-
-*Table 3.*
-{: style="text-align: center;"}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 30%;">Test</th>
+      <th>Purpose</th>
+      <th>Specification Tested</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Contraction under no load</strong></td>
+      <td>Measure the stroke available to the legs</td>
+      <td>Locomotion; geometry</td>
+    </tr>
+    <tr>
+      <td><strong>Contraction under load</strong></td>
+      <td>Confirm the body carries the robot with margin</td>
+      <td>0.75 kg with safety factor 2</td>
+    </tr>
+    <tr>
+      <td><strong>Bending angle</strong></td>
+      <td>Measure how far the body can turn</td>
+      <td>Climb 90 degree corners</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 3. Experimental testing matrix and corresponding specifications</p>
 
 #### 2.7.1 Contraction under no load
 
@@ -262,14 +333,33 @@ For comparison, the simulator predicted 82.3° for the same 25.5 mm actuator spa
 
 
 
-| Measure | Result | Requirement |
-|---|---|---|
-| Length, relaxed to contracted | 185 mm to 80 mm (56.8% shorter) | Not specified |
-| Load held near full contraction | More than 3.3 kg | 1.5 kg (0.75 kg × 2) |
-| Best bend angle | 72.7 degrees | 90 degrees |
-
-*Table 2. Summary of test results against requirements*
-{: style="text-align: center;"}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 35%;">Measure</th>
+      <th>Result</th>
+      <th>Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Length, relaxed to contracted</strong></td>
+      <td>185 mm to 80 mm (56.8% shorter)</td>
+      <td>Not specified</td>
+    </tr>
+    <tr>
+      <td><strong>Load held near full contraction</strong></td>
+      <td>More than 3.3 kg</td>
+      <td>1.5 kg (0.75 kg × 2)</td>
+    </tr>
+    <tr>
+      <td><strong>Best bend angle</strong></td>
+      <td>72.7 degrees</td>
+      <td>90 degrees</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 4. Summary of test results against requirements</p>
 
 ---
 
@@ -361,11 +451,33 @@ While identical 7-link Kresling units provide uniform contraction, tailoring the
 
 ### Appendix A: Detailed Actuation Mechanism Comparison
 
-| Mechanism | Advantage | Limitation for SoftCrawl |
-|---|---|---|
-| (a) Pneumatic artificial muscle | High tensile force-to-weight ratio | Balloons radially, so it expands beyond the body bounding area and needs a high operating pressure |
-| (b) Bellows actuator | Well established in industry and works at low pressure | Poor lateral stiffness and prone to buckling or ballooning |
-| (c) Origami actuator | Low pressure, zero radial ballooning and low material use | Strength and stiffness depend on the fold pattern chosen; prone to air leakage |
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 28%;">Mechanism</th>
+      <th>Advantage</th>
+      <th>Limitation for SoftCrawl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>(a) Pneumatic artificial muscle</strong></td>
+      <td>High tensile force-to-weight ratio</td>
+      <td>Balloons radially, so it expands beyond the body bounding area and needs a high operating pressure</td>
+    </tr>
+    <tr>
+      <td><strong>(b) Bellows actuator</strong></td>
+      <td>Well established in industry and works at low pressure</td>
+      <td>Poor lateral stiffness and prone to buckling or ballooning</td>
+    </tr>
+    <tr>
+      <td><strong>(c) Origami actuator</strong></td>
+      <td>Low pressure, zero radial ballooning and low material use</td>
+      <td>Strength and stiffness depend on the fold pattern chosen; prone to air leakage</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table A1. Detailed actuation mechanism comparison</p>
 
 ### Appendix B: Design Principles
 
@@ -389,14 +501,48 @@ The model assumes identical actuators, small turns and axial loads only.
 
 Two actuators give two degrees of freedom: one contraction and one bend in a single plane. Three actuators at 120 degrees bend in any direction. A fourth actuator was also considered.
 
-| Criterion | Triangle (3 actuators) | Rectangle (4 actuators) |
-|---|---|---|
-| Bending stiffness | 1.5 *k d*² | 2 *k d*² (33% higher) |
-| Load capacity | Baseline | 33% higher |
-| Valves and tubes | 3 | 4; pump flow requirement uncertain |
-| Weight and footprint | Lighter, smaller | Heavier, larger |
-| Control | Independent | Coupled; over-constrained (*l*₁ + *l*₃ = *l*₂ + *l*₄) |
-| Redundancy | None | Yes |
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Criterion</th>
+      <th>Triangle (3 Actuators)</th>
+      <th>Rectangle (4 Actuators)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Bending stiffness</strong></td>
+      <td>1.5 <em>k d</em>²</td>
+      <td>2 <em>k d</em>² (33% higher)</td>
+    </tr>
+    <tr>
+      <td><strong>Load capacity</strong></td>
+      <td>Baseline</td>
+      <td>33% higher</td>
+    </tr>
+    <tr>
+      <td><strong>Valves and tubes</strong></td>
+      <td>3</td>
+      <td>4; pump flow requirement uncertain</td>
+    </tr>
+    <tr>
+      <td><strong>Weight and footprint</strong></td>
+      <td>Lighter, smaller</td>
+      <td>Heavier, larger</td>
+    </tr>
+    <tr>
+      <td><strong>Control</strong></td>
+      <td>Independent</td>
+      <td>Coupled; over-constrained (<em>l</em>₁ + <em>l</em>₃ = <em>l</em>₂ + <em>l</em>₄)</td>
+    </tr>
+    <tr>
+      <td><strong>Redundancy</strong></td>
+      <td>None</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table B1. Evaluation of actuator arrangement concepts</p>
 
 The triangle was selected because three actuators are the minimum for full 3D bending, it needs fewer valves and tubes, and it keeps control of each actuator independent. The rectangle is stiffer and has redundancy, but its control is coupled and over-constrained.
 
