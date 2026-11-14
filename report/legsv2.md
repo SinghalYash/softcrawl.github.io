@@ -43,34 +43,106 @@ However, vacuum suction remains sensitive to leakage and eccentric loading, nece
 
 Based on the overall system requirements for our robot, we have highlighted the key functional specifications of the robot legs subsystem.
 
-| Category | Requirement |
-|---|---|
-| **Geometry** | Fit within a 300 × 200 mm access opening |
-| | Actuator never expands beyond the body, avoiding snags |
-| **Electronics** | No electronics in the tank except camera and light |
-| **Adhesion** | Support a provisional 0.75 kg robot mass with a target safety factor of 2 on vertical surfaces |
-| | Adhesion on thin oil film over aluminium sheet |
-| **Locomotion** | Control each leg individually |
-| | Climb 90 degree corners |
-| | Pass through 30 cm × 30 cm access hole to next fuel tank chamber |
-| **Material compatibility** | No damage to fuel tank internal surfaces |
-| | No swelling/damage due to prolonged oil exposure |
-
-*Table 1. Robot Legs requirements*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Category</th>
+      <th>Requirement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Geometry</td>
+      <td class="highlight-green">Fit within a 300 × 200 mm access opening</td>
+    </tr>
+    <tr>
+      <td>Actuator never expands beyond the body, avoiding snags</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: middle;">Electronics</td>
+      <td>No electronics in the tank except camera and light</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Adhesion</td>
+      <td class="highlight-green">Support a provisional 0.75 kg robot mass with a target safety factor of 2 on vertical surfaces</td>
+    </tr>
+    <tr>
+      <td class="highlight-green">Adhesion on thin oil film over aluminium sheet</td>
+    </tr>
+    <tr>
+      <td rowspan="3" style="vertical-align: middle;">Locomotion</td>
+      <td>Control each leg individually</td>
+    </tr>
+    <tr>
+      <td>Climb 90 degree corners</td>
+    </tr>
+    <tr>
+      <td>Pass through 30 cm × 30 cm access hole to next fuel tank chamber</td>
+    </tr>
+    <tr>
+      <td rowspan="2" style="vertical-align: middle;">Material compatibility</td>
+      <td class="highlight-green">No damage to fuel tank internal surfaces</td>
+    </tr>
+    <tr>
+      <td class="highlight-green">No swelling/damage due to prolonged oil exposure</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 1. Robot Legs requirements</p>
 
 ### 3.2 Morphological Matrix
 
 A morphological matrix was developed to compare solution principles for the ranked Robot Legs functions. Two concepts—passive and active suction—were selected for parallel development.
 
-| Rank | Function | Solution 1 | Solution 2 | Solution 3 |
-|---|---|---|---|---|
-| 1 | Maintain surface adhesion | Passive suction cups | Active suction cups | Mechanically actuated suction cups |
-| 2 | Seal on oily surface | Bellows suction cups | Deep concave suction cup | Flat suction cup |
-| 3 | Resist oil exposure | Nitrile Butadiene Rubber | Fluorosilicone & Viton | Polyurethane |
-| 4 | Release cup on command | Solenoid valve | Manual valve | Plunging skeleton |
-| 5 | Protect vacuum line from oil ingestion | Liquid oil separator | Oil coalescing filter | Vacuum filter |
-
-*Table 2. Morphological matrix for the robot legs*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Function</th>
+      <th>Solution 1</th>
+      <th>Solution 2</th>
+      <th>Solution 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Maintain surface adhesion</td>
+      <td>Passive suction cups</td>
+      <td>Active suction cups</td>
+      <td>Mechanically actuated suction cups</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Seal on oily surface</td>
+      <td>Bellows suction cups</td>
+      <td>Deep concave suction cup</td>
+      <td>Flat suction cup</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Resist oil exposure</td>
+      <td>Nitrile Butadiene Rubber</td>
+      <td>Fluorosilicone & Viton</td>
+      <td>Polyurethane</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Release cup on command</td>
+      <td>Solenoid valve</td>
+      <td>Manual valve</td>
+      <td>Plunging skeleton</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Protect vacuum line from oil ingestion</td>
+      <td>Liquid oil separator</td>
+      <td>Oil coalescing filter</td>
+      <td>Vacuum filter</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 2. Morphological matrix for the robot legs</p>
 
 ---
 
@@ -78,15 +150,43 @@ A morphological matrix was developed to compare solution principles for the rank
 
 #### 3.3.1 Literature Review and Selection of Passive Suction
 
-| Rank | Function | Idea 1 selection |
-|---|---|---|
-| 1 | Maintain surface adhesion | **Passive suction cups** |
-| 2 | Seal on oily surface | **Bellows suction cups** |
-| 3 | Resist oil exposure | **Fluorosilicone & Viton** |
-| 4 | Release cup on command | **Plunging skeleton** |
-| 5 | Protect vacuum line from oil ingestion | Not needed (no vacuum line) |
-
-*Table 3. Passive suction concept (Idea 1) selected from the morphological matrix.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Function</th>
+      <th>Idea 1 selection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Maintain surface adhesion</td>
+      <td><strong>Passive suction cups</strong></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Seal on oily surface</td>
+      <td><strong>Bellows suction cups</strong></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Resist oil exposure</td>
+      <td><strong>Fluorosilicone & Viton</strong></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Release cup on command</td>
+      <td><strong>Plunging skeleton</strong></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Protect vacuum line from oil ingestion</td>
+      <td>Not needed (no vacuum line)</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 3. Passive suction concept (Idea 1) selected from the morphological matrix.</p>
 
 Within the morphological matrix in Section 3.2, Idea 1 combined a passive bellows cup, a fluorosilicone final material and a plunging-skeleton release mechanism.
 
@@ -119,14 +219,38 @@ On a vertical wall, the foot must satisfy two conditions. **Slip** is resisted b
 
 The final passive cup (V3) was built around four geometric parameters, summarised below.
 
-| Parameter | Value | Rationale |
-|---|---|---|
-| Seal bore | Ø46 mm | Larger *r* resists peel; capped by end-plate size |
-| Lip | 7 × 3 mm | Seals and resists shear; 27× stiffer than the wall |
-| Folds | 2 | Enough springback without raising *d*; nests flat for *V*₁ ≈ 0 |
-| Wall / hinges | 1.0 / 0.55 mm | Hinges ~6× softer, so folding stays at the hinges |
-
-*Table 4. Geometric parameters of the V3 passive cup.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Seal bore</td>
+      <td>Ø46 mm</td>
+      <td>Larger <em>r</em> resists peel; capped by end-plate size</td>
+    </tr>
+    <tr>
+      <td>Lip</td>
+      <td>7 × 3 mm</td>
+      <td>Seals and resists shear; 27× stiffer than the wall</td>
+    </tr>
+    <tr>
+      <td>Folds</td>
+      <td>2</td>
+      <td>Enough springback without raising <em>d</em>; nests flat for <em>V</em>₁ ≈ 0</td>
+    </tr>
+    <tr>
+      <td>Wall / hinges</td>
+      <td>1.0 / 0.55 mm</td>
+      <td>Hinges ~6× softer, so folding stays at the hinges</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 4. Geometric parameters of the V3 passive cup.</p>
 
 Prototypes were cast in a 1:1 blend of Ecoflex 00-30 and Dragon Skin 10, poured into 3D-printed moulds and cured at room temperature. Ecoflex (Shore 00-30) conforms and seals, while Dragon Skin 10 (Shore 10A, 102 pli tear strength) springs back and resists tearing. Ecoflex alone was too floppy to recover, and Dragon Skin alone was too stiff to fold flat. The blend sets the modulus so that a castable 1 mm wall folds at the hinges and springs back after release. Fuel-resistant fluorosilicone (FVMQ) is reserved for the final version due to cost.
 
@@ -156,13 +280,33 @@ To resist shear on a vertical wall and provide pre-load for attach and release, 
 <figcaption>Figure 7. Passive suction-cup prototypes V1–V3.</figcaption>
 </figure>
 
-| Version | Design | Outcome |
-|---|---|---|
-| V1 | Proportions of He et al. (2026) at a large scale | Highest load (250 g), but the thick, rigid lip gradually folded up and lost the seal |
-| V2 | Scaled down | Held about five times its own weight; incomplete collapse trapped air, deforming the cup and causing leakage |
-| V3 | Section 3.3.3 geometry: Ø46 mm bore, two folds, 1.0 mm walls, 0.55 mm hinges | Collapsed fully but did not spring back; the thin wall collapsed internally when pulled |
-
-*Table 5. Passive suction-cup prototype iterations V1–V3.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Design</th>
+      <th>Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V1</td>
+      <td>Proportions of He et al. (2026) at a large scale</td>
+      <td>Highest load (250 g), but the thick, rigid lip gradually folded up and lost the seal</td>
+    </tr>
+    <tr>
+      <td>V2</td>
+      <td>Scaled down</td>
+      <td>Held about five times its own weight; incomplete collapse trapped air, deforming the cup and causing leakage</td>
+    </tr>
+    <tr>
+      <td>V3</td>
+      <td>Section 3.3.3 geometry: Ø46 mm bore, two folds, 1.0 mm walls, 0.55 mm hinges</td>
+      <td>Collapsed fully but did not spring back; the thin wall collapsed internally when pulled</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 5. Passive suction-cup prototype iterations V1–V3.</p>
 
 #### 3.3.5 Load Capacity and Seal-Retention Testing
 
@@ -185,15 +329,43 @@ Testing exposed four limitations:
 
 Active vacuum suction was investigated in parallel with passive suction development to enable early testing using commercially available components.
 
-| Rank | Function | Idea 2 selection |
-|---|---|---|
-| 1 | Maintain surface adhesion | **Active suction cups** |
-| 2 | Seal on oily surface | **Flat suction cup** |
-| 3 | Resist oil exposure | **Polyurethane** |
-| 4 | Release cup on command | **Solenoid valve** |
-| 5 | Protect vacuum line from oil ingestion | **Vacuum filter** |
-
-*Table 6. Active suction concept (Idea 2) selected from the morphological matrix.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Function</th>
+      <th>Idea 2 selection</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Maintain surface adhesion</td>
+      <td><strong>Active suction cups</strong></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Seal on oily surface</td>
+      <td><strong>Flat suction cup</strong></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Resist oil exposure</td>
+      <td><strong>Polyurethane</strong></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Release cup on command</td>
+      <td><strong>Solenoid valve</strong></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Protect vacuum line from oil ingestion</td>
+      <td><strong>Vacuum filter</strong></td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 6. Active suction concept (Idea 2) selected from the morphological matrix.</p>
 
 Commercial suction cups were adapted for robotic locomotion, allowing early evaluation of load capacity, mechanical integration, oil contamination and failure mechanisms. The selected solution principles and their justifications are summarised in [Appendix D](#appendix-d-suction-cup-geometry-comparison).
 
@@ -209,12 +381,31 @@ Unlike conventional industrial suction cups primarily used for gripping and lift
 
 Three loading conditions were considered to guide experimental validation: axial (normal), tangential (shear) and eccentric (moment) loading (Mantriota & Messina, 2011).
 
-| | Axial / Normal Load | Shear / Tangential Load | Peeling / Moment Load |
-|---|---|---|---|
-| **Free body diagram** | <img src="{{ '/images/legs/image8.png' | relative_url }}" alt="Axial load FBD"> | <img src="{{ '/images/legs/image9.png' | relative_url }}" alt="Shear load FBD"> | <img src="{{ '/images/legs/image10.png' | relative_url }}" alt="Peel load FBD"> |
-| **Estimation method** | Manufacturer datasheet | Friction model using an assumed or measured coefficient | Experimental validation (hard to model) |
-
-*Table 7. Suction-cup loading conditions and assessment methods.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Axial / Normal Load</th>
+      <th>Shear / Tangential Load</th>
+      <th>Peeling / Moment Load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Free body diagram</strong></td>
+      <td><img src="{{ '/images/legs/image8.png' | relative_url }}" alt="Axial load FBD"></td>
+      <td><img src="{{ '/images/legs/image9.png' | relative_url }}" alt="Shear load FBD"></td>
+      <td><img src="{{ '/images/legs/image10.png' | relative_url }}" alt="Peel load FBD"></td>
+    </tr>
+    <tr>
+      <td><strong>Estimation method</strong></td>
+      <td>Manufacturer datasheet</td>
+      <td>Friction model using an assumed or measured coefficient</td>
+      <td>Experimental validation (hard to model)</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table 7. Suction-cup loading conditions and assessment methods.</p>
 
 ### 3.6 Suction-Cup Sizing Calculation & Selection
 
@@ -239,7 +430,6 @@ A configurable testing jig was used to measure failure loads at approximately �
 <img src="{{ '/images/legs/image12.png' | relative_url }}" alt="Payload testing jig CAD">
 <figcaption>Figure 9. CAD model of the configurable payload testing jig.</figcaption>
 </figure>
-
 
 <figure>
 <div class="figure-row">
@@ -333,7 +523,6 @@ To mitigate peeling, a rigid or semi-rigid support skeleton is proposed to restr
 <figcaption>Figure 16. Schematic of the proposed support skeleton limiting suction-cup deformation during peeling.</figcaption>
 </figure>
 
-
 #### 3.12.2 Integrated Adhesion Validation
 
 Future testing will evaluate integrated locomotion with the Kresling body, focusing on the critical rear-two-cup configuration, repeated attachment cycles, uneven load sharing and sealing on oil-contaminated vertical surfaces.
@@ -386,13 +575,33 @@ Because *D* scales with *t*³, doubling the wall thickness makes it eight times 
 
 Each cup was loaded and timed until the seal failed. Hold time is used as a proxy for seal quality, since a passive cup always leaks slowly and the pressure difference Δ*p* decays over time.
 
-| Version | Load | Hold time |
-|---|---|---|
-| V1 | 250 g | 30 s |
-| V2 | 100 g | 80 s (longest) |
-| V3 | Limited | 10 s |
-
-*Table B1. Load and hold time for each passive prototype.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Version</th>
+      <th>Load</th>
+      <th>Hold time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>V1</td>
+      <td>250 g</td>
+      <td>30 s</td>
+    </tr>
+    <tr>
+      <td>V2</td>
+      <td>100 g</td>
+      <td>80 s (longest)</td>
+    </tr>
+    <tr>
+      <td>V3</td>
+      <td>Limited</td>
+      <td>10 s</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table B1. Load and hold time for each passive prototype.</p>
 
 <figure>
 <img src="{{ '/images/legs/image23.png' | relative_url }}" alt="Hold time of each prototype">
@@ -401,38 +610,108 @@ Each cup was loaded and timed until the seal failed. Hold time is used as a prox
 
 ### Appendix C: Comparison of Adhesion Mechanisms
 
-| Mechanism | Advantage | Limitation for SoftCrawl |
-|---|---|---|
-| Magnetic adhesion | Strong, controllable attachment on ferromagnetic surfaces | Ineffective on non-ferromagnetic aluminium structures |
-| Electroadhesion | Electrically controllable adhesion and proprioceptive | Requires high-voltage circuitry; electrical safety and contamination sensitivity are concerns |
-| Gecko-inspired dry adhesion | Lightweight, potentially passive attachment based on van der Waals forces | Surface contamination and durability can reduce performance |
-| Vacuum suction | Industry standard, high axial payload capacity, controllable attachment | Requires reliable sealing; vulnerable to leakage, oil-related shear reduction and moment-induced peeling |
-
-*Table C1. Comparison of adhesion mechanisms considered for SoftCrawl.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Mechanism</th>
+      <th>Advantage</th>
+      <th>Limitation for SoftCrawl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Magnetic adhesion</td>
+      <td>Strong, controllable attachment on ferromagnetic surfaces</td>
+      <td>Ineffective on non-ferromagnetic aluminium structures</td>
+    </tr>
+    <tr>
+      <td>Electroadhesion</td>
+      <td>Electrically controllable adhesion and proprioceptive</td>
+      <td>Requires high-voltage circuitry; electrical safety and contamination sensitivity are concerns</td>
+    </tr>
+    <tr>
+      <td>Gecko-inspired dry adhesion</td>
+      <td>Lightweight, potentially passive attachment based on van der Waals forces</td>
+      <td>Surface contamination and durability can reduce performance</td>
+    </tr>
+    <tr>
+      <td>Vacuum suction</td>
+      <td>Industry standard, high axial payload capacity, controllable attachment</td>
+      <td>Requires reliable sealing; vulnerable to leakage, oil-related shear reduction and moment-induced peeling</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table C1. Comparison of adhesion mechanisms considered for SoftCrawl.</p>
 
 ### Appendix D: Suction-Cup Geometry Comparison
 
-| Geometry | Advantages | Limitations | Suitability for SoftCrawl |
-|---|---|---|---|
-| Flat suction cup | Compact, stable positioning; suitable for flat surfaces | Limited axial compliance and surface misalignment compensation | **High** — suitable for smooth surfaces and compact integration |
-| Bellows suction cup | Greater axial compliance; accommodates height differences and misalignment | Taller profile; less precise positioning | **Moderate** — additional compliance not prioritised |
-| Deep-concave suction cup | Conforms to curved or highly contoured workpieces | Greater cup depth; less suitable for compact mounting | **Low** — unnecessary for primarily flat surfaces |
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Geometry</th>
+      <th>Advantages</th>
+      <th>Limitations</th>
+      <th>Suitability for SoftCrawl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Flat suction cup</td>
+      <td>Compact, stable positioning; suitable for flat surfaces</td>
+      <td>Limited axial compliance and surface misalignment compensation</td>
+      <td><strong>High</strong> — suitable for smooth surfaces and compact integration</td>
+    </tr>
+    <tr>
+      <td>Bellows suction cup</td>
+      <td>Greater axial compliance; accommodates height differences and misalignment</td>
+      <td>Taller profile; less precise positioning</td>
+      <td><strong>Moderate</strong> — additional compliance not prioritised</td>
+    </tr>
+    <tr>
+      <td>Deep-concave suction cup</td>
+      <td>Conforms to curved or highly contoured workpieces</td>
+      <td>Greater cup depth; less suitable for compact mounting</td>
+      <td><strong>Low</strong> — unnecessary for primarily flat surfaces</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table D1. Comparison of suction-cup geometries for SoftCrawl.</p>
 
 Flat, bellows and deep-concave geometries were compared using manufacturer guidance (Festo, n.d.; J. Schmalz GmbH, n.d.). Bellows cups provide height compensation, while deep-concave cups suit curved workpieces. A flat cup with a compliant sealing edge was selected for its compact profile and suitability for relatively smooth aluminium and acrylic surfaces.
 
-*Table D1. Comparison of suction-cup geometries for SoftCrawl.*
-
 The selected solution principles from the morphological matrix (Section 3.2) were evaluated against SoftCrawl's requirements for controllable adhesion, compactness, oil compatibility and ease of integration. The rationale for each selection is summarised below.
 
-| Selected solution | Selection rationale |
-|---|---|
-| Active suction cups | Externally supplied vacuum enables controllable adhesion and compensates for minor leakage, unlike passive suction cups. |
-| Flat suction cup | Compact geometry and stable positioning on relatively smooth aluminium and acrylic surfaces, minimising the robot's footprint. |
-| Polyurethane (PU) | Selected for its reported resistance to petroleum-based oils and suitability for the commercially available Festo suction cup. |
-| Solenoid valve | Enables electrically controlled vacuum switching for individual suction-cup attachment and release. |
-| Inline vacuum filter | Compact and straightforward to integrate; selected for preliminary oil-ingress testing rather than proven superiority over alternative separators. |
-
-*Table D2. Selection rationale for the active suction concept (Idea 2).*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Selected solution</th>
+      <th>Selection rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Active suction cups</td>
+      <td>Externally supplied vacuum enables controllable adhesion and compensates for minor leakage, unlike passive suction cups.</td>
+    </tr>
+    <tr>
+      <td>Flat suction cup</td>
+      <td>Compact geometry and stable positioning on relatively smooth aluminium and acrylic surfaces, minimising the robot's footprint.</td>
+    </tr>
+    <tr>
+      <td>Polyurethane (PU)</td>
+      <td>Selected for its reported resistance to petroleum-based oils and suitability for the commercially available Festo suction cup.</td>
+    </tr>
+    <tr>
+      <td>Solenoid valve</td>
+      <td>Enables electrically controlled vacuum switching for individual suction-cup attachment and release.</td>
+    </tr>
+    <tr>
+      <td>Inline vacuum filter</td>
+      <td>Compact and straightforward to integrate; selected for preliminary oil-ingress testing rather than proven superiority over alternative separators.</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table D2. Selection rationale for the active suction concept (Idea 2).</p>
 
 These selections formed the initial active suction subsystem, allowing early experimental validation while passive suction development continued in parallel. Subsequent testing identified limitations associated with eccentric loading, oil-induced shear reduction and vacuum-line contamination, informing future design refinements.
 
@@ -440,16 +719,41 @@ These selections formed the initial active suction subsystem, allowing early exp
 
 A preliminary sizing model was developed to determine the effective suction-cup diameter required to support the robot during vertical locomotion. The parameters are as follows:
 
-| Parameter | Value |
-|---|---|
-| Robot mass, *m* | 0.75 kg |
-| Vacuum pressure differential, *P* | 90 kPa |
-| Friction coefficient (oil), *μ* | 0.1 |
-| Supporting feet, *f* | 2 |
-| Cups per foot, *n* | 1 |
-| Safety factor, *s* | 2 |
-
-*Table E1. Parameters used for preliminary suction-cup sizing.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Parameter</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Robot mass, <em>m</em></td>
+      <td>0.75 kg</td>
+    </tr>
+    <tr>
+      <td>Vacuum pressure differential, <em>P</em></td>
+      <td>90 kPa</td>
+    </tr>
+    <tr>
+      <td>Friction coefficient (oil), <em>μ</em></td>
+      <td>0.1</td>
+    </tr>
+    <tr>
+      <td>Supporting feet, <em>f</em></td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>Cups per foot, <em>n</em></td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Safety factor, <em>s</em></td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table E1. Parameters used for preliminary suction-cup sizing.</p>
 
 The suction force generated by one cup is approximated by:
 
@@ -490,19 +794,38 @@ d_{min} = \sqrt{\frac{4\, s\, m g}{\pi\, \mu\, n\, f\, P}} = \sqrt{\frac{4 \time
 
 ### Appendix F: Suction-Cup Payload Testing
 
-| Attachment configuration | Horizontal failure load | Vertical failure load |
-|---|---|---|
-| Four cups engaged | 110 N | 40 N |
-| Front two engaged | 68 N | 30 N |
-| Rear two engaged | 70 N | 10 N |
-
-*Table F1. Failure loads at approximately −80 kPa.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Attachment configuration</th>
+      <th>Horizontal failure load</th>
+      <th>Vertical failure load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Four cups engaged</td>
+      <td>110 N</td>
+      <td>40 N</td>
+    </tr>
+    <tr>
+      <td>Front two engaged</td>
+      <td>68 N</td>
+      <td>30 N</td>
+    </tr>
+    <tr>
+      <td>Rear two engaged</td>
+      <td>70 N</td>
+      <td>10 N</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table F1. Failure loads at approximately −80 kPa.</p>
 
 <figure>
 <img src="{{ '/images/legs/image25.png' | relative_url }}" alt="Payload testing configurations">
 <figcaption>Figure F1. Suction-cup payload testing with different active-cup configurations.</figcaption>
 </figure>
-
 
 ### Appendix G: Suction-Cup Peeling Math
 
@@ -542,14 +865,33 @@ Furthermore, the geometry and material properties of SoftCrawl's commercial Fest
 
 To investigate the effect of suction-cup spacing on attachment stability under eccentric loading, the distance between the cups was varied and the maximum load before failure was measured.
 
-| Cup spacing | Failure load |
-|---|---|
-| 23 mm | 4 N |
-| 69 mm | 5 N |
-| 115 mm | 7 N |
-| 161 mm | 10 N |
-
-*Table H1. Failure load against cup spacing.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Cup spacing</th>
+      <th>Failure load</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>23 mm</td>
+      <td>4 N</td>
+    </tr>
+    <tr>
+      <td>69 mm</td>
+      <td>5 N</td>
+    </tr>
+    <tr>
+      <td>115 mm</td>
+      <td>7 N</td>
+    </tr>
+    <tr>
+      <td>161 mm</td>
+      <td>10 N</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table H1. Failure load against cup spacing.</p>
 
 Increasing the spacing from 23 mm to 161 mm increased the measured failure load from 4 N to 10 N, a 2.5-fold increase across the tested configurations.
 
@@ -560,17 +902,32 @@ This trend is consistent with the general principle established by Rutkowski et 
 <figcaption>Figure H1. Failure load versus suction-cup spacing under the tested eccentric loading configuration.</figcaption>
 </figure>
 
-
 ### Appendix I: Suction-Cup Oil Testing
 
 Shear tests were conducted at −30 kPa and −80 kPa, with and without oil contamination, to evaluate the effects of vacuum pressure and surface lubrication on suction-cup shear resistance.
 
-| Vacuum pressure | Without oil | With oil |
-|---|---|---|
-| −30 kPa | 15.0 N | 6.0 N |
-| −80 kPa | 21.0 N | 8.6 N |
-
-*Table I1. Shear resistance with and without oil contamination.*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Vacuum pressure</th>
+      <th>Without oil</th>
+      <th>With oil</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>−30 kPa</td>
+      <td>15.0 N</td>
+      <td>6.0 N</td>
+    </tr>
+    <tr>
+      <td>−80 kPa</td>
+      <td>21.0 N</td>
+      <td>8.6 N</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table I1. Shear resistance with and without oil contamination.</p>
 
 Oil contamination reduced the measured shear resistance by approximately 60% at both vacuum pressures, indicating a consistent proportional reduction over the tested range. However, shear resistance did not increase proportionally with vacuum pressure, suggesting that factors beyond the simplified friction model, such as suction-cup deformation and contact conditions, may influence performance.
 
@@ -598,21 +955,61 @@ Since 17.2 N > 14.72 N, the estimated two-cup shear capacity exceeds the prelimi
 
 Oil contamination was grouped into three illustrative categories (Raschig GmbH, 2018):
 
-| Type of oil contamination | Approximate size | Typical formation / occurrence |
-|---|---|---|
-| Bulk liquid oil | ≥ 100 µm | Liquid oil drawn directly into the vacuum line |
-| Entrained oil droplets | 10–100 µm | Droplets carried by airflow during suction |
-| Fine oil mist / aerosol | 1–10 µm | Fine atomisation caused by high-velocity airflow, turbulence or spraying |
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Type of oil contamination</th>
+      <th>Approximate size</th>
+      <th>Typical formation / occurrence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bulk liquid oil</td>
+      <td>≥ 100 µm</td>
+      <td>Liquid oil drawn directly into the vacuum line</td>
+    </tr>
+    <tr>
+      <td>Entrained oil droplets</td>
+      <td>10–100 µm</td>
+      <td>Droplets carried by airflow during suction</td>
+    </tr>
+    <tr>
+      <td>Fine oil mist / aerosol</td>
+      <td>1–10 µm</td>
+      <td>Fine atomisation caused by high-velocity airflow, turbulence or spraying</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table J1. Illustrative forms of oil contamination and their occurrence; size ranges are not strict boundaries.</p>
 
-*Table J1. Illustrative forms of oil contamination and their occurrence; size ranges are not strict boundaries.*
-
-| Protection method | Advantage | Limitation |
-|---|---|---|
-| Liquid-oil separator | Collects bulk liquid oil | Additional volume and integration requirements |
-| Oil-mist coalescing filter | Captures entrained oil droplets and aerosol mist | Greater size, cost or maintenance requirements |
-| Inline vacuum filter | Compact and straightforward to integrate | Filtration capability depends on media and contamination type |
-
-*Table J2. Comparison of vacuum-line protection options (SMC Corporation, n.d.-a, n.d.-b, n.d.-c).*
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Protection method</th>
+      <th>Advantage</th>
+      <th>Limitation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Liquid-oil separator</td>
+      <td>Collects bulk liquid oil</td>
+      <td>Additional volume and integration requirements</td>
+    </tr>
+    <tr>
+      <td>Oil-mist coalescing filter</td>
+      <td>Captures entrained oil droplets and aerosol mist</td>
+      <td>Greater size, cost or maintenance requirements</td>
+    </tr>
+    <tr>
+      <td>Inline vacuum filter</td>
+      <td>Compact and straightforward to integrate</td>
+      <td>Filtration capability depends on media and contamination type</td>
+    </tr>
+  </tbody>
+</table>
+<p class="table-caption">Table J2. Comparison of vacuum-line protection options (SMC Corporation, n.d.-a, n.d.-b, n.d.-c).</p>
 
 ---
 
