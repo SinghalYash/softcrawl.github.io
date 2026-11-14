@@ -19,7 +19,7 @@ Overview of the report. Pick a subsystem from the sidebar, or below.
 
 Word Count: 7329
 
-Github: https://github.com/SinghalYash/softcrawl.github.io/tree/website
+GitHub: [github.com/SinghalYash/softcrawl.github.io](https://github.com/SinghalYash/softcrawl.github.io/tree/website)
 
 <!-- | Subsystem           | Status |
 |---------------------|--------|
