@@ -11,7 +11,7 @@ permalink: /report/context/
 
 ### 1.1 Aircraft Fuel-Tank Environment
 
-Aircraft fuel tanks are essential components of the aircraft fuel storage and distribution system. In commercial aircraft, fuel is commonly stored within the wings and centre wing box, where internal structural components also contribute to the aircraft's load-bearing capability.
+Aircraft fuel tanks are essential components of the aircraft fuel storage and distribution systems. In commercial aircraft, fuel is commonly stored within the wings and centre wing box, where internal structural components also contribute to the aircraft's load-bearing capability.
 
 Unlike conventional storage tanks, aircraft wing tanks contain complex internal structures, including ribs, spars, stringers, pipes and sealant joints. These components divide the interior into restricted compartments, creating challenges for inspection and maintenance.
 
@@ -151,7 +151,7 @@ The development and implementation of SoftCrawl involve several stakeholders wit
     <tr>
       <th>Stakeholder</th>
       <th>Interest</th>
-      <th>Influence</th>
+      <th>Power</th>
       <th>Engagement strategy</th>
     </tr>
   </thead>
@@ -165,18 +165,18 @@ The development and implementation of SoftCrawl involve several stakeholders wit
     <tr>
       <td><strong>Aircraft maintenance technicians and inspection crews</strong></td>
       <td>High</td>
-      <td>Lower organisational influence</td>
+      <td>Low</td>
       <td>Keep informed and involved</td>
     </tr>
     <tr>
       <td><strong>Aviation regulators and industry bodies</strong></td>
-      <td>Lower direct project interest</td>
+      <td>Low</td>
       <td>High</td>
       <td>Keep satisfied</td>
     </tr>
     <tr>
       <td><strong>Passengers</strong></td>
-      <td>Lower direct interest</td>
+      <td>Low</td>
       <td>Low</td>
       <td>Monitor</td>
     </tr>
@@ -184,11 +184,6 @@ The development and implementation of SoftCrawl involve several stakeholders wit
 </table>
 </div>
 <p class="table-caption">Table 1. Stakeholder interest, influence and engagement strategy.</p>
-
-- **MRO teams and airlines** are key decision-makers because they are responsible for maintenance operations, resource allocation and potential technology adoption.
-- **Technicians and inspection crews** are the primary intended users of the system. Their requirements influence the robot's usability, deployment process and inspection capabilities.
-- **Regulatory authorities and industry bodies** influence the safety and compliance requirements associated with aircraft maintenance technologies.
-- **Passengers** are indirect beneficiaries through potential improvements in aircraft maintenance and operational safety.
 
 <figure>
 <img src="{{ '/images/context/image4.png' | relative_url }}" alt="Stakeholder power-interest matrix">

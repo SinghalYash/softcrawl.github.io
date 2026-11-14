@@ -139,12 +139,13 @@ Three origami patterns are commonly used for tubular actuators: Accordion, Yoshi
 
 - **Higher Load-Bearing without Buckling:** While the Accordion tube exhibits the lowest load capacity and the Yoshimura suffers wall buckling after reaching peak load, the Kresling achieves nearly 3 times the compressive strength of the Accordion by channeling deformation along controlled, repeatable hinge lines.
 - **Rapid Snap-Through Dynamics:** As a non-rigid origami morphology, Kresling facets deform elastically during contraction. This out-of-plane compliance stores strain energy that releases rapidly during snap-through, accelerating contraction and rebound without structural buckling.
-- **Tunable Multistability for Zero-Power Holding:** Unlike monostable Accordion and Yoshimura structures, Kresling geometries possess multiple stable states. By tuning cell geometry or bonding rigid facet stiffeners, intermediate stable states can be created (Melancon et al., 2022), enabling the robot to passively maintain bending angles without continuous pneumatic draw.
 
 <figure>
 <img src="{{ '/images/body/image7.png' | relative_url }}">
 <figcaption>Figure 3. Tunable multistability of the Kresling pattern (Melancon et al., 2022).</figcaption>
 </figure>
+
+- **Tunable Multistability for Zero-Power Holding:** Unlike monostable Accordion and Yoshimura structures, Kresling geometries possess multiple stable states. By tuning cell geometry or bonding rigid facet stiffeners, intermediate stable states can be created (Melancon et al., 2022), enabling the robot to passively maintain bending angles without continuous pneumatic draw.
 
 ---
 
@@ -256,7 +257,7 @@ The layout was chosen deliberately rather than by default; each choice below is 
 - **Three legs, not four.** Bending stiffness is *K*<sub>bend</sub> = *k* Σ arm² ([B.2](#b2-bending-stiffness)), which gives 1.5 *k d*² for three legs and 2 *k d*² for four. The extra 33% was traded away because three legs are the minimum for 3D bending, need one fewer valve, and can be controlled independently. A fourth leg over-constrains the plate ([B.3](#b3-number-of-actuators)).
 - **Equilateral, not isosceles.** An equilateral triangle is equally stiff in every direction, and its load centre sits on the plate centre. An isosceles layout would be three times weaker side-to-side, and its load centre would sit 0.24*d* off centre, so the body would droop ([B.4](#b4-triangle-shape-equilateral-or-isosceles)).
 - **Orientation.** Apex up and apex down give the same reach and lifting moment. Apex up lifts with one valve, while apex down halves the stretch in each leg under a nose load ([B.5](#b5-orientation-apex-up-or-apex-down)).
-- **Reach depends on direction.** With contraction-only actuators, the maximum bend is 83.9° toward a leg but only 72.6° between legs. A leg is therefore placed on the vertical axis so that wall transitions use the stronger direction ([B.6](#b6-bending-reach-depends-on-direction)).
+- **Reach depends on direction.** With contraction-only actuators, the maximum bend i 72.6° upwards while bends lesser in left and right directions([B.6](#b6-bending-reach-depends-on-direction)).
 
 Before printing, the actuator spacing was chosen using the team's SoftCrawl 3D simulator. The simulator showed that the bend angle is inversely proportional to the distance between the Kresling actuators: placing them closer together gives a larger bend for the same contraction, but lowers the bending stiffness. The simulation and the resulting spacing trade-off are described in [Appendix B.7](#b7-simulation).
 
@@ -682,16 +683,11 @@ For an equilateral triangle, the spread is 1.5*d* when bending toward or away fr
 
 | Bend direction (apex up) | Spread | *θ*<sub>max</sub> |
 |---|---|---|
-| Up or down (toward or away from a leg) | 1.5*d* = 38.3 mm | 83.9° |
-| Left or right (between two legs) | 1.73*d* = 44.2 mm | 72.6° |
+| Up or down| 1.5*d* = 38.3 mm | 83.9° |
+| Left or right| 1.73*d* = 44.2 mm | 72.6° |
 
 *Table B5. Maximum bend angle against bend direction*
 {: style="text-align: center;"}
-
-<figure>
-<img src="{{ '/images/body/appB-reach-direction.png' | relative_url }}" alt="Polar plot of maximum bend angle against bend direction">
-<figcaption>Figure B6. Maximum bend angle against bend direction for the current geometry. The reach is largest toward each leg and smallest between legs.</figcaption>
-</figure>
 
 This has a practical consequence. The 90° wall transitions need an up/down (pitch) bend, so the triangle should be oriented with a leg on the vertical axis, as in both cases in B.5. Neither direction reaches 90° yet, which matches the shortfall measured in Section 2.7.3 and motivates the spacing study in B.7.
 

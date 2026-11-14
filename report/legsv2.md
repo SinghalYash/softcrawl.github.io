@@ -92,6 +92,8 @@ Based on the overall system requirements for our robot, we have highlighted the 
 </div>
 <p class="table-caption">Table 1. Robot Legs requirements</p>
 
+---
+
 ### 3.2 Morphological Matrix
 
 A morphological matrix was developed to compare solution principles for the ranked Robot Legs functions. Two concepts—passive and active suction—were selected for parallel development.
@@ -389,6 +391,8 @@ Three suction-cup geometries were evaluated (see [Appendix D](#appendix-d-suctio
 
 Unlike conventional industrial suction cups primarily used for gripping and lifting, SoftCrawl's suction cups must withstand changing load directions, repeated attachment cycles and potential oil contamination. Development therefore focused on suction-cup sizing, mechanical integration with the deformable body, experimental characterisation under different loading conditions, and identification of failure mechanisms to guide subsequent design improvements.
 
+---
+
 ### 3.5 Failure Modes of Suction Cups
 
 Three loading conditions were considered to guide experimental validation: axial (normal), tangential (shear) and eccentric (moment) loading (Mantriota & Messina, 2011).
@@ -421,11 +425,15 @@ Three loading conditions were considered to guide experimental validation: axial
 </div>
 <p class="table-caption">Table 7. Suction-cup loading conditions and assessment methods.</p>
 
+---
+
 ### 3.6 Suction-Cup Sizing Calculation & Selection
 
 Based on the payload requirements, surface conditions and robot configuration, the minimum effective diameter was calculated as *d*<sub>min</sub> = 32.26 mm (see [Appendix E](#appendix-e-suction-cup-sizing-calculations)). The Festo VAS-40-1/4-PUR-B polyurethane suction cup was selected based on cost, availability and geometry, with a nominal diameter of 40 mm, an effective diameter of 34.4 mm as used in the design calculations and a rated axial holding force of approximately 60 N. Polyurethane was chosen for its reported resistance to oils and lubricants (AMES Direct, 2025); compatibility with the specific tank contaminants remains to be verified.
 
 The simplified model assumes uniform pressure and equal load sharing, excluding peeling and seal deformation. Experimental validation was therefore necessary.
+
+---
 
 ### 3.7 Mechanical Integration with the Robot Body
 
@@ -435,6 +443,8 @@ A 3D-printed mounting interface was developed to integrate the suction cups with
 <img src="{{ '/images/legs/image11.png' | relative_url }}" alt="Suction cup mounting interface">
 <figcaption>Figure 8. CAD model of the suction-cup-to-body mounting interface.</figcaption>
 </figure>
+
+---
 
 ### 3.8 Experimental Evaluation of Payload Capacity
 
@@ -459,6 +469,8 @@ A configurable testing jig was used to measure failure loads at approximately �
 </figure>
 
 The rear-two-foot configuration was the limiting case, failing at only 10 N vertically. This demonstrates that attachment geometry and load distribution significantly influence capacity beyond theoretical suction force (see [Appendix F](#appendix-f-suction-cup-payload-testing)).
+
+---
 
 ### 3.9 Peeling Failure Under Eccentric Loading
 
@@ -488,6 +500,8 @@ Additional tests investigated the relationship between suction-cup spacing and m
 
 Increasing the suction-cup spacing from 23 mm to 161 mm increased the maximum failure load from 4 N to 10 N, a 2.5-fold improvement. This trend is consistent with Rutkowski et al. (2009), demonstrating the influence of attachment geometry on moment resistance and informing SoftCrawl's footprint design (see [Appendix H](#appendix-h-suction-cup-configuration-testing)).
 
+---
+
 ### 3.10 Shear Testing Under Oil Contamination
 
 De Wolff (2017) suggests that suction-cup deformation during peeling can favour sliding. Oil contamination further reduces shear resistance, making sliding a potential failure mode.
@@ -507,6 +521,8 @@ F_{required} = 2 \times 0.75 \times 9.81 = 14.72\ \text{N}
 \]</div>
 
 Although the estimated two-cup shear capacity exceeds the preliminary sliding requirement, the measured 10 N failure load under eccentric vertical loading corresponds to an actual safety factor of only 1.36, below the target of 2. This highlights the need to improve peeling resistance and load distribution in subsequent design iterations.
+
+---
 
 ### 3.11 Oil Ingestion into the Vacuum System
 
