@@ -97,6 +97,17 @@ document.addEventListener("DOMContentLoaded", function () {
     items.forEach(function (item) {
       if (item.link === activeLink) {
         item.link.classList.add("active");
+        if (item.link.parentElement) {
+          const li = item.link.parentElement;
+          const container = tocList;
+          const itemTop = li.offsetTop - container.offsetTop;
+          const itemHeight = li.offsetHeight;
+          if (itemTop < container.scrollTop) {
+            container.scrollTo({ top: Math.max(0, itemTop - 12), behavior: "smooth" });
+          } else if (itemTop + itemHeight > container.scrollTop + container.clientHeight) {
+            container.scrollTo({ top: itemTop + itemHeight - container.clientHeight + 12, behavior: "smooth" });
+          }
+        }
       } else {
         item.link.classList.remove("active");
       }
