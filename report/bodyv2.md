@@ -351,9 +351,21 @@ Under zero external load, the actuator's axial stroke was characterized across f
 
 A load was attached to check actuator contraction while carrying weight. The weight was progressively increased and the contraction was measured, as shown in the graph below. We stopped our test at 3.3 kg.
 
-<figure style="max-width: 480px; margin: 28px auto;">
-  <img src="{{ '/images/body/image20.png' | relative_url }}" style="max-height: 480px; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; margin: 0 auto;">
-  <figcaption>Figure 14. Experimental test setup for contraction under 3.3 kg load with V3 actuator.</figcaption>
+<figure style="max-width: 800px; margin: 28px auto;">
+  <div style="display: flex; justify-content: center; align-items: flex-end; gap: 24px; padding: 10px 0; flex-wrap: wrap;">
+    <div style="flex: 1 1 300px; text-align: center;">
+      <img src="{{ '/images/body/image20.png' | relative_url }}" style="max-height: 420px; width: auto; max-width: 100%; border-radius: 8px; margin: 0 auto 8px;">
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(a) Experimental test setup with 3.3 kg load</span>
+    </div>
+    <div style="flex: 1 1 300px; text-align: center;">
+      <video controls autoplay loop muted playsinline style="max-height: 420px; width: auto; max-width: 100%; border-radius: 8px; background: #000; margin: 0 auto 8px;">
+        <source src="{{ '/videos/load-test.mp4' | relative_url }}" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <span style="display: block; font-size: 13px; font-weight: 600; color: #6b7b8c;">(b) Load test demonstration</span>
+    </div>
+  </div>
+  <figcaption>Figure 14. Contraction under 3.3 kg load with V3 actuator: (a) experimental test setup and (b) load test demonstration.</figcaption>
 </figure>
 
 <figure>
